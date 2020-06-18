@@ -28,7 +28,7 @@ class PatternEvent:
 class Pattern:
     name: str
     code: str
-    in_time: int
-    out_time: int
     events: List[PatternEvent]
+    in_time: int = 0
+    out_time: int = 0
 
