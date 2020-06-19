@@ -1,7 +1,9 @@
 from codeball.models import(
     Coordinate,
     Visualization,
-    PatternEvent
+    PatternEvent,
+    Pattern,
+    GameDataset
 )
 
 class TestModels:
@@ -14,9 +16,7 @@ class TestModels:
         viz = Visualization(
             start_time = 500,
             end_time = 700,
-            players = [],
             tool_id = 'player',
-            options = []
         )
 
         assert viz.start_time == 500
@@ -46,3 +46,20 @@ class TestModels:
         assert pattern_event.end_time == 800
         assert pattern_event.coordinates[0].x == 0.3
         assert pattern_event.visualizations[0].start_time == 500
+
+    def test_pattern(self):
+
+        pattern = Pattern(
+            name = 'Test Pattern',
+            code = 'MET_001',
+            in_time = 3
+        )
+
+        assert pattern.in_time == 3
+        assert len(pattern.events) == 0
+
+    def test_game_dataset(self):
+        
+        game_dataset = GameDataset()
+
+        assert len(game_dataset.patterns) == 0

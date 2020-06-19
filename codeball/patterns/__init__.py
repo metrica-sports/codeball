@@ -1,21 +1,11 @@
-from typing import Optional, List, Dict
-from codeball.models import PatternEvent
+from typing import Optional, List, Dict, TYPE_CHECKING
+if TYPE_CHECKING:
+    from codeball.models import PatternEvent
 
-class Pattern(object):
-    def __init__(
-        self, 
-        name: str = None, 
-        code: str = None, 
-        events: list = [], 
-        in_time: int = 0, 
-        out_time: int = 0
-    ):
-    
-        self.name = name
-        self.code = code
-        self.events = events
-        self.in_time = in_time
-        self.out_time =  out_time
+class PatternAnalysis(object):
+    def __init__(self, game_dataset = [], pattern = []):
+        self.game_dataset = game_dataset
+        self.pattern = pattern
 
-    def run(self):
+    def run(self) -> List["PatternEvent"]:
         pass

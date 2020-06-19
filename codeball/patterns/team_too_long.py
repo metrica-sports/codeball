@@ -6,21 +6,12 @@
 
 import sys
 from codeball.models import  PatternEvent
-from . import Pattern
+from . import PatternAnalysis
 
-PATTERN_CODE = 'MET_001'
-PATTERN_NAME = 'Team length'
-
-
-class TeamTooLong(Pattern):
-
-    def __init__(self):
-        super(TeamTooLong, self).__init__()
-        self.name = PATTERN_NAME
-        self.code = PATTERN_CODE
+class TeamTooLong(PatternAnalysis):
 
     def run(self):
-        print(f'Pattern with code {self.code} computed!')
+        print(f'Pattern computed!')
 
 
 
