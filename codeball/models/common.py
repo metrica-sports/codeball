@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional, List, Dict
 
 @dataclass
@@ -23,12 +23,4 @@ class PatternEvent:
     coordinates: List[Coordinate]
     visualizations: List[Visualization]
     tags: List[str]
-
-@dataclass
-class Pattern:
-    name: str
-    code: str
-    events: List[PatternEvent]
-    in_time: int = 0
-    out_time: int = 0
 
