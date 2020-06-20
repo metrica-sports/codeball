@@ -1,7 +1,8 @@
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, TYPE_CHECKING
 from kloppy.domain.models import Dataset
-from codeball.patterns import PatternAnalysis
+from codeball.patterns.base import PatternAnalysis
+import pandas as pd
 
 @dataclass
 class Coordinate:
@@ -32,12 +33,13 @@ class Pattern:
     code: str  
     in_time: int = 0 
     out_time: int = 0
-    events: List[PatternEvent] = field(default_factory=list) 
     pattern_analysis: List[PatternAnalysis] = field(default_factory=list)
+    events: List[PatternEvent] = field(default_factory=list) 
+    
 
 @dataclass
 class GameDataset:
     # metadata = [] TODO when metadata is added to Kloppy. 
-    dataset: Dataset = field(default_factory=list)
+    data: pd.DataFrame
     patterns: List[Pattern] = field(default_factory=list)
 

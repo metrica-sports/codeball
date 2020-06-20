@@ -1,3 +1,4 @@
+import pandas as pd
 from codeball.models import(
     Coordinate,
     Visualization,
@@ -60,6 +61,7 @@ class TestModels:
 
     def test_game_dataset(self):
         
-        game_dataset = GameDataset()
+        dataframe = pd.DataFrame()
+        game_dataset = GameDataset(dataframe)
 
         assert len(game_dataset.patterns) == 0
