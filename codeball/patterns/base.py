@@ -6,14 +6,10 @@ if TYPE_CHECKING:
 
 class PatternAnalysis(object):
     def __init__(
-        self,
-        game_dataset: "GameDataset" = [],
-        pattern: "Pattern" = [],
-        options: dict = [],
+        self, game_dataset: "GameDataset" = [], pattern: "Pattern" = []
     ):
         self.game_dataset = game_dataset
         self.pattern = pattern
-        self.options = options
 
     def run(self) -> List["PatternEvent"]:
         pass
