@@ -3,3 +3,5 @@ __pycache__/
 *.py[cod]
 *$py.class
 env
+.pre-commit-config.yaml
+data.json

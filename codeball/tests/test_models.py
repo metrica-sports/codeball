@@ -1,24 +1,21 @@
 import pandas as pd
-from codeball.models import(
+from codeball.models import (
     Coordinate,
     Visualization,
     PatternEvent,
     Pattern,
-    GameDataset
+    GameDataset,
 )
+
 
 class TestModels:
     def test_coordinate(self):
         xy = Coordinate(x=0.3, y=0.6)
         assert xy.x == 0.3
-        assert xy.y ==0.6
+        assert xy.y == 0.6
 
     def test_visualization(self):
-        viz = Visualization(
-            start_time = 500,
-            end_time = 700,
-            tool_id = 'player',
-        )
+        viz = Visualization(start_time=500, end_time=700, tool_id="player",)
 
         assert viz.start_time == 500
 
@@ -27,21 +24,17 @@ class TestModels:
         xy = Coordinate(x=0.3, y=0.6)
 
         viz = Visualization(
-            start_time = 500,
-            end_time = 700,
-            players = [],
-            tool_id = 'player',
-            options = []
+            start_time=500, end_time=700, players=[], tool_id="player", options=[]
         )
 
         pattern_event = PatternEvent(
-            pattern = 'MET_001',
-            start_time = 400,
-            event_time = 500,
-            end_time = 800,
-            coordinates = [xy, xy],
-            visualizations = [viz, viz],
-            tags = ['T001']
+            pattern="MET_001",
+            start_time=400,
+            event_time=500,
+            end_time=800,
+            coordinates=[xy, xy],
+            visualizations=[viz, viz],
+            tags=["T001"],
         )
 
         assert pattern_event.end_time == 800
@@ -50,17 +43,13 @@ class TestModels:
 
     def test_pattern(self):
 
-        pattern = Pattern(
-            name = 'Test Pattern',
-            code = 'MET_001',
-            in_time = 3
-        )
+        pattern = Pattern(name="Test Pattern", code="MET_001", in_time=3)
 
         assert pattern.in_time == 3
         assert len(pattern.events) == 0
 
     def test_game_dataset(self):
-        
+
         dataframe = pd.DataFrame()
         game_dataset = GameDataset(dataframe)
 
