@@ -1,6 +1,6 @@
 """
-    This pattern computes moments in the game in which the length of the 
-    team exceeds a cartain value for more than one second and returns those 
+    This pattern computes moments in the game in which the length of the
+    team exceeds a cartain value for more than one second and returns those
     moments with a length visualization for the duration of the infringement.
 """
 from typing import List
@@ -12,10 +12,13 @@ from .base import PatternAnalysis
 class TeamStretched(PatternAnalysis):
     def run(self) -> List[PatternEvent]:
         match_string = self.options["team"] + "_[0-9]+_x"
+        # TODO Also filter goalkeeper so only field players left
         team_dataframe = self.game_dataset.data.filter(regex=match_string)
         team_span = team_dataframe.max(axis=1) - team_dataframe.min(axis=1)
-        team_stretched = team_span > 0.4
+        # TODO Only take into account moments with ball in play. Could also be attack or defence.
+        team_stretched = team_span > self.options["threshold"]
 
+        # TODO Refactor to utils folder
         intervals = []
         interval_open = False
         for i, f in enumerate(team_stretched):
@@ -28,7 +31,7 @@ class TeamStretched(PatternAnalysis):
 
         pattern_events = []
         for i in intervals:
-
+            # TODO change visualization for a team length one (currently crashing Play)
             visualization = PlayerVisualization(
                 start_time=i[0] * 1000 / 25,
                 end_time=i[1] * 1000 / 25,
