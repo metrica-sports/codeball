@@ -5,7 +5,7 @@
 
     It takes two init fields:
         team: str -> code of the team
-        threshold: float -> What is the stretch threshold in the interval [0,1]
+        threshold: float -> What is the stretch threshold in the interval [0.0,1.0]
 """
 from typing import List
 from codeball.models import PatternEvent
@@ -41,10 +41,9 @@ class TeamStretched(PatternAnalysis):
         pattern_events = []
         for i in intervals:
             # TODO change visualization for a team length one (currently crashing Play)
-            visualization = vizs.PlayerVisualization(
+            visualization = vizs.PlayersVisualization(
                 start_time=i[0] * 1000 / 25,
                 end_time=i[1] * 1000 / 25,
-                tool_id="players",
                 players="P2288",
                 options={"spotlight": True},
             )
