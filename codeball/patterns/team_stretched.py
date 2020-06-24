@@ -4,8 +4,8 @@
     moments with a length visualization for the duration of the infringement.
 
     It takes two init fields:
-        team: str -> code of the team
-        threshold: float -> What is the stretch threshold in the interval [0.0,1.0]
+        team: str -> code of the team: for now home or away
+        threshold: float -> What is the stretch threshold in meters
 """
 from typing import List
 from codeball.models import PatternEvent
@@ -27,33 +27,31 @@ class TeamStretched(PatternAnalysis):
             self.game_dataset.data, self.team_code
         )
 
-        stretched_frames = self.find_stretched_frames(team_dataframe)
+        # Drop goalkeeper to only leave field players.
+        field_players_dataframe = team_dataframe.drop(
+            columns="player_home_13_x"
+        )
+
+        stretched_frames = self.find_stretched_frames(field_players_dataframe)
 
         intervals = utils.find_intervals(stretched_frames)
 
         pattern_events = []
         for i in intervals:
-            # TODO change visualization for a team length one (currently crashing Play)
-            # visualization = vizs.TeamSize(
-            #     start_time = i[0] * 1000 / 25,
-            #     end_time = i[1] * 1000 / 25,
-            #     team = "ESPRMA",
-            #     line = "width"
-            # )
 
-            visualization = vizs.Players(
-                start_time=i[0] * 1000 / 25,
-                end_time=i[1] * 1000 / 25,
-                players="P2288",
-                options={"spotlight": True},
+            visualization = vizs.TeamSize(
+                start_time=utils.frame_to_milisecond(i[0], 25),
+                end_time=utils.frame_to_milisecond(i[1], 25),
+                team="T016",
+                line="length",
             )
 
             pattern_events.append(
                 PatternEvent(
                     self.pattern.code,
-                    i[0] * 1000 / 25,
-                    i[0] * 1000 / 25,
-                    i[1] * 1000 / 25,
+                    utils.frame_to_milisecond(i[0], 25),
+                    utils.frame_to_milisecond(i[0], 25),
+                    utils.frame_to_milisecond(i[1], 25),
                     visualizations=visualization,
                     tags="ESPRMA",
                 )
@@ -64,5 +62,6 @@ class TeamStretched(PatternAnalysis):
     def find_stretched_frames(self, team_dataframe: pd.DataFrame) -> pd.Series:
         team_span = team_dataframe.max(axis=1) - team_dataframe.min(axis=1)
         # TODO Only take into account moments with ball in play. Could also be attack or defence.
-        team_stretched = team_span > self.threshold
+        # TODO replace 105 with field actual size
+        team_stretched = team_span > self.threshold / 105
         return team_stretched

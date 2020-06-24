@@ -23,7 +23,7 @@ game_dataset = models.GameDataset(dataframe)
 # Initialize patterns that I want to process
 pattern = models.Pattern("Team Stretched", "MET_001")
 pattern.pattern_analysis = [
-    patt.TeamStretched(game_dataset, pattern, team_code="home", threshold=0.4)
+    patt.TeamStretched(game_dataset, pattern, team_code="home", threshold=40)
 ]
 
 game_dataset.patterns = [pattern]
