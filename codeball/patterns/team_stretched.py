@@ -11,6 +11,8 @@ from typing import List
 from codeball.models import PatternEvent
 import codeball.models.visualizations as vizs
 from .base import PatternAnalysis
+import codeball.utils as utils
+import pandas as pd
 
 
 class TeamStretched(PatternAnalysis):
@@ -20,28 +22,26 @@ class TeamStretched(PatternAnalysis):
         self.threshold = threshold
 
     def run(self) -> List[PatternEvent]:
-        match_string = self.team_code + "_[0-9]+_x"
-        # TODO Also filter goalkeeper so only field players left
-        team_dataframe = self.game_dataset.data.filter(regex=match_string)
-        team_span = team_dataframe.max(axis=1) - team_dataframe.min(axis=1)
-        # TODO Only take into account moments with ball in play. Could also be attack or defence.
-        team_stretched = team_span > self.threshold
 
-        # TODO Refactor to utils folder
-        intervals = []
-        interval_open = False
-        for i, f in enumerate(team_stretched):
-            if f is True and interval_open is False:
-                interval_open = True
-                start_interval = i
-            elif f is False and interval_open is True:
-                interval_open = False
-                intervals.append([start_interval, i - 1])
+        team_dataframe = utils.get_team_dataframe(
+            self.game_dataset.data, self.team_code
+        )
+
+        stretched_frames = self.find_stretched_frames(team_dataframe)
+
+        intervals = utils.find_intervals(stretched_frames)
 
         pattern_events = []
         for i in intervals:
             # TODO change visualization for a team length one (currently crashing Play)
-            visualization = vizs.PlayersVisualization(
+            # visualization = vizs.TeamSize(
+            #     start_time = i[0] * 1000 / 25,
+            #     end_time = i[1] * 1000 / 25,
+            #     team = "ESPRMA",
+            #     line = "width"
+            # )
+
+            visualization = vizs.Players(
                 start_time=i[0] * 1000 / 25,
                 end_time=i[1] * 1000 / 25,
                 players="P2288",
@@ -60,3 +60,9 @@ class TeamStretched(PatternAnalysis):
             )
 
         return pattern_events
+
+    def find_stretched_frames(self, team_dataframe: pd.DataFrame) -> pd.Series:
+        team_span = team_dataframe.max(axis=1) - team_dataframe.min(axis=1)
+        # TODO Only take into account moments with ball in play. Could also be attack or defence.
+        team_stretched = team_span > self.threshold
+        return team_stretched
