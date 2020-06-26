@@ -11,108 +11,100 @@ class Visualization:
 
 
 # Players
-players_options = {
-    "id": True,
-    "speed": True,
-    "spotlight": False,
-    "ring": False,
-    "spotlightColor": "#FFFFFF",
-    "ringColor": "#000000",
-    "size": 1.0,  # Multiplier, [0.6, 1.5]
-}
-
-
 @dataclass
 class Players(Visualization):
     players: List[str]
     tool_id: str = "players"
-    options: Dict = field(default_factory=lambda: players_options)
+    options: Dict = field(
+        default_factory=lambda: {
+            "id": True,
+            "speed": True,
+            "spotlight": False,
+            "ring": False,
+            "spotlightColor": "#FFFFFF",
+            "ringColor": "#000000",
+            "size": 1.0,  # Multiplier, [0.6, 1.5]
+        }
+    )
 
 
 # Trails
-trails_options = {"color": "#E66F7E", "width": 1.0}  # Multiplier, [0.5, 2.0]
-
-
 @dataclass
 class Trails(Visualization):
     players: List[str]
     tool_id: str = "trails"
-    options: Dict = field(default_factory=lambda: trails_options)
+    options: Dict = field(
+        default_factory=lambda: {
+            "color": "#E66F7E",
+            "width": 1.0,  # Multiplier, [0.5, 2.0]
+        }
+    )
 
 
 # FutureTrails
-future_trails_options = {
-    "color": "#E66F7E",
-    "width": 1.0,  # Multiplier, [0.5, 2.0]
-}
-
-
 @dataclass
 class FutureTrails(Visualization):
     players: List[str]
     tool_id: str = "futureTrails"
-    options: Dict = field(default_factory=lambda: future_trails_options)
+    options: Dict = field(
+        default_factory=lambda: {
+            "color": "#E66F7E",
+            "width": 1.0,  # Multiplier, [0.5, 2.0]
+        }
+    )
 
 
 # Magnifiers
-magnifiers_options = {
-    "zoom": 1.0,  # Multiplier, [0.2, 1.5]
-    "size": 1.0,  # Multiplier, [0.5, 1.5]
-}
-
-
 @dataclass
 class Magnifiers(Visualization):
     players: List[str]
     tool_id: str = "magnifiers"
-    options: Dict = field(default_factory=lambda: magnifiers_options)
+    options: Dict = field(
+        default_factory=lambda: {
+            "zoom": 1.0,  # Multiplier, [0.2, 1.5]
+            "size": 1.0,  # Multiplier, [0.5, 1.5]
+        }
+    )
 
 
 # Measurer
-measurer_options = {
-    "color": "#040602",
-    "width": 1.0,  # Multiplier, [0.5, 2.0]
-    "filled": False,
-    "distances": True,
-    "closed": False,
-}
-
-
 @dataclass
 class Measurer(Visualization):
     players: List[str]
     tool_id: str = "measurer"
-    options: Dict = field(default_factory=lambda: measurer_options)
+    options: Dict = field(
+        default_factory=lambda: {
+            "color": "#040602",
+            "width": 1.0,  # Multiplier, [0.5, 2.0]
+            "filled": False,
+            "distances": True,
+            "closed": False,
+        }
+    )
 
 
 # TeamSize
-team_size_options = {
-    "color": "#E66F7E",
-}
-
-
 @dataclass
 class TeamSize(Visualization):
     team: str
     line: str = "width"  # Values: 'width' or 'length'
     tool_id: str = "teamSize"
-    options: Dict = field(default_factory=lambda: team_size_options)
+    options: Dict = field(default_factory=lambda: {"color": "#E66F7E"})
 
 
 # TacticalLines
-tactical_lines_options = {
-    "color": "#E66F7E",
-    "distances": False,
-    "closed": False,  # Only used when line is 'midfielders'
-}
-
-
 @dataclass
 class TacticalLines(Visualization):
     team: str
     line: str = "defenders"  # Values: 'defenders', 'midfielders' or 'strikers'
     tool_id: str = "tacticalLines"
-    options: Dict = field(default_factory=lambda: tactical_lines_options)
+    options: Dict = field(
+        default_factory=lambda: {
+            "color": "#E66F7E",
+            "distances": False,
+            "closed": False,  # Only used when line is 'midfielders'
+        }
+    )
 
 
 # Pause TODO do Pause have start and end time? Or just start time?
@@ -123,13 +115,12 @@ class Pause:
 
 
 # ChromaKey
-chroma_key_options = {
-    "threshold": 0.01,  # [0.0, 1.0]
-    "smoothing": 0.1,  # [0.0, 1.0]
-}
-
-
 @dataclass
 class ChromaKey:
     tool_id: str = "chromaKey"
-    options: Dict = field(default_factory=lambda: chroma_key_options)
+    options: Dict = field(
+        default_factory=lambda: {
+            "threshold": 0.01,  # [0.0, 1.0]
+            "smoothing": 0.1,  # [0.0, 1.0]
+        }
+    )
