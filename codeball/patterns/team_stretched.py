@@ -1,14 +1,3 @@
-"""
-    This pattern computes moments in the game in which the length of the
-    team exceeds a cartain value for more than one second and returns those
-    moments with a TeamSize length visualization for the duration of the infringement.
-
-    Attributes:
-        team: str
-            code of the team (for now home or away)
-        threshold: float
-            What is the stretch threshold in meters
-"""
 from typing import List
 from codeball.models import PatternEvent
 import codeball.models.visualizations as vizs
@@ -18,6 +7,18 @@ import pandas as pd
 
 
 class TeamStretched(PatternAnalysis):
+    """
+        This pattern computes moments in the game in which the length of the
+        team exceeds a cartain value for more than one second and returns those
+        moments with a TeamSize length visualization for the duration of the infringement.
+
+        Attributes:
+            team: str
+                code of the team (for now home or away)
+            threshold: float
+                What is the stretch threshold in meters
+    """
+
     def __init__(self, game_dataset, pattern, team_code, threshold):
         super().__init__(game_dataset, pattern)
         self.team_code = team_code
