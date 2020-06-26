@@ -1,9 +1,11 @@
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, TYPE_CHECKING
 from kloppy.domain.models import Dataset
-from codeball.patterns.base import PatternAnalysis
 from codeball.models.visualizations import Visualization
 import pandas as pd
+
+if TYPE_CHECKING:
+    from codeball.patterns.base import PatternAnalysis
 
 
 @dataclass
@@ -29,7 +31,7 @@ class Pattern:
     code: str
     in_time: int = 0
     out_time: int = 0
-    pattern_analysis: List[PatternAnalysis] = field(default_factory=list)
+    pattern_analysis: List["PatternAnalysis"] = field(default_factory=list)
     events: List[PatternEvent] = field(default_factory=list)
 
 
