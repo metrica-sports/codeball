@@ -1,11 +1,13 @@
 """
     This pattern computes moments in the game in which the length of the
     team exceeds a cartain value for more than one second and returns those
-    moments with a length visualization for the duration of the infringement.
+    moments with a TeamSize length visualization for the duration of the infringement.
 
-    It takes two init fields:
-        team: str -> code of the team: for now home or away
-        threshold: float -> What is the stretch threshold in meters
+    Attributes:
+        team: str
+            code of the team (for now home or away)
+        threshold: float
+            What is the stretch threshold in meters
 """
 from typing import List
 from codeball.models import PatternEvent
@@ -36,26 +38,7 @@ class TeamStretched(PatternAnalysis):
 
         intervals = utils.find_intervals(stretched_frames)
 
-        pattern_events = []
-        for i in intervals:
-
-            visualization = vizs.TeamSize(
-                start_time=utils.frame_to_milisecond(i[0], 25),
-                end_time=utils.frame_to_milisecond(i[1], 25),
-                team="T016",
-                line="length",
-            )
-
-            pattern_events.append(
-                PatternEvent(
-                    self.pattern.code,
-                    utils.frame_to_milisecond(i[0], 25),
-                    utils.frame_to_milisecond(i[0], 25),
-                    utils.frame_to_milisecond(i[1], 25),
-                    visualizations=visualization,
-                    tags="ESPRMA",
-                )
-            )
+        pattern_events = self.build_pattern_events(intervals=intervals)
 
         return pattern_events
 
@@ -65,3 +48,35 @@ class TeamStretched(PatternAnalysis):
         # TODO replace 105 with field actual size
         team_stretched = team_span > self.threshold / 105
         return team_stretched
+
+    def build_pattern_events(self, intervals: List[int]) -> List[PatternEvent]:
+
+        pattern_events = []
+        for i in intervals:
+            viz = self.build_visualization(i)
+            event = self.build_event(i, viz)
+            pattern_events.append(event)
+
+        return pattern_events
+
+    def build_visualization(self, interval: List) -> vizs.TeamSize:
+
+        return vizs.TeamSize(
+            start_time=utils.frame_to_milisecond(interval[0], 25),
+            end_time=utils.frame_to_milisecond(interval[1], 25),
+            team="T016",
+            line="length",
+        )
+
+    def build_event(
+        self, interval: List[int], visualization: vizs.TeamSize
+    ) -> PatternEvent:
+
+        return PatternEvent(
+            self.pattern.code,
+            utils.frame_to_milisecond(interval[0], 25),
+            utils.frame_to_milisecond(interval[0], 25),
+            utils.frame_to_milisecond(interval[1], 25),
+            visualizations=visualization,
+            tags="ESPRMA",
+        )

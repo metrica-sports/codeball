@@ -8,4 +8,5 @@ class PatternAnalysis(object):
         self.pattern = pattern
 
     def run(self) -> List[PatternEvent]:
+        """ Runs the pattern to compute the PatternEvents"""
         pass
