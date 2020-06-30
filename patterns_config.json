@@ -1,0 +1,12 @@
+[{
+    "include": true,
+    "name":"Team Stretched",
+    "code": "MET_001",
+    "pattern_analysis":[{
+        "class": " patt.TeamStretched",
+        "params": {
+            "team_code": "home", 
+            "threshold": 40
+        }
+    }]
+}]

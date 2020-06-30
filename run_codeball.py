@@ -1,5 +1,4 @@
 import json
-from kloppy import load_epts_tracking_data, to_pandas
 import codeball.patterns as patt
 import codeball.utils as utils
 import codeball.models as models
@@ -13,12 +12,7 @@ txt_file = (
     r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/txt_file.txt"
 )
 
-# Load data and transform it to a pandas dataframe
-dataset = load_epts_tracking_data(xml_file, txt_file)
-dataframe = to_pandas(dataset)
-
-# Initialize game dataset and add patterns
-game_dataset = models.GameDataset(dataframe)
+game_dataset = utils.initialize_game_dataset(xml_file, txt_file)
 
 # Initialize patterns that I want to process
 pattern = models.Pattern("Team Stretched", "MET_001")
