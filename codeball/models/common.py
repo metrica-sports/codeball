@@ -3,6 +3,7 @@ from typing import Optional, List, Dict, TYPE_CHECKING
 from kloppy.domain.models import Dataset
 from codeball.models.visualizations import Visualization
 import pandas as pd
+import codeball
 
 if TYPE_CHECKING:
     from codeball.patterns.base import PatternAnalysis
@@ -40,3 +41,8 @@ class GameDataset:
     # metadata = [] TODO when metadata is added to Kloppy.
     data: pd.DataFrame
     patterns: List[Pattern] = field(default_factory=list)
+
+    def initialize_patterns(self):
+        patterns_config_info = codeball.get_patterns_config()
+        for p in patterns_config_info:
+            self.patterns.append()
