@@ -1,8 +1,9 @@
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, TYPE_CHECKING
+from enum import Enum
 from kloppy.domain.models import Dataset
+from kloppy import load_epts_tracking_data, to_pandas
 from codeball.models.visualizations import Visualization
-import pandas as pd
 import codeball
 
 if TYPE_CHECKING:
@@ -36,13 +37,39 @@ class Pattern:
     events: List[PatternEvent] = field(default_factory=list)
 
 
+class DataType(Enum):
+    TRACKING = "tracking"
+    EVENT = "event"
+
+
+@dataclass
+class DataPackage:
+    data_type: DataType
+    data_file: str
+    meta_data_file: str = None
+
+    def load_dataset(self):
+        self.dataset = load_epts_tracking_data(
+            self.meta_data_file, self.data_file
+        )
+
+    def build_dataframe(self):
+        self.dataframe = to_pandas(self.dataset)
+
+
 @dataclass
 class GameDataset:
-    # metadata = [] TODO when metadata is added to Kloppy.
-    data: pd.DataFrame
+    tracking_data: DataPackage = None
+    event_data: DataPackage = None
     patterns: List[Pattern] = field(default_factory=list)
 
     def initialize_patterns(self):
         patterns_config_info = codeball.get_patterns_config()
-        for p in patterns_config_info:
-            self.patterns.append()
+        for pattern in patterns_config_info:
+            if pattern["include"]:
+                pass
+
+    def run_patterns(self):
+        for pattern in self.patterns:
+            for analysis in pattern.pattern_analysis:
+                pattern.events = pattern.events + analysis.run()

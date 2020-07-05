@@ -19,10 +19,10 @@ class TeamStretched(PatternAnalysis):
                 What is the stretch threshold in meters
     """
 
-    def __init__(self, game_dataset, pattern, team_code, threshold):
+    def __init__(self, game_dataset, pattern, parameters):
         super().__init__(game_dataset, pattern)
-        self.team_code = team_code
-        self.threshold = threshold
+        self.team_code = parameters["team_code"]
+        self.threshold = parameters["threshold"]
 
     def run(self) -> List[PatternEvent]:
 

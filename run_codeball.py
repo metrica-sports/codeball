@@ -12,7 +12,9 @@ txt_file = (
     r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/txt_file.txt"
 )
 
-game_dataset = utils.initialize_game_dataset(xml_file, txt_file)
+game_dataset = utils.initialize_game_dataset(
+    tracking_meta_data_file=xml_file, tracking_data_file=txt_file
+)
 
 # Initialize patterns that I want to process
 pattern = models.Pattern("Team Stretched", "MET_001")
