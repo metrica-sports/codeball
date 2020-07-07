@@ -20,15 +20,4 @@ game_dataset.initialize_patterns()
 
 game_dataset.run_patterns()
 
-# Save events to json file for metrica play
-events_for_json = []
-for p in game_dataset.patterns:
-    events_for_json = events_for_json + p.events
-
-# for_json_file = {
-#     "events": events_for_json,
-#     "insert": {"patterns": [{"name": "Team stretched", "code": "MET_001"}]},
-# }
-
-# with open("data.json", "w") as f:
-#     json.dump(for_json_file, f, cls=utils.DataClassEncoder, indent=4)
+utils.save_patterns_for_play(game_dataset, "data.json")
