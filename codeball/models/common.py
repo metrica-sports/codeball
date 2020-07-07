@@ -1,3 +1,4 @@
+import json
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, TYPE_CHECKING
 from enum import Enum
@@ -5,6 +6,7 @@ from kloppy.domain.models import Dataset
 from kloppy import load_epts_tracking_data, to_pandas
 from codeball.models.visualizations import Visualization
 import codeball
+import codeball.utils as utils
 
 
 if TYPE_CHECKING:
@@ -102,3 +104,60 @@ class GameDataset:
         for pattern in self.patterns:
             for analysis in pattern.pattern_analysis:
                 pattern.events = pattern.events + analysis.run()
+
+    def save_patterns_for_play(self, file_path: str):
+        events_for_json = self._get_event_for_json()
+        patterns_config = self._get_patterns_config()
+
+        json_file_data = {
+            "events": events_for_json,
+            "insert": {"patterns": patterns_config},
+        }
+
+        with open(file_path, "w") as f:
+            json.dump(json_file_data, f, cls=utils.DataClassEncoder, indent=4)
+
+    def _get_event_for_json(self):
+        events_for_json = []
+        for pattern in self.patterns:
+            events_for_json = events_for_json + pattern.events
+
+        return events_for_json
+
+    def _get_patterns_config(self):
+        patterns_config = []
+        for pattern in self.patterns_config:
+            pattern_config = {"name": pattern["name"], "code": pattern["code"]}
+            patterns_config.append(pattern_config)
+
+        return patterns_config
+
+
+def initialize_game_dataset(
+    tracking_meta_data_file: str, tracking_data_file: str
+) -> GameDataset:
+
+    tracking_data_package = _initialize_data_package(
+        data_type=DataType.TRACKING,
+        data_file=tracking_data_file,
+        meta_data_file=tracking_meta_data_file,
+    )
+
+    return GameDataset(tracking_data=tracking_data_package)
+
+
+def _initialize_data_package(
+    data_type: DataType, data_file: str, meta_data_file: str
+) -> DataPackage:
+
+    data_package = DataPackage(
+        data_type=data_type,
+        data_file=data_file,
+        meta_data_file=meta_data_file,
+    )
+
+    data_package.load_dataset()
+
+    data_package.build_dataframe()
+
+    return data_package

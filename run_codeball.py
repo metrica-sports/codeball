@@ -12,7 +12,7 @@ txt_file = (
     r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/txt_file.txt"
 )
 
-game_dataset = utils.initialize_game_dataset(
+game_dataset = models.initialize_game_dataset(
     tracking_meta_data_file=xml_file, tracking_data_file=txt_file
 )
 
@@ -20,4 +20,4 @@ game_dataset.initialize_patterns()
 
 game_dataset.run_patterns()
 
-utils.save_patterns_for_play(game_dataset, "data.json")
+game_dataset.save_patterns_for_play("data.json")
