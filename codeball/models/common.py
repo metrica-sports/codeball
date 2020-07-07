@@ -6,6 +6,7 @@ from kloppy import load_epts_tracking_data, to_pandas
 from codeball.models.visualizations import Visualization
 import codeball
 
+
 if TYPE_CHECKING:
     from codeball.patterns.base import PatternAnalysis
 
@@ -33,7 +34,6 @@ class Pattern:
     code: str
     in_time: int = 0
     out_time: int = 0
-    pattern_analysis: List["PatternAnalysis"] = field(default_factory=list)
     events: List[PatternEvent] = field(default_factory=list)
 
 
@@ -61,13 +61,42 @@ class DataPackage:
 class GameDataset:
     tracking_data: DataPackage = None
     event_data: DataPackage = None
-    patterns: List[Pattern] = field(default_factory=list)
+
+    def load_patterns_config(self):
+        self.patterns_config = codeball.get_patterns_config()
 
     def initialize_patterns(self):
-        patterns_config_info = codeball.get_patterns_config()
-        for pattern in patterns_config_info:
-            if pattern["include"]:
-                pass
+
+        self.load_patterns_config()
+
+        self.patterns = []
+        for pattern_config in self.patterns_config:
+            if pattern_config["include"]:
+                pattern = self._initialize_pattern(pattern_config)
+                self.patterns.append(pattern)
+
+    def _initialize_pattern(self, pattern_config: Dict):
+        pattern = Pattern(
+            name=pattern_config["name"], code=pattern_config["code"]
+        )
+
+        pattern.pattern_analysis = []
+        for pattern_analysis_config in pattern_config["pattern_analysis"]:
+            pattern_analysis = self._initialize_pattern_analysis(
+                pattern, pattern_analysis_config
+            )
+            pattern.pattern_analysis.append(pattern_analysis)
+
+        return pattern
+
+    def _initialize_pattern_analysis(
+        self, pattern: Pattern, pattern_analysis_config: dict
+    ):
+
+        pattern_analysis_class = pattern_analysis_config["class"]
+        return pattern_analysis_class(
+            self, pattern, pattern_analysis_config["parameters"]
+        )
 
     def run_patterns(self):
         for pattern in self.patterns:

@@ -27,7 +27,7 @@ class TeamStretched(PatternAnalysis):
     def run(self) -> List[PatternEvent]:
 
         team_dataframe = utils.get_team_dataframe(
-            self.game_dataset.data, self.team_code
+            self.game_dataset.tracking_data.dataframe, self.team_code
         )
 
         # Drop goalkeeper to only leave field players.

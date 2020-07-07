@@ -6,7 +6,6 @@
 """
 from typing import List
 import pandas as pd
-from codeball.models import GameDataset
 
 
 def get_team_dataframe(

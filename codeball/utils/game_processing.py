@@ -6,7 +6,7 @@ def initialize_game_dataset(
     tracking_meta_data_file: str, tracking_data_file: str
 ) -> models.GameDataset:
 
-    tracking_data_package = initialize_data_package(
+    tracking_data_package = _initialize_data_package(
         data_type=models.DataType.TRACKING,
         data_file=tracking_data_file,
         meta_data_file=tracking_meta_data_file,
@@ -15,7 +15,7 @@ def initialize_game_dataset(
     return models.GameDataset(tracking_data=tracking_data_package)
 
 
-def initialize_data_package(
+def _initialize_data_package(
     data_type: models.DataType, data_file: str, meta_data_file: str
 ) -> models.DataPackage:
 
