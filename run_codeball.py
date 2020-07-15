@@ -1,4 +1,3 @@
-import json
 import codeball.models as models
 import codeball.patterns as patt
 import codeball.utils as utils

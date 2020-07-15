@@ -26,16 +26,11 @@ class TeamStretched(PatternAnalysis):
 
     def run(self) -> List[PatternEvent]:
 
-        team_dataframe = utils.get_team_dataframe(
-            self.game_dataset.tracking_data.dataframe, self.team_code
+        team_dataframe = self.game_dataset.tracking.get_team_tracking_dataframe(
+            self.team_code, with_goalkeeper=False
         )
 
-        # Drop goalkeeper to only leave field players.
-        field_players_dataframe = team_dataframe.drop(
-            columns="player_home_13_x"
-        )
-
-        stretched_frames = self.find_stretched_frames(field_players_dataframe)
+        stretched_frames = self.find_stretched_frames(team_dataframe)
 
         intervals = utils.find_intervals(stretched_frames)
 
@@ -54,13 +49,13 @@ class TeamStretched(PatternAnalysis):
 
         pattern_events = []
         for i in intervals:
-            viz = self.build_visualization(i)
-            event = self.build_event(i, viz)
+            viz = self.build_visualization(interval=i)
+            event = self.build_event(interval=i, visualization=viz)
             pattern_events.append(event)
 
         return pattern_events
 
-    def build_visualization(self, interval: List) -> vizs.TeamSize:
+    def build_visualization(self, interval: List[int]) -> vizs.TeamSize:
 
         return vizs.TeamSize(
             start_time=utils.frame_to_milisecond(interval[0], 25),

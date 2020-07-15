@@ -2,7 +2,8 @@ import json
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, TYPE_CHECKING
 from enum import Enum
-from kloppy.domain.models import Dataset
+import pandas as pd
+from kloppy.domain.models import Dataset, Team
 from kloppy import load_epts_tracking_data, to_pandas
 from codeball.models.visualizations import Visualization
 import codeball
@@ -49,6 +50,8 @@ class DataPackage:
     data_type: DataType
     data_file: str
     meta_data_file: str = None
+    dataset: Dataset = None
+    dataframe: pd.DataFrame = None
 
     def load_dataset(self):
         self.dataset = load_epts_tracking_data(
@@ -58,11 +61,42 @@ class DataPackage:
     def build_dataframe(self):
         self.dataframe = to_pandas(self.dataset)
 
+    def get_team_tracking_dataframe(
+        self, team_code: str, with_goalkeeper: bool = True
+    ) -> pd.DataFrame:
+
+        team = self.get_team_by_code(team_code)
+
+        players_ids = self.get_players_ids_for_team(
+            team=team, with_goalkeeper=with_goalkeeper
+        )
+
+        column_names = []
+        for player_id in players_ids:
+            column_names.extend([player_id + "_x", player_id + "_y"])
+
+        return self.dataframe[column_names]
+
+    def get_team_by_code(self, team_code: str):
+        for team in self.dataset.meta_data.teams:
+            if team.team_id == team_code:
+                return team
+
+    def get_players_ids_for_team(self, team: Team, with_goalkeeper: bool):
+        if with_goalkeeper:
+            return [player.player_id for player in team.players]
+        else:
+            return [
+                player.player_id
+                for player in team.players
+                if player.position.name != "Goalkeeper"
+            ]
+
 
 @dataclass
 class GameDataset:
-    tracking_data: DataPackage = None
-    event_data: DataPackage = None
+    tracking: DataPackage = None
+    event: DataPackage = None
 
     def load_patterns_config(self):
         self.patterns_config = codeball.get_patterns_config()
@@ -143,7 +177,7 @@ def initialize_game_dataset(
         meta_data_file=tracking_meta_data_file,
     )
 
-    return GameDataset(tracking_data=tracking_data_package)
+    return GameDataset(tracking=tracking_data_package)
 
 
 def _initialize_data_package(

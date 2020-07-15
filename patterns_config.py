@@ -8,7 +8,7 @@ PATTERNS_CONFIG = [
         "pattern_analysis": [
             {
                 "class": patt.TeamStretched,
-                "parameters": {"team_code": "home", "threshold": 40},
+                "parameters": {"team_code": "ESPRMA", "threshold": 40},
             }
         ],
     }

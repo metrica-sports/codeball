@@ -1,20 +1,9 @@
 """
-    Methods to handle data. Actions like:
-        - Filter per team
-        - Find intervals
-        - Etc
+    Auxiliar methods to work with the data.
+
 """
 from typing import List
 import pandas as pd
-
-
-def get_team_dataframe(
-    dataframe: pd.DataFrame, team_code: str
-) -> pd.DataFrame:
-    # TODO option to get all players or only field players
-    match_string = team_code + "_[0-9]+_x"
-    team_dataframe = dataframe.filter(regex=match_string)
-    return team_dataframe
 
 
 def find_intervals(
