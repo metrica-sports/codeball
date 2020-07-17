@@ -97,6 +97,7 @@ class DataPackage:
 class GameDataset:
     tracking: DataPackage = None
     event: DataPackage = None
+    patterns: List[Pattern] = field(default_factory=list)
 
     def load_patterns_config(self):
         self.patterns_config = codeball.get_patterns_config()
@@ -105,11 +106,10 @@ class GameDataset:
 
         self.load_patterns_config()
 
-        self.patterns = []
         for pattern_config in self.patterns_config:
             if pattern_config["include"]:
                 pattern = self._initialize_pattern(pattern_config)
-                self.patterns.append(pattern)
+                self.patterns.extend(pattern)
 
     def _initialize_pattern(self, pattern_config: Dict):
         pattern = Pattern(

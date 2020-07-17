@@ -4,6 +4,8 @@ from codeball.models import (
     PatternEvent,
     Pattern,
     GameDataset,
+    DataPackage,
+    DataType,
 )
 
 import codeball.models.visualizations as vizs
@@ -44,9 +46,21 @@ class TestModels:
         assert pattern.in_time == 3
         assert len(pattern.events) == 0
 
+    def test_data_package(self):
+
+        data_package = DataPackage(
+            data_type=DataType.TRACKING, data_file="file/name/path",
+        )
+
+        assert data_package.data_type == DataType.TRACKING
+        assert data_package.meta_data_file is None
+
     def test_game_dataset(self):
 
-        dataframe = pd.DataFrame()
-        game_dataset = GameDataset(dataframe)
+        data_package = DataPackage(
+            data_type=DataType.TRACKING, data_file="file/name/path",
+        )
+
+        game_dataset = GameDataset(tracking=data_package)
 
         assert len(game_dataset.patterns) == 0
