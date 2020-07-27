@@ -53,7 +53,7 @@ class TestModels:
         )
 
         assert data_package.data_type == DataType.TRACKING
-        assert data_package.meta_data_file is None
+        assert data_package.metadata_file is None
 
     def test_game_dataset(self):
 

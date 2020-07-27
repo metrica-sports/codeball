@@ -49,13 +49,13 @@ class DataType(Enum):
 class DataPackage:
     data_type: DataType
     data_file: str
-    meta_data_file: str = None
+    metadata_file: str = None
     dataset: Dataset = None
     dataframe: pd.DataFrame = None
 
     def load_dataset(self):
         self.dataset = load_epts_tracking_data(
-            self.meta_data_file, self.data_file
+            self.metadata_file, self.data_file
         )
 
     def build_dataframe(self):
@@ -78,7 +78,7 @@ class DataPackage:
         return self.dataframe[column_names]
 
     def get_team_by_code(self, team_code: str):
-        for team in self.dataset.meta_data.teams:
+        for team in self.dataset.metadata.teams:
             if team.team_id == team_code:
                 return team
 
@@ -97,6 +97,7 @@ class DataPackage:
 class GameDataset:
     tracking: DataPackage = None
     event: DataPackage = None
+    patterns_config: Dict = field(default_factory=dict)
     patterns: List[Pattern] = field(default_factory=list)
 
     def load_patterns_config(self):
@@ -106,10 +107,11 @@ class GameDataset:
 
         self.load_patterns_config()
 
+        self.patterns = []
         for pattern_config in self.patterns_config:
             if pattern_config["include"]:
                 pattern = self._initialize_pattern(pattern_config)
-                self.patterns.extend(pattern)
+                self.patterns.append(pattern)
 
     def _initialize_pattern(self, pattern_config: Dict):
         pattern = Pattern(
@@ -168,26 +170,24 @@ class GameDataset:
 
 
 def initialize_game_dataset(
-    tracking_meta_data_file: str, tracking_data_file: str
+    tracking_metadata_file: str, tracking_data_file: str
 ) -> GameDataset:
 
     tracking_data_package = _initialize_data_package(
         data_type=DataType.TRACKING,
         data_file=tracking_data_file,
-        meta_data_file=tracking_meta_data_file,
+        metadata_file=tracking_metadata_file,
     )
 
     return GameDataset(tracking=tracking_data_package)
 
 
 def _initialize_data_package(
-    data_type: DataType, data_file: str, meta_data_file: str
+    data_type: DataType, data_file: str, metadata_file: str
 ) -> DataPackage:
 
     data_package = DataPackage(
-        data_type=data_type,
-        data_file=data_file,
-        meta_data_file=meta_data_file,
+        data_type=data_type, data_file=data_file, metadata_file=metadata_file,
     )
 
     data_package.load_dataset()

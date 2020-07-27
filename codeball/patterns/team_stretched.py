@@ -39,7 +39,10 @@ class TeamStretched(PatternAnalysis):
         return pattern_events
 
     def find_stretched_frames(self, team_dataframe: pd.DataFrame) -> pd.Series:
-        team_span = team_dataframe.max(axis=1) - team_dataframe.min(axis=1)
+        team_x_coordinates = team_dataframe.filter(regex="_x")
+        team_span = team_x_coordinates.max(axis=1) - team_x_coordinates.min(
+            axis=1
+        )
         # TODO Only take into account moments with ball in play. Could also be attack or defence.
         # TODO replace 105 with field actual size
         team_stretched = team_span > self.threshold / 105

@@ -3,4 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 env
-data.json
+development_data.json
+.coverage
+docs
+codeball/tests/files/
