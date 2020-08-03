@@ -4,18 +4,23 @@ import codeball.patterns as patt
 import codeball.utils as utils
 
 
-initiaize_dataset = True
+initiaize_dataset = False
 if initiaize_dataset:
     # Define game files to process
-    xml_file = (
-        r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/xml_file.xml"
+    metadata_file = (
+        r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/metadata.xml"
     )
-    txt_file = (
-        r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/txt_file.txt"
+    tracking_file = (
+        r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/tracking.txt"
+    )
+    events_file = (
+        r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/events.json"
     )
 
     game_dataset = models.initialize_game_dataset(
-        tracking_metadata_file=xml_file, tracking_data_file=txt_file
+        metadata_file=metadata_file,
+        tracking_data_file=tracking_file,
+        events_data_file=events_file,
     )
 
     with open(r"./codeball/tests/files/game_dataset.obj", "wb") as f:

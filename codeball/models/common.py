@@ -4,7 +4,11 @@ from typing import Optional, List, Dict, TYPE_CHECKING
 from enum import Enum
 import pandas as pd
 from kloppy.domain.models import Dataset, Team
-from kloppy import load_epts_tracking_data, to_pandas
+from kloppy import (
+    load_epts_tracking_data,
+    load_metrica_json_event_data,
+    to_pandas,
+)
 from codeball.models.visualizations import Visualization
 import codeball
 import codeball.utils as utils
@@ -54,28 +58,38 @@ class DataPackage:
     dataframe: pd.DataFrame = None
 
     def load_dataset(self):
-        self.dataset = load_epts_tracking_data(
-            self.metadata_file, self.data_file
-        )
+
+        if self.data_type == DataType.TRACKING:
+            self.dataset = load_epts_tracking_data(
+                metadata_filename=self.metadata_file,
+                raw_data_filename=self.data_file,
+            )
+
+        if self.data_type == DataType.EVENT:
+            self.dataset = load_metrica_json_event_data(
+                metadata_filename=self.metadata_file,
+                raw_data_filename=self.data_file,
+            )
 
     def build_dataframe(self):
         self.dataframe = to_pandas(self.dataset)
 
-    def get_team_tracking_dataframe(
+    def get_team_dataframe(
         self, team_code: str, with_goalkeeper: bool = True
     ) -> pd.DataFrame:
 
-        team = self.get_team_by_code(team_code)
+        if self.data_type == DataType.TRACKING:
+            team = self.get_team_by_code(team_code)
 
-        players_ids = self.get_players_ids_for_team(
-            team=team, with_goalkeeper=with_goalkeeper
-        )
+            players_ids = self.get_players_ids_for_team(
+                team=team, with_goalkeeper=with_goalkeeper
+            )
 
-        column_names = []
-        for player_id in players_ids:
-            column_names.extend([player_id + "_x", player_id + "_y"])
+            column_names = []
+            for player_id in players_ids:
+                column_names.extend([player_id + "_x", player_id + "_y"])
 
-        return self.dataframe[column_names]
+            return self.dataframe[column_names]
 
     def get_team_by_code(self, team_code: str):
         for team in self.dataset.metadata.teams:
@@ -96,7 +110,7 @@ class DataPackage:
 @dataclass
 class GameDataset:
     tracking: DataPackage = None
-    event: DataPackage = None
+    events: DataPackage = None
     patterns_config: Dict = field(default_factory=dict)
     patterns: List[Pattern] = field(default_factory=list)
 
@@ -170,16 +184,34 @@ class GameDataset:
 
 
 def initialize_game_dataset(
-    tracking_metadata_file: str, tracking_data_file: str
+    metadata_file: str,
+    tracking_data_file: str = None,
+    events_data_file: str = None,
 ) -> GameDataset:
 
-    tracking_data_package = _initialize_data_package(
-        data_type=DataType.TRACKING,
-        data_file=tracking_data_file,
-        metadata_file=tracking_metadata_file,
+    tracking_data_package = (
+        _initialize_data_package(
+            data_type=DataType.TRACKING,
+            data_file=tracking_data_file,
+            metadata_file=metadata_file,
+        )
+        if tracking_data_file
+        else None
     )
 
-    return GameDataset(tracking=tracking_data_package)
+    events_data_package = (
+        _initialize_data_package(
+            data_type=DataType.EVENT,
+            data_file=events_data_file,
+            metadata_file=metadata_file,
+        )
+        if events_data_file
+        else None
+    )
+
+    return GameDataset(
+        tracking=tracking_data_package, events=events_data_package
+    )
 
 
 def _initialize_data_package(

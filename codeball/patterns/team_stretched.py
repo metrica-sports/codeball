@@ -26,7 +26,7 @@ class TeamStretched(PatternAnalysis):
 
     def run(self) -> List[PatternEvent]:
 
-        team_dataframe = self.game_dataset.tracking.get_team_tracking_dataframe(
+        team_dataframe = self.game_dataset.tracking.get_team_dataframe(
             self.team_code, with_goalkeeper=False
         )
 
