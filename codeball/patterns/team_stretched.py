@@ -44,8 +44,11 @@ class TeamStretched(PatternAnalysis):
             axis=1
         )
         # TODO Only take into account moments with ball in play. Could also be attack or defence.
-        # TODO replace 105 with field actual size
-        team_stretched = team_span > self.threshold / 105
+        team_stretched = (
+            team_span
+            > self.threshold
+            / self.game_dataset.metadata.pitch_dimensions.length
+        )
         return team_stretched
 
     def build_pattern_events(self, intervals: List[int]) -> List[PatternEvent]:
@@ -63,7 +66,7 @@ class TeamStretched(PatternAnalysis):
         return vizs.TeamSize(
             start_time=utils.frame_to_milisecond(interval[0], 25),
             end_time=utils.frame_to_milisecond(interval[1], 25),
-            team="T016",
+            team=self.team_code,
             line="length",
         )
 
@@ -77,5 +80,5 @@ class TeamStretched(PatternAnalysis):
             utils.frame_to_milisecond(interval[0], 25),
             utils.frame_to_milisecond(interval[1], 25),
             visualizations=visualization,
-            tags="ESPRMA",
+            tags=self.team_code,
         )

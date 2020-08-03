@@ -10,7 +10,7 @@ class TestPatterns:
 
     def test_team_stretched(self):
         pattern = Pattern(name="Test Team Stretched", code="TEST_001")
-        parameters = {"team_code": "ESPRMA", "threshold": 40}
+        parameters = {"team_code": "FIFATMA", "threshold": 40}
         team_stretched = patt.TeamStretched(
             game_dataset=self.game_dataset,
             pattern=pattern,
