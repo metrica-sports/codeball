@@ -19,3 +19,12 @@ class TestPatterns:
         events = team_stretched.run()
 
         assert len(events) > 0
+
+    def test_set_pieces(self):
+        pattern = Pattern(name="Set Pieces", code="TEST_002")
+        set_pieces = patt.SetPieces(
+            game_dataset=self.game_dataset, pattern=pattern,
+        )
+        events = set_pieces.run()
+
+        assert len(events) > 0

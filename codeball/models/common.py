@@ -1,3 +1,4 @@
+from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, TYPE_CHECKING
@@ -9,7 +10,7 @@ from kloppy import (
     load_metrica_json_event_data,
     to_pandas,
 )
-from codeball.models.visualizations import Visualization
+import codeball.models.visualizations as vizs
 import codeball
 import codeball.utils as utils
 
@@ -26,13 +27,32 @@ class Coordinate:
 
 @dataclass
 class PatternEvent:
-    pattern: str
+    pattern_code: str
     start_time: float
     event_time: float
     end_time: float
     coordinates: List[Coordinate] = field(default_factory=list)
-    visualizations: List[Visualization] = field(default_factory=list)
+    visualizations: List[vizs.Visualization] = field(default_factory=list)
     tags: List[str] = field(default_factory=list)
+
+    @classmethod
+    def create_from_event(
+        cls, pattern_code: str, event_dict: dict
+    ) -> PatternEvent:
+
+        return cls(
+            pattern_code=pattern_code,
+            start_time=round(event_dict["start"]["time"] - 2) * 1000,
+            event_time=round(event_dict["start"]["time"]) * 1000,
+            end_time=round(event_dict["end"]["time"] + 2) * 1000,
+        )
+
+    def add_spotlights(self, players_codes: List[str]):
+        self.visualizations = vizs.Spotlight(
+            start_time=self.start_time,
+            end_time=self.end_time,
+            players=players_codes,
+        )
 
 
 @dataclass
@@ -169,7 +189,6 @@ class GameDataset:
     def _initialize_pattern_analysis(
         self, pattern: Pattern, pattern_analysis_config: dict
     ):
-
         pattern_analysis_class = pattern_analysis_config["class"]
         return pattern_analysis_class(
             self, pattern, pattern_analysis_config["parameters"]

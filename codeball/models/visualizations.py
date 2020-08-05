@@ -28,6 +28,40 @@ class Players(Visualization):
     )
 
 
+@dataclass
+class Spotlight(Visualization):
+    players: List[str]
+    tool_id: str = "players"
+    options: Dict = field(
+        default_factory=lambda: {
+            "id": False,
+            "speed": False,
+            "spotlight": True,
+            "ring": False,
+            "spotlightColor": "#FFFFFF",
+            "ringColor": "#000000",
+            "size": 1.0,  # Multiplier, [0.6, 1.5]
+        }
+    )
+
+
+@dataclass
+class Ring(Visualization):
+    players: List[str]
+    tool_id: str = "players"
+    options: Dict = field(
+        default_factory=lambda: {
+            "id": False,
+            "speed": False,
+            "spotlight": False,
+            "ring": True,
+            "spotlightColor": "#FFFFFF",
+            "ringColor": "#000000",
+            "size": 1.0,  # Multiplier, [0.6, 1.5]
+        }
+    )
+
+
 # Trails
 @dataclass
 class Trails(Visualization):
