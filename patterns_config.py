@@ -2,7 +2,7 @@ import codeball.patterns as patt
 
 PATTERNS_CONFIG = [
     {
-        "include": False,
+        "include": True,
         "name": "Team Stretched",
         "code": "MET_001",
         "pattern_analysis": [

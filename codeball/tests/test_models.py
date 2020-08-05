@@ -26,7 +26,7 @@ class TestModels:
         )
 
         pattern_event = PatternEvent(
-            pattern="MET_001",
+            pattern_code="MET_001",
             start_time=400,
             event_time=500,
             end_time=800,

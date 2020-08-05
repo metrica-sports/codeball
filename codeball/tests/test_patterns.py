@@ -23,7 +23,7 @@ class TestPatterns:
     def test_set_pieces(self):
         pattern = Pattern(name="Set Pieces", code="TEST_002")
         set_pieces = patt.SetPieces(
-            game_dataset=self.game_dataset, pattern=pattern,
+            game_dataset=self.game_dataset, pattern=pattern, parameters=None
         )
         events = set_pieces.run()
 
