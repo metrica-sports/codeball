@@ -1,10 +1,7 @@
 import pickle
 import codeball.models as models
-import codeball.patterns as patt
-import codeball.utils as utils
 
-
-initiaize_dataset = False
+initiaize_dataset = True
 if initiaize_dataset:
     # Define game files to process
     metadata_file = (
@@ -31,8 +28,10 @@ else:
     with open(r"./codeball/tests/files/game_dataset.obj", "rb") as f:
         game_dataset = pickle.load(f)
 
-game_dataset.initialize_patterns()
+patterns_set = models.PatternsSet(game_dataset=game_dataset)
 
-game_dataset.run_patterns()
+patterns_set.initialize_patterns()
 
-game_dataset.save_patterns_for_play("development_data.json")
+patterns_set.run_patterns()
+
+patterns_set.save_patterns_for_play("development_data.json")

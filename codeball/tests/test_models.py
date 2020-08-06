@@ -1,6 +1,5 @@
 import pandas as pd
 from codeball.models import (
-    Coordinate,
     PatternEvent,
     Pattern,
     GameDataset,
@@ -12,14 +11,9 @@ import codeball.models.visualizations as vizs
 
 
 class TestModels:
-    def test_coordinate(self):
-        xy = Coordinate(x=0.3, y=0.6)
-        assert xy.x == 0.3
-        assert xy.y == 0.6
-
     def test_pattern_event(self):
 
-        xy = Coordinate(x=0.3, y=0.6)
+        xy = [0.3, 0.6]
 
         viz = vizs.Players(
             start_time=500, end_time=700, players=[], options=[]
@@ -36,7 +30,7 @@ class TestModels:
         )
 
         assert pattern_event.end_time == 800
-        assert pattern_event.coordinates[0].x == 0.3
+        assert pattern_event.coordinates[0][0] == 0.3
         assert pattern_event.visualizations[0].start_time == 500
 
     def test_pattern(self):
