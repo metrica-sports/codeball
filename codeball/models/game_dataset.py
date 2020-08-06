@@ -84,9 +84,51 @@ class GameDatasetType(Enum):
 
 @dataclass
 class GameDataset:
-    game_dataset_type: GameDatasetType = None
     tracking: DataPackage = None
     events: DataPackage = None
+
+    @classmethod
+    def initialize_game_dataset(
+        cls,
+        tracking_metadata_file: str,
+        tracking_data_file: str = None,
+        events_data_file: str = None,
+        events_metadata_file: str = None,
+    ) -> GameDataset:
+
+        tracking_data_package = (
+            DataPackage(
+                data_type=DataType.TRACKING,
+                data_file=tracking_data_file,
+                metadata_file=tracking_metadata_file,
+            )
+            if tracking_data_file
+            else None
+        )
+
+        events_data_package = (
+            DataPackage(
+                data_type=DataType.EVENT,
+                data_file=events_data_file,
+                metadata_file=events_metadata_file,
+            )
+            if events_data_file
+            else None
+        )
+
+        return cls(tracking=tracking_data_package, events=events_data_package,)
+
+    @property
+    def game_dataset_type(self) -> GameDatasetType:
+        if self.tracking is not None and self.tracking is not None:
+            # TODO: handle different providers when available in the EPTS dataset
+            return GameDatasetType.FULL_SAME_PROVIDER
+
+        if self.tracking is not None:
+            return GameDatasetType.ONLY_TRACKING
+
+        if self.events is not None:
+            return GameDatasetType.ONLY_EVENTS
 
     @property
     def metadata(self):
@@ -105,69 +147,11 @@ class GameDataset:
                 f"because it's of type: {self.game_dataset_type}"
             )
 
+    def load_data(self):
+        if self.tracking is not None:
+            self.tracking.load_dataset()
+            self.tracking.build_dataframe()
 
-def initialize_game_dataset(
-    metadata_file: str,
-    tracking_data_file: str = None,
-    events_data_file: str = None,
-) -> GameDataset:
-
-    tracking_data_package = (
-        _initialize_data_package(
-            data_type=DataType.TRACKING,
-            data_file=tracking_data_file,
-            metadata_file=metadata_file,
-        )
-        if tracking_data_file
-        else None
-    )
-
-    events_data_package = (
-        _initialize_data_package(
-            data_type=DataType.EVENT,
-            data_file=events_data_file,
-            metadata_file=metadata_file,
-        )
-        if events_data_file
-        else None
-    )
-
-    game_dataset_type = _get_game_dataset_type(
-        tracking_data_package, events_data_package
-    )
-
-    return GameDataset(
-        game_dataset_type=game_dataset_type,
-        tracking=tracking_data_package,
-        events=events_data_package,
-    )
-
-
-def _get_game_dataset_type(
-    tracking_data_package: DataPackage, events_data_package: DataPackage,
-) -> GameDatasetType:
-
-    if tracking_data_package is not None and events_data_package is not None:
-        # TODO: handle different providers when available in the EPTS dataset
-        return GameDatasetType.FULL_SAME_PROVIDER
-
-    if tracking_data_package is not None:
-        return GameDatasetType.ONLY_TRACKING
-
-    if events_data_package is not None:
-        return GameDatasetType.ONLY_EVENTS
-
-
-def _initialize_data_package(
-    data_type: DataType, data_file: str, metadata_file: str
-) -> DataPackage:
-
-    data_package = DataPackage(
-        data_type=data_type, data_file=data_file, metadata_file=metadata_file,
-    )
-
-    data_package.load_dataset()
-
-    data_package.build_dataframe()
-
-    return data_package
+        if self.events is not None:
+            self.events.load_dataset()
+            self.events.build_dataframe()
