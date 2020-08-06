@@ -5,6 +5,7 @@ from codeball.models import (
     GameDataset,
     DataPackage,
     DataType,
+    PatternsSet,
 )
 
 import codeball.models.visualizations as vizs
@@ -57,4 +58,21 @@ class TestModels:
 
         game_dataset = GameDataset(tracking=data_package)
 
-        assert len(game_dataset.patterns) == 0
+        assert game_dataset.events is None
+        assert game_dataset.tracking.data_type == DataType.TRACKING
+
+    def test_pattern_set(self):
+
+        data_package = DataPackage(
+            data_type=DataType.TRACKING, data_file="file/name/path",
+        )
+
+        pattern = Pattern(name="Test Pattern", code="MET_001", in_time=3)
+
+        game_dataset = GameDataset(tracking=data_package)
+
+        patterns_set = PatternsSet(game_dataset=game_dataset)
+        patterns_set.patterns = [pattern, pattern]
+
+        assert patterns_set.game_dataset.events is None
+        assert len(patterns_set.patterns) == 2
