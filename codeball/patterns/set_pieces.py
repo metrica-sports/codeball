@@ -1,7 +1,6 @@
 from typing import List
-from codeball.models import PatternEvent
+from codeball.models import PatternEvent, PatternAnalysis
 import codeball.models.visualizations as vizs
-from .base import PatternAnalysis
 import codeball.utils as utils
 import pandas as pd
 

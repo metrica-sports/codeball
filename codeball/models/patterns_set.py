@@ -1,6 +1,7 @@
 from __future__ import annotations
 import json
 from dataclasses import dataclass, field
+from abc import ABC, abstractmethod
 from typing import List, Dict
 import codeball
 import codeball.models.visualizations as vizs
@@ -8,6 +9,25 @@ import codeball.utils as utils
 from codeball.models import GameDataset
 
 
+# Pattern Analysis base class
+class PatternAnalysis(ABC):
+    def __init__(
+        self,
+        game_dataset: GameDataset = None,
+        pattern: Pattern = None,
+        parameters: Dict = None,
+    ):
+        self.game_dataset = game_dataset
+        self.pattern = pattern
+        self.parameters = parameters
+
+    @abstractmethod
+    def run(self) -> List[PatternEvent]:
+        """ Runs the pattern to compute the PatternEvents"""
+        raise NotImplementedError
+
+
+# Patterns related dataclasses
 @dataclass
 class PatternEvent:
     pattern_code: str
@@ -44,6 +64,7 @@ class Pattern:
     code: str
     in_time: int = 0
     out_time: int = 0
+    pattern_analysis: List[PatternAnalysis] = field(default_factory=list)
     events: List[PatternEvent] = field(default_factory=list)
 
 
