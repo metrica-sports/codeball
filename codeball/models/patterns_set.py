@@ -19,23 +19,19 @@ class PatternEvent:
     visualizations: List[vizs.Visualization] = field(default_factory=list)
     tags: List[str] = field(default_factory=list)
 
-    @classmethod
-    def create_from_event(
-        cls, pattern_code: str, event_dict: dict
-    ) -> PatternEvent:
-
-        return cls(
-            pattern_code=pattern_code,
-            start_time=round(event_dict["start"]["time"] - 2) * 1000,
-            event_time=round(event_dict["start"]["time"]) * 1000,
-            end_time=round(event_dict["end"]["time"] + 2) * 1000,
-        )
-
     def add_spotlights(self, players_codes: List[str]):
         self.visualizations = vizs.Spotlight(
             start_time=self.start_time,
             end_time=self.end_time,
             players=players_codes,
+        )
+
+    def add_team_length(self, team_code: str):
+        self.visualizations = vizs.TeamSize(
+            start_time=self.start_time,
+            end_time=self.end_time,
+            team=team_code,
+            line="length",
         )
 
 
@@ -59,6 +55,22 @@ class Pattern(ABC):
     def run(self, game_dataset: GameDataset) -> List[PatternEvent]:
         """ Runs the pattern to compute the PatternEvents"""
         raise NotImplementedError
+
+    def from_event(self, event_dict: dict) -> PatternEvent:
+        return PatternEvent(
+            pattern_code=self.code,
+            start_time=round(event_dict["start"]["time"] - 2) * 1000,
+            event_time=round(event_dict["start"]["time"]) * 1000,
+            end_time=round(event_dict["end"]["time"] + 2) * 1000,
+        )
+
+    def from_interval(self, interval: list) -> PatternEvent:
+        return PatternEvent(
+            pattern_code=self.code,
+            start_time=utils.frame_to_milisecond(interval[0], 25),
+            event_time=utils.frame_to_milisecond(interval[0], 25),
+            end_time=utils.frame_to_milisecond(interval[1], 25),
+        )
 
 
 @dataclass

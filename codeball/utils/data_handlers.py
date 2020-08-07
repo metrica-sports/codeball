@@ -7,7 +7,7 @@ import pandas as pd
 
 
 def find_intervals(
-    boolean_series: pd.DataFrame, minimum_interval: float = 1
+    boolean_series: pd.DataFrame, minimum_interval: float = 2
 ) -> List:
     intervals = []
     interval_open = False

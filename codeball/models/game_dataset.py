@@ -11,6 +11,8 @@ from kloppy import (
     to_pandas,
 )
 
+import codeball.utils as utils
+
 
 class DataType(Enum):
     TRACKING = "tracking"
@@ -155,3 +157,30 @@ class GameDataset:
         if self.events is not None:
             self.events.load_dataset()
             self.events.build_dataframe()
+
+    def stretched_frames_for_team(
+        self, team_code: str, threshold: int
+    ) -> List:
+
+        team_dataframe = self.tracking.get_team_dataframe(
+            team_code, with_goalkeeper=False
+        )
+
+        # TODO handle also y axis as input
+        team_x_coordinates = team_dataframe.filter(regex="_x")
+        team_span = team_x_coordinates.max(axis=1) - team_x_coordinates.min(
+            axis=1
+        )
+        # TODO Only take into account moments with ball in play. Could also be attack or defence.
+        team_stretched = (
+            team_span > threshold / self.metadata.pitch_dimensions.length
+        )
+
+        return utils.find_intervals(team_stretched)
+
+    def set_piece_events(self):
+        return [
+            event
+            for event in self.events.dataset.records
+            if event.raw_event["type"]["id"] == 5
+        ]

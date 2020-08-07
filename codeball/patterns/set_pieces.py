@@ -25,22 +25,27 @@ class SetPieces(Pattern):
         self.game_dataset = game_dataset
 
     def run(self) -> List[PatternEvent]:
-        pattern_events = []
-        for i, event in enumerate(self.game_dataset.events.dataset.records):
-            if event.raw_event["type"]["id"] == 5:
-                pattern_event = PatternEvent.create_from_event(
-                    pattern_code=self.code, event_dict=event.raw_event,
-                )
-                pattern_event.add_spotlights(event.raw_event["from"]["id"])
-                pattern_event.tags = event.raw_event["team"]["id"]
-                pattern_event.coordinates = [
-                    self.game_dataset.events.dataset.records[i + 1].raw_event[
-                        "start"
-                    ]["x"],
-                    self.game_dataset.events.dataset.records[i + 1].raw_event[
-                        "start"
-                    ]["y"],
-                ]
-                pattern_events.append(pattern_event)
 
-        return pattern_events
+        set_piece_events = self.game_dataset.set_piece_events()
+
+        return [
+            self.build_pattern_event(event_dict=event.raw_event)
+            for event in set_piece_events
+        ]
+
+    def build_pattern_event(
+        self, event_dict: dict, event_idx=int
+    ) -> PatternEvent:
+        pattern_event = self.from_event(event_dict)
+        pattern_event.add_spotlights(event_dict["from"]["id"])
+        pattern_event.tags = event_dict["team"]["id"]
+        pattern_event.coordinates = [
+            self.game_dataset.events.dataset.records[
+                event_dict["index"] + 1
+            ].raw_event["start"]["x"],
+            self.game_dataset.events.dataset.records[
+                event_dict["index"] + 1
+            ].raw_event["start"]["y"],
+        ]
+
+        return pattern_event

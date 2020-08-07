@@ -1,7 +1,7 @@
 import pickle
 from codeball.models import GameDataset, PatternsSet
 
-initiaize_dataset = False
+initiaize_dataset = True
 if initiaize_dataset:
     # Define game files to process
     metadata_file = (

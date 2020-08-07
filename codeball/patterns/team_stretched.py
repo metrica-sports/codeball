@@ -34,59 +34,18 @@ class TeamStretched(Pattern):
 
     def run(self) -> List[PatternEvent]:
 
-        team_dataframe = self.game_dataset.tracking.get_team_dataframe(
-            self.team_code, with_goalkeeper=False
+        stretched_intervals = self.game_dataset.stretched_frames_for_team(
+            team_code=self.team_code, threshold=self.threshold
         )
 
-        stretched_frames = self.find_stretched_frames(team_dataframe)
+        return [
+            self.build_pattern_event(interval)
+            for interval in stretched_intervals
+        ]
 
-        intervals = utils.find_intervals(stretched_frames)
+    def build_pattern_event(self, interval: List[int]) -> PatternEvent:
+        pattern_event = self.from_interval(interval)
+        pattern_event.add_team_length(team_code=self.team_code)
+        pattern_event.tags = self.team_code
 
-        pattern_events = self.build_pattern_events(intervals=intervals)
-
-        return pattern_events
-
-    def find_stretched_frames(self, team_dataframe: pd.DataFrame) -> pd.Series:
-        team_x_coordinates = team_dataframe.filter(regex="_x")
-        team_span = team_x_coordinates.max(axis=1) - team_x_coordinates.min(
-            axis=1
-        )
-        # TODO Only take into account moments with ball in play. Could also be attack or defence.
-        team_stretched = (
-            team_span
-            > self.threshold
-            / self.game_dataset.metadata.pitch_dimensions.length
-        )
-        return team_stretched
-
-    def build_pattern_events(self, intervals: List[int]) -> List[PatternEvent]:
-
-        pattern_events = []
-        for i in intervals:
-            viz = self.build_visualization(interval=i)
-            event = self.build_event(interval=i, visualization=viz)
-            pattern_events.append(event)
-
-        return pattern_events
-
-    def build_visualization(self, interval: List[int]) -> vizs.TeamSize:
-
-        return vizs.TeamSize(
-            start_time=utils.frame_to_milisecond(interval[0], 25),
-            end_time=utils.frame_to_milisecond(interval[1], 25),
-            team=self.team_code,
-            line="length",
-        )
-
-    def build_event(
-        self, interval: List[int], visualization: vizs.TeamSize
-    ) -> PatternEvent:
-
-        return PatternEvent(
-            self.code,
-            utils.frame_to_milisecond(interval[0], 25),
-            utils.frame_to_milisecond(interval[0], 25),
-            utils.frame_to_milisecond(interval[1], 25),
-            visualizations=visualization,
-            tags=self.team_code,
-        )
+        return pattern_event
