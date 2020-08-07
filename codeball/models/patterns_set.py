@@ -9,25 +9,6 @@ import codeball.utils as utils
 from codeball.models import GameDataset
 
 
-# Pattern Analysis base class
-class PatternAnalysis(ABC):
-    def __init__(
-        self,
-        game_dataset: GameDataset = None,
-        pattern: Pattern = None,
-        parameters: Dict = None,
-    ):
-        self.game_dataset = game_dataset
-        self.pattern = pattern
-        self.parameters = parameters
-
-    @abstractmethod
-    def run(self) -> List[PatternEvent]:
-        """ Runs the pattern to compute the PatternEvents"""
-        raise NotImplementedError
-
-
-# Patterns related dataclasses
 @dataclass
 class PatternEvent:
     pattern_code: str
@@ -59,13 +40,25 @@ class PatternEvent:
 
 
 @dataclass
-class Pattern:
-    name: str
-    code: str
-    in_time: int = 0
-    out_time: int = 0
-    pattern_analysis: List[PatternAnalysis] = field(default_factory=list)
-    events: List[PatternEvent] = field(default_factory=list)
+class Pattern(ABC):
+    def __init__(
+        self,
+        name: str,
+        code: str,
+        in_time: int,
+        out_time: int,
+        parameters: dict,
+    ):
+        self.name = name
+        self.code = code
+        self.in_time = in_time
+        self.out_time = out_time
+        self.parameters = parameters
+
+    @abstractmethod
+    def run(self, game_dataset: GameDataset) -> List[PatternEvent]:
+        """ Runs the pattern to compute the PatternEvents"""
+        raise NotImplementedError
 
 
 @dataclass
@@ -87,32 +80,21 @@ class PatternsSet:
                 pattern = self._initialize_pattern(pattern_config)
                 self.patterns.append(pattern)
 
-    def _initialize_pattern(self, pattern_config: Dict):
-        pattern = Pattern(
-            name=pattern_config["name"], code=pattern_config["code"]
-        )
+    def _initialize_pattern(self, pattern_config: Dict) -> Pattern:
 
-        pattern.pattern_analysis = []
-        for pattern_analysis_config in pattern_config["pattern_analysis"]:
-            pattern_analysis = self._initialize_pattern_analysis(
-                pattern, pattern_analysis_config
-            )
-            pattern.pattern_analysis.append(pattern_analysis)
+        pattern_class = pattern_config["pattern_class"]
+        pattern = pattern_class(
+            game_dataset=self.game_dataset,
+            name=pattern_config["name"],
+            code=pattern_config["code"],
+            parameters=pattern_config["parameters"],
+        )
 
         return pattern
 
-    def _initialize_pattern_analysis(
-        self, pattern: Pattern, pattern_analysis_config: dict
-    ):
-        pattern_analysis_class = pattern_analysis_config["class"]
-        return pattern_analysis_class(
-            self.game_dataset, pattern, pattern_analysis_config["parameters"]
-        )
-
     def run_patterns(self):
         for pattern in self.patterns:
-            for analysis in pattern.pattern_analysis:
-                pattern.events = pattern.events + analysis.run()
+            pattern.events = pattern.run()
 
     def save_patterns_for_play(self, file_path: str):
         events_for_json = self._get_event_for_json()

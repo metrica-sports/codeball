@@ -5,18 +5,15 @@ PATTERNS_CONFIG = [
         "include": True,
         "name": "Team Stretched",
         "code": "MET_001",
-        "pattern_analysis": [
-            {
-                "class": patt.TeamStretched,
-                "parameters": {"team_code": "FIFATMA", "threshold": 40},
-            }
-        ],
+        "pattern_class": patt.TeamStretched,
+        "parameters": {"team_code": "FIFATMA", "threshold": 40},
     },
     {
         "include": True,
         "name": "Set Pieces",
         "code": "MET_002",
-        "pattern_analysis": [{"class": patt.SetPieces, "parameters": None}],
+        "pattern_class": patt.SetPieces,
+        "parameters": None,
     },
 ]
 

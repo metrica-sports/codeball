@@ -9,11 +9,11 @@ class TestPatterns:
             self.game_dataset = pickle.load(f)
 
     def test_team_stretched(self):
-        pattern = Pattern(name="Test Team Stretched", code="TEST_001")
         parameters = {"team_code": "FIFATMA", "threshold": 40}
         team_stretched = patt.TeamStretched(
             game_dataset=self.game_dataset,
-            pattern=pattern,
+            name="Test Team Stretched",
+            code="TEST_001",
             parameters=parameters,
         )
         events = team_stretched.run()
@@ -21,9 +21,8 @@ class TestPatterns:
         assert len(events) > 0
 
     def test_set_pieces(self):
-        pattern = Pattern(name="Set Pieces", code="TEST_002")
         set_pieces = patt.SetPieces(
-            game_dataset=self.game_dataset, pattern=pattern, parameters=None
+            game_dataset=self.game_dataset, name="Set Pieces", code="TEST_002"
         )
         events = set_pieces.run()
 

@@ -1,11 +1,11 @@
 from typing import List
-from codeball.models import PatternEvent, PatternAnalysis
+from codeball.models import PatternEvent, Pattern, GameDataset
 import codeball.models.visualizations as vizs
 import codeball.utils as utils
 import pandas as pd
 
 
-class TeamStretched(PatternAnalysis):
+class TeamStretched(Pattern):
     """
         This pattern computes moments in the game in which the length of the
         team exceeds a cartain value for more than one second and returns those
@@ -18,10 +18,19 @@ class TeamStretched(PatternAnalysis):
                 What is the stretch threshold in meters
     """
 
-    def __init__(self, game_dataset, pattern, parameters):
-        super().__init__(game_dataset, pattern)
-        self.team_code = parameters["team_code"]
-        self.threshold = parameters["threshold"]
+    def __init__(
+        self,
+        game_dataset: GameDataset,
+        name: str,
+        code: str,
+        in_time: int = 0,
+        out_time: int = 0,
+        parameters: dict = None,
+    ):
+        super().__init__(name, code, in_time, out_time, parameters)
+        self.game_dataset = game_dataset
+        self.team_code = self.parameters["team_code"]
+        self.threshold = self.parameters["threshold"]
 
     def run(self) -> List[PatternEvent]:
 
@@ -74,7 +83,7 @@ class TeamStretched(PatternAnalysis):
     ) -> PatternEvent:
 
         return PatternEvent(
-            self.pattern.code,
+            self.code,
             utils.frame_to_milisecond(interval[0], 25),
             utils.frame_to_milisecond(interval[0], 25),
             utils.frame_to_milisecond(interval[1], 25),
