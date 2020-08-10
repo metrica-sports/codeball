@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from typing import Optional, List, Dict
 from enum import Enum
 import pandas as pd
-from kloppy.domain.models import Dataset, Team
+from kloppy.domain.models import Dataset, Team, EventType, ResultType
 from kloppy import (
     load_epts_tracking_data,
     load_metrica_json_event_data,

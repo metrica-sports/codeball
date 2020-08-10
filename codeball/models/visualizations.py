@@ -143,7 +143,7 @@ class TacticalLines(Visualization):
 
 # Pause TODO do Pause have start and end time? Or just start time?
 @dataclass
-class Pause:
+class Pause(Visualization):
     pause_time: float = 5000  # Milliseconds
     tool_id: str = "pause"
 
@@ -156,5 +156,25 @@ class ChromaKey:
         default_factory=lambda: {
             "threshold": 0.01,  # [0.0, 1.0]
             "smoothing": 0.1,  # [0.0, 1.0]
+        }
+    )
+
+
+@dataclass
+class Arrow(Visualization):
+    tool_id: str = "arrow"
+    points: Dict = field(
+        default_factory=lambda: {
+            "start": {"x": 0.0, "y": 0.0},
+            "end": {"x": 0.0, "y": 0.0},
+        }
+    )
+    options: Dict = field(
+        default_factory=lambda: {
+            "color": "#E66F7E",
+            "width": 1.0,  # Multiplier, [0.5, 3.0]
+            "distance": False,
+            "continuous": True,  # If false, dotted
+            "pinned": False,  # If true, anchored to field
         }
     )

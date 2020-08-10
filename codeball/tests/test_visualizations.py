@@ -90,7 +90,7 @@ class TestVisualizations:
 
     def test_pause(self):
 
-        viz = vizs.Pause()
+        viz = vizs.Pause(start_time=500, end_time=500)
 
         assert viz.pause_time == 5000
 
@@ -99,3 +99,16 @@ class TestVisualizations:
         viz = vizs.ChromaKey()
 
         assert viz.options["smoothing"] == 0.1
+
+    def test_arrow(self):
+        viz = vizs.Arrow(
+            start_time=500,
+            end_time=1000,
+            points={
+                "start": {"x": 0.5, "y": 0.5},
+                "end": {"x": 0.8, "y": 0.9},
+            },
+            options={"pinned": True, "width": 0.3},
+        )
+
+        assert viz.options["pinned"] is True

@@ -1,8 +1,5 @@
 from typing import List
 from codeball.models import PatternEvent, Pattern, GameDataset
-import codeball.models.visualizations as vizs
-import codeball.utils as utils
-import pandas as pd
 
 
 class TeamStretched(Pattern):
