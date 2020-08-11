@@ -27,11 +27,41 @@ class PatternEvent:
         )
 
     def add_team_length(self, team_code: str):
-        self.visualizations = vizs.TeamSize(
-            start_time=self.start_time,
-            end_time=self.end_time,
-            team=team_code,
-            line="length",
+        self.visualizations.append(
+            vizs.TeamSize(
+                start_time=self.start_time,
+                end_time=self.end_time,
+                team=team_code,
+                line="length",
+            )
+        )
+
+    def add_pause(self, start_time: float = None, pause_time: float = 1000):
+        self.visualizations.append(
+            vizs.Pause(
+                start_time=self.event_time,
+                end_time=self.event_time,
+                pause_time=pause_time,
+            )
+        )
+
+    def add_arrow(self, start_time: float = None, end_time: float = None):
+        self.visualizations.append(
+            vizs.Arrow(
+                start_time=self.event_time,
+                end_time=self.event_time,
+                points={
+                    "start": {
+                        "x": self.coordinates[0][0],
+                        "y": self.coordinates[0][1],
+                    },
+                    "end": {
+                        "x": self.coordinates[1][0],
+                        "y": self.coordinates[1][1],
+                    },
+                },
+                options={"pinned": True, "width": 0.3},
+            )
         )
 
 
@@ -57,11 +87,26 @@ class Pattern(ABC):
         raise NotImplementedError
 
     def from_event(self, event_dict: dict) -> PatternEvent:
+
+        coordinates = []
+        if event_dict["start"]:
+            if event_dict["end"]:
+                coordinates = [
+                    [event_dict["start"]["x"], event_dict["start"]["y"]],
+                    [event_dict["end"]["x"], event_dict["end"]["y"]],
+                ]
+            else:
+                coordinates = [
+                    event_dict["start"]["x"],
+                    event_dict["start"]["y"],
+                ]
+
         return PatternEvent(
             pattern_code=self.code,
             start_time=round(event_dict["start"]["time"] - 2) * 1000,
             event_time=round(event_dict["start"]["time"]) * 1000,
             end_time=round(event_dict["end"]["time"] + 2) * 1000,
+            coordinates=coordinates,
         )
 
     def from_interval(self, interval: list) -> PatternEvent:

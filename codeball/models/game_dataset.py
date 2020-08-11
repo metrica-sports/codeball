@@ -12,6 +12,7 @@ from kloppy import (
 )
 
 import codeball.utils as utils
+from codeball.models.tactical import Zone
 
 
 class DataType(Enum):
@@ -184,3 +185,13 @@ class GameDataset:
             for event in self.events.dataset.records
             if event.raw_event["type"]["id"] == 5
         ]
+
+    def get_passes(self, into: Zone = None, result: ResultType = None):
+        passes = []
+        for event in self.events.dataset.records:
+            if event.is_pass:
+                if event.is_complete:
+                    if event.into(zone=into):
+                        passes.append(event)
+
+        return passes
