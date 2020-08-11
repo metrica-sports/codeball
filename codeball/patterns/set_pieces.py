@@ -23,7 +23,7 @@ class SetPieces(Pattern):
 
     def run(self) -> List[PatternEvent]:
 
-        set_piece_events = self.game_dataset.set_piece_events()
+        set_piece_events = self.game_dataset.set_pieces()
 
         return [
             self.build_pattern_event(event_dict=event.raw_event)

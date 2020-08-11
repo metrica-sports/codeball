@@ -1,5 +1,5 @@
 from kloppy.domain.models import Event, EventType, PassResult
-from codeball.models.tactical import Zone
+from codeball.models import Zone
 
 
 @property
@@ -13,6 +13,16 @@ def is_complete(self):
 
 
 def into(self, zone: Zone):
+
+    starts_in_box = (
+        zone.vertices.top_left[0]
+        <= self.coordinates.x
+        <= zone.vertices.bottom_right[0]
+        and zone.vertices.top_left[1]
+        <= self.coordinates.y
+        <= zone.vertices.bottom_right[1]
+    )
+
     ends_in_box = (
         zone.vertices.top_left[0]
         <= self.receiver_coordinates.x
@@ -21,7 +31,7 @@ def into(self, zone: Zone):
         <= self.receiver_coordinates.y
         <= zone.vertices.bottom_right[1]
     )
-    return ends_in_box
+    return not starts_in_box and ends_in_box
 
 
 Event.is_pass = is_pass

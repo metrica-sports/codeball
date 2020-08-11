@@ -179,14 +179,14 @@ class GameDataset:
 
         return utils.find_intervals(team_stretched)
 
-    def set_piece_events(self):
+    def set_pieces(self):
         return [
             event
             for event in self.events.dataset.records
             if event.raw_event["type"]["id"] == 5
         ]
 
-    def get_passes(self, into: Zone = None, result: ResultType = None):
+    def passes(self, into: Zone = None, result: ResultType = None):
         passes = []
         for event in self.events.dataset.records:
             if event.is_pass:

@@ -1,13 +1,15 @@
 from typing import List
 from kloppy.domain import EventType, PassResult
 from codeball.models import PatternEvent, Pattern, GameDataset
-from codeball.models.tactical import Zone
+from codeball.models import Zone
 import codeball.models.visualizations as vizs
 
 
 class PassesIntoTheBox(Pattern):
     """
-        Pattern documentation
+        This pattern finds completed passes into the opponent box. For each one of those
+        passes, it creates a pattern event that displays an arrow at the moment of the
+        pass and a pause of 2s.
     """
 
     def __init__(
@@ -24,7 +26,7 @@ class PassesIntoTheBox(Pattern):
 
     def run(self) -> List[PatternEvent]:
 
-        passes = self.game_dataset.get_passes(
+        passes = self.game_dataset.passes(
             into=Zone.OPPONENT_BOX, result=PassResult.COMPLETE
         )
 
