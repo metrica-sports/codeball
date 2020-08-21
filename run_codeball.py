@@ -1,9 +1,9 @@
 import pickle
 from codeball.models import GameDataset, PatternsSet
 
-initiaize_dataset = False
+initiaize_dataset = True
 if initiaize_dataset:
-    # Define game files to process
+    # Elite sample game
     metadata_file = (
         r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/metadata.xml"
     )
@@ -23,8 +23,11 @@ if initiaize_dataset:
 
     game_dataset.load_data()
 
+    game_dataset.enrich_data()
+
     with open(r"./codeball/tests/files/game_dataset.obj", "wb") as f:
         pickle.dump(game_dataset, f)
+
 
 else:
 

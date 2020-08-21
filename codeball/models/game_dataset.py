@@ -4,7 +4,13 @@ from dataclasses import dataclass, field
 from typing import Optional, List, Dict
 from enum import Enum
 import pandas as pd
-from kloppy.domain.models import Dataset, Team, EventType, ResultType
+from kloppy.domain.models import (
+    Dataset,
+    Team,
+    EventType,
+    ResultType,
+    AttackingDirection,
+)
 from kloppy import (
     load_epts_tracking_data,
     load_metrica_json_event_data,
@@ -158,6 +164,38 @@ class GameDataset:
         if self.events is not None:
             self.events.load_dataset()
             self.events.build_dataframe()
+
+    def enrich_data(self):
+
+        self._set_periods_attacking_direction()
+
+    def _set_periods_attacking_direction(self):
+        for i, period in enumerate(self.metadata.periods):
+
+            start = period.start_timestamp
+            end = period.end_timestamp
+            period_idx = (self.tracking.dataframe["timestamp"] >= start) & (
+                self.tracking.dataframe["timestamp"] <= end
+            )
+
+            home_df_x = self.tracking.get_team_dataframe(
+                team_code=self.metadata.teams[0].team_id
+            ).filter(regex="_x")
+            home_x_mean = home_df_x.loc[period_idx].mean().mean()
+
+            away_df_x = self.tracking.get_team_dataframe(
+                team_code=self.metadata.teams[1].team_id
+            ).filter(regex="_x")
+            away_x_mean = away_df_x.loc[period_idx].mean().mean()
+
+            if home_x_mean <= away_x_mean:
+                self.metadata.periods[
+                    i
+                ].attacking_direction = AttackingDirection.HOME_AWAY
+            else:
+                self.metadata.periods[
+                    i
+                ].attacking_direction = AttackingDirection.AWAY_HOME
 
     def stretched_frames_for_team(
         self, team_code: str, threshold: int
