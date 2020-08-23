@@ -33,10 +33,10 @@ class SetPieces(Pattern):
         pattern_event.tags = event.raw_event["team"]["id"]
         pattern_event.coordinates = [
             self.game_dataset.events.dataset.records[
-                event.raw_event["index"] + 1
+                event.raw_event["index"]
             ].raw_event["start"]["x"],
             self.game_dataset.events.dataset.records[
-                event.raw_event["index"] + 1
+                event.raw_event["index"]
             ].raw_event["start"]["y"],
         ]
 
