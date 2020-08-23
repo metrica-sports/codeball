@@ -10,6 +10,8 @@ from kloppy.domain.models import (
     EventType,
     ResultType,
     AttackingDirection,
+    Ground,
+    Point,
 )
 from kloppy import (
     load_epts_tracking_data,
@@ -168,6 +170,7 @@ class GameDataset:
     def enrich_data(self):
 
         self._set_periods_attacking_direction()
+        self.enrich_events()
 
     def _set_periods_attacking_direction(self):
         for i, period in enumerate(self.metadata.periods):
@@ -189,13 +192,53 @@ class GameDataset:
             away_x_mean = away_df_x.loc[period_idx].mean().mean()
 
             if home_x_mean <= away_x_mean:
-                self.metadata.periods[
+                self.tracking.dataset.metadata.periods[
+                    i
+                ].attacking_direction = AttackingDirection.HOME_AWAY
+                self.events.dataset.metadata.periods[
                     i
                 ].attacking_direction = AttackingDirection.HOME_AWAY
             else:
-                self.metadata.periods[
+                self.tracking.dataset.metadata.periods[
                     i
                 ].attacking_direction = AttackingDirection.AWAY_HOME
+                self.events.dataset.metadata.periods[
+                    i
+                ].attacking_direction = AttackingDirection.AWAY_HOME
+
+    def enrich_events(self):
+        for ind, event in enumerate(self.events.dataset.records):
+            revert_home = (
+                event.team.ground == Ground.HOME
+                and event.period.attacking_direction
+                == AttackingDirection.AWAY_HOME
+            )
+            revert_away = (
+                event.team.ground == Ground.AWAY
+                and event.period.attacking_direction
+                == AttackingDirection.HOME_AWAY
+            )
+            if revert_home or revert_away:
+
+                self.events.dataset.records[ind].inverted = True
+
+                if event.coordinates is not None:
+                    self.events.dataset.records[ind].coordinates = Point(
+                        -event.coordinates.x + 1, -event.coordinates.y + 1,
+                    )
+
+                if (
+                    hasattr(event, "receiver_coordinates")
+                    and event.receiver_coordinates is not None
+                ):
+                    self.events.dataset.records[
+                        ind
+                    ].receiver_coordinates = Point(
+                        -event.receiver_coordinates.x + 1,
+                        -event.receiver_coordinates.y + 1,
+                    )
+            else:
+                self.events.dataset.records[ind].inverted = False
 
     def stretched_frames_for_team(
         self, team_code: str, threshold: int

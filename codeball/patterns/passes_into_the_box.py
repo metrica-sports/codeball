@@ -35,8 +35,8 @@ class PassesIntoTheBox(Pattern):
         return pattern_events
 
     def build_pattern_event(self, event) -> PatternEvent:
-        pattern_event = self.from_event(event.raw_event)
-        pattern_event.add_arrow()
+        pattern_event = self.from_event(event)
+        pattern_event.add_arrow(event)
         pattern_event.add_pause(pause_time=2000)
 
         return pattern_event

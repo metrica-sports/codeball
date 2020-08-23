@@ -3,6 +3,7 @@ import json
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
 from typing import List, Dict
+from kloppy.domain.models import Event
 import codeball
 import codeball.models.visualizations as vizs
 import codeball.utils as utils
@@ -45,21 +46,37 @@ class PatternEvent:
             )
         )
 
-    def add_arrow(self, start_time: float = None, end_time: float = None):
+    def add_arrow(self, event: Event):
+        # TODO: find a better way to retrieve video based coordinates vs field coordinates
+        # when the event has been inverted.
+        if event.inverted:
+            points = {
+                "start": {
+                    "x": -self.coordinates[0][0] + 1,
+                    "y": -self.coordinates[0][1] + 1,
+                },
+                "end": {
+                    "x": -self.coordinates[1][0] + 1,
+                    "y": -self.coordinates[1][1] + 1,
+                },
+            }
+        else:
+            points = {
+                "start": {
+                    "x": self.coordinates[0][0],
+                    "y": self.coordinates[0][1],
+                },
+                "end": {
+                    "x": self.coordinates[1][0],
+                    "y": self.coordinates[1][1],
+                },
+            }
+
         self.visualizations.append(
             vizs.Arrow(
                 start_time=self.event_time,
                 end_time=self.event_time,
-                points={
-                    "start": {
-                        "x": self.coordinates[0][0],
-                        "y": self.coordinates[0][1],
-                    },
-                    "end": {
-                        "x": self.coordinates[1][0],
-                        "y": self.coordinates[1][1],
-                    },
-                },
+                points=points,
                 options={"pinned": True, "width": 0.3},
             )
         )
@@ -86,26 +103,32 @@ class Pattern(ABC):
         """ Runs the pattern to compute the PatternEvents"""
         raise NotImplementedError
 
-    def from_event(self, event_dict: dict) -> PatternEvent:
+    def from_event(self, event: Event) -> PatternEvent:
 
         coordinates = []
-        if event_dict["start"]:
-            if event_dict["end"]:
+        if hasattr(event, "coordinates") and event.coordinates is not None:
+            if (
+                hasattr(event, "receiver_coordinates")
+                and event.receiver_coordinates is not None
+            ):
                 coordinates = [
-                    [event_dict["start"]["x"], event_dict["start"]["y"]],
-                    [event_dict["end"]["x"], event_dict["end"]["y"]],
+                    [event.coordinates.x, event.coordinates.y],
+                    [
+                        event.receiver_coordinates.x,
+                        event.receiver_coordinates.y,
+                    ],
                 ]
             else:
                 coordinates = [
-                    event_dict["start"]["x"],
-                    event_dict["start"]["y"],
+                    event.coordinates.x,
+                    event.coordinates.y,
                 ]
 
         return PatternEvent(
             pattern_code=self.code,
-            start_time=round(event_dict["start"]["time"] - 2) * 1000,
-            event_time=round(event_dict["start"]["time"]) * 1000,
-            end_time=round(event_dict["end"]["time"] + 2) * 1000,
+            start_time=round(event.raw_event["start"]["time"] - 2) * 1000,
+            event_time=round(event.raw_event["start"]["time"]) * 1000,
+            end_time=round(event.raw_event["end"]["time"] + 2) * 1000,
             coordinates=coordinates,
         )
 
