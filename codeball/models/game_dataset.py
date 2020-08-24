@@ -20,7 +20,7 @@ from kloppy import (
 )
 
 import codeball.utils as utils
-from codeball.models.tactical import Zone
+from codeball.models.tactical import Zone, Possession
 
 
 class DataType(Enum):
@@ -97,6 +97,7 @@ class GameDatasetType(Enum):
 class GameDataset:
     tracking: DataPackage = None
     events: DataPackage = None
+    possessions: List[Possession] = field(default_factory=list)
 
     @classmethod
     def initialize_game_dataset(
@@ -167,10 +168,16 @@ class GameDataset:
             self.events.load_dataset()
             self.events.build_dataframe()
 
+        self.enrich_data()
+        self.tracking.build_dataframe()
+        self.events.build_dataframe()
+
     def enrich_data(self):
 
         self._set_periods_attacking_direction()
-        self.enrich_events()
+        self._enrich_events()
+        self._build_possessions()
+        self._add_ball_owning_team()
 
     def _set_periods_attacking_direction(self):
         for i, period in enumerate(self.metadata.periods):
@@ -206,7 +213,7 @@ class GameDataset:
                     i
                 ].attacking_direction = AttackingDirection.AWAY_HOME
 
-    def enrich_events(self):
+    def _enrich_events(self):
         for ind, event in enumerate(self.events.dataset.records):
             revert_home = (
                 event.team.ground == Ground.HOME
@@ -240,6 +247,40 @@ class GameDataset:
             else:
                 self.events.dataset.records[ind].inverted = False
 
+    def _build_possessions(self):
+        start_event_types = ["RECOVERY", "SET PIECE"]
+        end_event_types = ["FAULT RECEIVED", "SHOT", "BALL OUT", "BALL LOST"]
+        for event in self.events.dataset.records:
+            if event.raw_event["type"]["name"] in start_event_types:
+                possession_start = event.timestamp
+
+            if event.raw_event["type"]["name"] in end_event_types:
+                possession_end = event.timestamp
+                team = [
+                    team
+                    for team in self.metadata.teams
+                    if team.team_id == event.raw_event["team"]["id"]
+                ][0]
+                self.possessions.append(
+                    Possession(
+                        start=possession_start, end=possession_end, team=team
+                    )
+                )
+
+    def _add_ball_owning_team(self):
+        for i, frame in enumerate(self.tracking.dataset.records):
+            ball_owning_team = self._get_ball_owning_team(frame)
+            self.tracking.dataset.records[
+                i
+            ].ball_owning_team = ball_owning_team
+
+    def _get_ball_owning_team(self, frame):
+        for possession in self.possessions:
+            if possession.start <= frame.timestamp <= possession.end:
+                return possession.team
+
+        return None
+
     def stretched_frames_for_team(
         self, team_code: str, threshold: int
     ) -> List:
@@ -253,12 +294,17 @@ class GameDataset:
         team_span = team_x_coordinates.max(axis=1) - team_x_coordinates.min(
             axis=1
         )
-        # TODO Only take into account moments with ball in play. Could also be attack or defence.
+
         team_stretched = (
             team_span > threshold / self.metadata.pitch_dimensions.length
         )
 
-        return utils.find_intervals(team_stretched)
+        # TODO: handle also all moments, or attacking
+        team_defending = (
+            self.tracking.dataframe["ball_owning_team_id"] != team_code
+        ) & (self.tracking.dataframe["ball_owning_team_id"].notnull())
+        relevant_frame = team_stretched & team_defending
+        return utils.find_intervals(relevant_frame)
 
     def set_pieces(self):
         return [

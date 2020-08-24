@@ -23,8 +23,6 @@ if initiaize_dataset:
 
     game_dataset.load_data()
 
-    game_dataset.enrich_data()
-
     with open(r"./codeball/tests/files/game_dataset.obj", "wb") as f:
         pickle.dump(game_dataset, f)
 

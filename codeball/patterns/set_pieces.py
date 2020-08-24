@@ -39,7 +39,15 @@ class SetPieces(Pattern):
                 event.raw_event["index"]
             ].raw_event["start"]["y"],
         ]
+        pattern_event.end_time = (
+            self.game_dataset.events.dataset.records[
+                event.raw_event["index"]
+            ].raw_event["end"]["time"]
+            + 2
+        ) * 1000
 
+        # TODO: find a better way to work with inverted coordiantes on raw events. One
+        # one option could be to inverted coordinates of raw events while enriching data.
         if event.inverted:
             pattern_event.coordinates = [
                 -pattern_event.coordinates[0] + 1,

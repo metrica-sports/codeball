@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
+from kloppy.domain.models import Team
 
 
 class Zone(Enum):
@@ -15,3 +16,10 @@ class Zone(Enum):
 class Vertices:
     top_left: list
     bottom_right: list
+
+
+@dataclass
+class Possession:
+    start: float
+    end: float
+    team: Team
