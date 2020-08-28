@@ -198,6 +198,8 @@ class GameDataset:
             ).filter(regex="_x")
             away_x_mean = away_df_x.loc[period_idx].mean().mean()
 
+            # TODO: check if there is a way to set the metadata on the game_dataset and
+            # get that to set the periods on each data package.
             if home_x_mean <= away_x_mean:
                 self.tracking.dataset.metadata.periods[
                     i
@@ -214,7 +216,7 @@ class GameDataset:
                 ].attacking_direction = AttackingDirection.AWAY_HOME
 
     def _enrich_events(self):
-        for ind, event in enumerate(self.events.dataset.records):
+        for event in self.events.dataset.records:
             revert_home = (
                 event.team.ground == Ground.HOME
                 and event.period.attacking_direction
@@ -227,10 +229,10 @@ class GameDataset:
             )
             if revert_home or revert_away:
 
-                self.events.dataset.records[ind].inverted = True
+                event.inverted = True
 
                 if event.coordinates is not None:
-                    self.events.dataset.records[ind].coordinates = Point(
+                    event.coordinates = Point(
                         -event.coordinates.x + 1, -event.coordinates.y + 1,
                     )
 
@@ -238,14 +240,12 @@ class GameDataset:
                     hasattr(event, "receiver_coordinates")
                     and event.receiver_coordinates is not None
                 ):
-                    self.events.dataset.records[
-                        ind
-                    ].receiver_coordinates = Point(
+                    event.receiver_coordinates = Point(
                         -event.receiver_coordinates.x + 1,
                         -event.receiver_coordinates.y + 1,
                     )
             else:
-                self.events.dataset.records[ind].inverted = False
+                event.inverted = False
 
     def _build_possessions(self):
         start_event_types = ["RECOVERY", "SET PIECE"]
@@ -255,12 +255,20 @@ class GameDataset:
                 possession_start = event.timestamp
 
             if event.raw_event["type"]["name"] in end_event_types:
-                possession_end = event.timestamp
-                team = [
+                if (
+                    hasattr(event, "receive_timestamp")
+                    and event.receive_timestamp
+                ):
+                    possession_end = event.receive_timestamp
+                else:
+                    possession_end = event.timestamp
+
+                team = next(
                     team
                     for team in self.metadata.teams
                     if team.team_id == event.raw_event["team"]["id"]
-                ][0]
+                )
+
                 self.possessions.append(
                     Possession(
                         start=possession_start, end=possession_end, team=team
@@ -268,11 +276,9 @@ class GameDataset:
                 )
 
     def _add_ball_owning_team(self):
-        for i, frame in enumerate(self.tracking.dataset.records):
+        for frame in self.tracking.dataset.records:
             ball_owning_team = self._get_ball_owning_team(frame)
-            self.tracking.dataset.records[
-                i
-            ].ball_owning_team = ball_owning_team
+            frame.ball_owning_team = ball_owning_team
 
     def _get_ball_owning_team(self, frame):
         for possession in self.possessions:

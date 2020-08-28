@@ -2,7 +2,6 @@ from typing import List
 from kloppy.domain import EventType, PassResult
 from codeball.models import PatternEvent, Pattern, GameDataset
 from codeball.models import Zone
-import codeball.models.visualizations as vizs
 
 
 class PassesIntoTheBox(Pattern):

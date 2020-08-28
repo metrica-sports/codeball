@@ -126,18 +126,22 @@ class Pattern(ABC):
 
         return PatternEvent(
             pattern_code=self.code,
-            start_time=round(event.raw_event["start"]["time"] - 2) * 1000,
+            start_time=round(event.raw_event["start"]["time"] - self.in_time)
+            * 1000,
             event_time=round(event.raw_event["start"]["time"]) * 1000,
-            end_time=round(event.raw_event["end"]["time"] + 2) * 1000,
+            end_time=round(event.raw_event["end"]["time"] + self.out_time)
+            * 1000,
             coordinates=coordinates,
         )
 
     def from_interval(self, interval: list) -> PatternEvent:
         return PatternEvent(
             pattern_code=self.code,
-            start_time=utils.frame_to_milisecond(interval[0], 25),
+            start_time=utils.frame_to_milisecond(interval[0], 25)
+            - self.in_time * 1000,
             event_time=utils.frame_to_milisecond(interval[0], 25),
-            end_time=utils.frame_to_milisecond(interval[1], 25),
+            end_time=utils.frame_to_milisecond(interval[1], 25)
+            + self.out_time * 1000,
         )
 
 
@@ -168,6 +172,12 @@ class PatternsSet:
             name=pattern_config["name"],
             code=pattern_config["code"],
             parameters=pattern_config["parameters"],
+            in_time=pattern_config["in_time"]
+            if "in_time" in pattern_config
+            else 0,
+            out_time=pattern_config["out_time"]
+            if "out_time" in pattern_config
+            else 0,
         )
 
         return pattern

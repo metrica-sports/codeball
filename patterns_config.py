@@ -6,7 +6,9 @@ PATTERNS_CONFIG = [
         "name": "Team Stretched",
         "code": "MET_001",
         "pattern_class": patt.TeamStretched,
-        "parameters": {"team_code": "FIFATMA", "threshold": 40},
+        "parameters": {"team_code": "FIFATMA", "threshold": 35},
+        "in_time": 2,
+        "out_time": 2,
     },
     {
         "include": True,
@@ -14,6 +16,8 @@ PATTERNS_CONFIG = [
         "code": "MET_002",
         "pattern_class": patt.SetPieces,
         "parameters": None,
+        "in_time": 2,
+        "out_time": 2,
     },
     {
         "include": True,
@@ -21,6 +25,8 @@ PATTERNS_CONFIG = [
         "code": "MET_003",
         "pattern_class": patt.PassesIntoTheBox,
         "parameters": None,
+        "in_time": 2,
+        "out_time": 2,
     },
 ]
 

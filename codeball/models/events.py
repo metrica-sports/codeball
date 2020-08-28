@@ -12,9 +12,8 @@ def is_complete(self):
     return self.result == PassResult.COMPLETE
 
 
-def into(self, zone: Zone):
-
-    starts_in_box = (
+def starts(self, zone: Zone):
+    return (
         zone.vertices.top_left[0]
         <= self.coordinates.x
         <= zone.vertices.bottom_right[0]
@@ -23,7 +22,9 @@ def into(self, zone: Zone):
         <= zone.vertices.bottom_right[1]
     )
 
-    ends_in_box = (
+
+def ends(self, zone: Zone):
+    return (
         zone.vertices.top_left[0]
         <= self.receiver_coordinates.x
         <= zone.vertices.bottom_right[0]
@@ -31,9 +32,19 @@ def into(self, zone: Zone):
         <= self.receiver_coordinates.y
         <= zone.vertices.bottom_right[1]
     )
-    return not starts_in_box and ends_in_box
+
+
+def into(self, zone: Zone):
+    return not self.starts(zone) and self.ends(zone)
+
+
+def inside(self, zone: Zone):
+    return self.starts(zone) and self.ends(zone)
 
 
 Event.is_pass = is_pass
 Event.is_complete = is_complete
+Event.starts = starts
+Event.ends = ends
 Event.into = into
+Event.inside = inside

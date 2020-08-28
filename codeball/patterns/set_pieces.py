@@ -31,20 +31,16 @@ class SetPieces(Pattern):
         pattern_event = self.from_event(event)
         pattern_event.add_spotlights(event.raw_event["from"]["id"])
         pattern_event.tags = event.raw_event["team"]["id"]
+
+        next_event_ind = event.raw_event["index"]
+        next_raw_event = self.game_dataset.events.dataset.records[
+            next_event_ind
+        ].raw_event
         pattern_event.coordinates = [
-            self.game_dataset.events.dataset.records[
-                event.raw_event["index"]
-            ].raw_event["start"]["x"],
-            self.game_dataset.events.dataset.records[
-                event.raw_event["index"]
-            ].raw_event["start"]["y"],
+            next_raw_event["start"]["x"],
+            next_raw_event["start"]["y"],
         ]
-        pattern_event.end_time = (
-            self.game_dataset.events.dataset.records[
-                event.raw_event["index"]
-            ].raw_event["end"]["time"]
-            + 2
-        ) * 1000
+        pattern_event.end_time = (next_raw_event["end"]["time"] + 2) * 1000
 
         # TODO: find a better way to work with inverted coordiantes on raw events. One
         # one option could be to inverted coordinates of raw events while enriching data.
