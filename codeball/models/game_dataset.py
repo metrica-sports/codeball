@@ -249,3 +249,25 @@ class GameDataset:
             self.tracking.loc[indexes, "ball_owning_team_id"] = possession[
                 "team_id"
             ]
+
+    def find_intervals(
+        self, boolean_series: pd.Series, minimum_interval: float = 5
+    ) -> List:
+        intervals = []
+        interval_open = False
+        for i, f in enumerate(boolean_series):
+            if f is True and interval_open is False:
+                interval_open = True
+                start_interval = i
+            elif f is False and interval_open is True:
+                interval_open = False
+                end_interval = i - 1
+                if (
+                    end_interval - start_interval
+                ) > self.tracking.metadata.frame_rate * minimum_interval:
+                    intervals.append([start_interval, end_interval])
+
+        return intervals
+
+    def frame_to_milisecond(self, frame: int) -> float:
+        return frame * 1000 / self.tracking.metadata.frame_rate

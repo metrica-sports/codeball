@@ -25,7 +25,9 @@ class TeamStretched(Pattern):
         out_time: int = 0,
         parameters: dict = None,
     ):
-        super().__init__(name, code, in_time, out_time, parameters)
+        super().__init__(
+            name, code, in_time, out_time, parameters, game_dataset
+        )
         self.game_dataset = game_dataset
         self.team_code = self.parameters["team_code"]
         self.threshold = self.parameters["threshold"]
@@ -43,8 +45,8 @@ class TeamStretched(Pattern):
             .stretched(self.threshold)
         )
 
-        boolean_indexes = stretched_indexes & defending_indexes
-        stretched_intervals = utils.find_intervals(boolean_indexes)
+        indexes = stretched_indexes & defending_indexes
+        stretched_intervals = self.game_dataset.find_intervals(indexes)
 
         return [
             self.build_pattern_event(interval)

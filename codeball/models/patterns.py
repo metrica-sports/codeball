@@ -90,12 +90,14 @@ class Pattern(ABC):
         in_time: int,
         out_time: int,
         parameters: dict,
+        game_dataset: GameDataset,
     ):
         self.name = name
         self.code = code
         self.in_time = in_time
         self.out_time = out_time
         self.parameters = parameters
+        self.game_dataset = game_dataset
 
     @abstractmethod
     def run(self, game_dataset: GameDataset) -> List[PatternEvent]:
@@ -133,10 +135,10 @@ class Pattern(ABC):
     def from_interval(self, interval: list) -> PatternEvent:
         return PatternEvent(
             pattern_code=self.code,
-            start_time=utils.frame_to_milisecond(interval[0], 25)
+            start_time=self.game_dataset.frame_to_milisecond(interval[0])
             - self.in_time * 1000,
-            event_time=utils.frame_to_milisecond(interval[0], 25),
-            end_time=utils.frame_to_milisecond(interval[1], 25)
+            event_time=self.game_dataset.frame_to_milisecond(interval[0]),
+            end_time=self.game_dataset.frame_to_milisecond(interval[1])
             + self.out_time * 1000,
         )
 

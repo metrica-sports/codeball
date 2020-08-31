@@ -51,26 +51,27 @@ class TestModels:
         class pattern_class(Pattern):
             def __init__(
                 self,
-                game_dataset: GameDataset,
                 name: str,
                 code: str,
                 in_time: int = 0,
                 out_time: int = 0,
                 parameters: dict = None,
+                game_dataset: GameDataset = None,
             ):
-                super().__init__(name, code, in_time, out_time, parameters)
-                self.game_dataset = game_dataset
+                super().__init__(
+                    name, code, in_time, out_time, parameters, game_dataset
+                )
 
             def run(self):
                 return True
 
         test_pattern = pattern_class(
-            game_dataset=None,
             name="Test Pattern",
             code="MET_001",
             in_time=3,
             out_time=2,
             parameters=None,
+            game_dataset=None,
         )
 
         assert test_pattern.in_time == 3
@@ -104,26 +105,27 @@ class TestModels:
         class pattern_class(Pattern):
             def __init__(
                 self,
-                game_dataset: GameDataset,
                 name: str,
                 code: str,
                 in_time: int = 0,
                 out_time: int = 0,
                 parameters: dict = None,
+                game_dataset: GameDataset = None,
             ):
-                super().__init__(name, code, in_time, out_time, parameters)
-                self.game_dataset = game_dataset
+                super().__init__(
+                    name, code, in_time, out_time, parameters, game_dataset
+                )
 
             def run(self):
                 return True
 
         test_pattern = pattern_class(
-            game_dataset=game_dataset,
             name="Test Pattern",
             code="MET_001",
             in_time=3,
             out_time=2,
             parameters=None,
+            game_dataset=game_dataset,
         )
 
         patterns_set = PatternsSet(game_dataset=game_dataset)

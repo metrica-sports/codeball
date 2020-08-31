@@ -20,8 +20,9 @@ class PassesIntoTheBox(Pattern):
         out_time: int = 0,
         parameters: dict = None,
     ):
-        super().__init__(name, code, in_time, out_time, parameters)
-        self.game_dataset = game_dataset
+        super().__init__(
+            name, code, in_time, out_time, parameters, game_dataset
+        )
 
     def run(self) -> List[PatternEvent]:
 
