@@ -6,9 +6,9 @@ from codeball.models import Zone
 
 class PassesIntoTheBox(Pattern):
     """
-        This pattern finds completed passes into the opponent box. For each one of those
-        passes, it creates a pattern event that displays an arrow at the moment of the
-        pass and a pause of 2s.
+    This pattern finds completed passes into the opponent box. For each one of those
+    passes, it creates a pattern event that displays an arrow at the moment of the
+    pass and a pause of 2s.
     """
 
     def __init__(
@@ -25,17 +25,20 @@ class PassesIntoTheBox(Pattern):
 
     def run(self) -> List[PatternEvent]:
 
-        passes = self.game_dataset.passes(
-            into=Zone.OPPONENT_BOX, result=PassResult.COMPLETE
+        passes_into_the_box = (
+            self.game_dataset.events.type("PASS")
+            .into(Zone.OPPONENT_BOX)
+            .result("COMPLETE")
         )
 
-        pattern_events = [self.build_pattern_event(event) for event in passes]
+        return [
+            self.build_pattern_event(event_row)
+            for i, event_row in passes_into_the_box.iterrows()
+        ]
 
-        return pattern_events
-
-    def build_pattern_event(self, event) -> PatternEvent:
-        pattern_event = self.from_event(event)
-        pattern_event.add_arrow(event)
+    def build_pattern_event(self, event_row) -> PatternEvent:
+        pattern_event = self.from_event(event_row)
+        pattern_event.add_arrow(event_row)
         pattern_event.add_pause(pause_time=2000)
 
         return pattern_event

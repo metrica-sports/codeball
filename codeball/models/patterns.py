@@ -3,6 +3,7 @@ import json
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
 from typing import List, Dict
+import numpy as np
 from kloppy.domain.models import Event
 import codeball
 import codeball.models.visualizations as vizs
@@ -46,10 +47,8 @@ class PatternEvent:
             )
         )
 
-    def add_arrow(self, event: Event):
-        # TODO: find a better way to retrieve video based coordinates vs field coordinates
-        # when the event has been inverted.
-        if event.inverted:
+    def add_arrow(self, event):
+        if event["inverted"]:
             points = {
                 "start": {
                     "x": -self.coordinates[0][0] + 1,
@@ -103,34 +102,31 @@ class Pattern(ABC):
         """ Runs the pattern to compute the PatternEvents"""
         raise NotImplementedError
 
-    def from_event(self, event: Event) -> PatternEvent:
+    def from_event(self, event) -> PatternEvent:
 
         coordinates = []
-        if hasattr(event, "coordinates") and event.coordinates is not None:
-            if (
-                hasattr(event, "receiver_coordinates")
-                and event.receiver_coordinates is not None
-            ):
-                coordinates = [
-                    [event.coordinates.x, event.coordinates.y],
-                    [
-                        event.receiver_coordinates.x,
-                        event.receiver_coordinates.y,
-                    ],
-                ]
-            else:
-                coordinates = [
-                    event.coordinates.x,
-                    event.coordinates.y,
-                ]
+        if np.isnan(event["end_coordinates_x"]):
+
+            coordinates = [
+                event["coordinates_x"],
+                event["coordinates_y"],
+            ]
+
+            end_time = event["timestamp"]
+
+        else:
+            coordinates = [
+                [event["coordinates_x"], event["coordinates_y"]],
+                [event["end_coordinates_x"], event["end_coordinates_y"]],
+            ]
+
+            end_time = event["end_timestamp"]
 
         return PatternEvent(
             pattern_code=self.code,
-            start_time=round(event.raw_event["start"]["time"] - self.in_time)
-            * 1000,
-            event_time=round(event.raw_event["start"]["time"]) * 1000,
-            end_time=round(event.raw_event["end"]["time"] + self.out_time)
-            * 1000,
+            start_time=round(event["timestamp"] - self.in_time) * 1000,
+            event_time=round(event["timestamp"]) * 1000,
+            end_time=round(end_time + self.out_time) * 1000,
             coordinates=coordinates,
         )
 

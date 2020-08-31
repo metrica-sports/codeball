@@ -1,18 +1,19 @@
 from typing import List
 from codeball.models import PatternEvent, Pattern, GameDataset
+import codeball.utils as utils
 
 
 class TeamStretched(Pattern):
     """
-        This pattern computes moments in the game in which the length of the
-        team exceeds a cartain value for more than one second and returns those
-        moments with a TeamSize length visualization for the duration of the infringement.
+    This pattern computes moments in the game in which the length of the
+    team exceeds a cartain value for more than one second and returns those
+    moments with a TeamSize length visualization for the duration of the infringement.
 
-        Attributes:
-            team: str
-                code of the team (for now home or away)
-            threshold: float
-                What is the stretch threshold in meters
+    Attributes:
+        team: str
+            code of the team (for now home or away)
+        threshold: float
+            What is the stretch threshold in meters
     """
 
     def __init__(
@@ -31,9 +32,19 @@ class TeamStretched(Pattern):
 
     def run(self) -> List[PatternEvent]:
 
-        stretched_intervals = self.game_dataset.stretched_frames_for_team(
-            team_code=self.team_code, threshold=self.threshold
+        defending_indexes = self.game_dataset.tracking.phase(
+            defending_team_id=self.team_code
         )
+
+        stretched_indexes = (
+            self.game_dataset.tracking.team(self.team_code)
+            .players("field")
+            .dimension("x")
+            .stretched(self.threshold)
+        )
+
+        boolean_indexes = stretched_indexes & defending_indexes
+        stretched_intervals = utils.find_intervals(boolean_indexes)
 
         return [
             self.build_pattern_event(interval)

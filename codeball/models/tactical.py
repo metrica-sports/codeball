@@ -7,13 +7,13 @@ class Zone(Enum):
     OPPONENT_BOX = "opponent-box"
 
     @property
-    def vertices(self):
+    def boxes(self):
         if self == Zone.OPPONENT_BOX:
-            return Vertices(top_left=[0.84, 0.2], bottom_right=[1, 0.8],)
+            return [Box(top_left=[0.84, 0.2], bottom_right=[1, 0.8],)]
 
 
 @dataclass
-class Vertices:
+class Box:
     top_left: list
     bottom_right: list
 

@@ -1,9 +1,11 @@
+import os
+
 import pandas as pd
+
 from codeball.models import (
     PatternEvent,
     Pattern,
     GameDataset,
-    DataPackage,
     DataType,
     PatternsSet,
 )
@@ -63,33 +65,30 @@ class TestModels:
         assert test_pattern.in_time == 3
         assert test_pattern.run() is True
 
-    def test_data_package(self):
-
-        data_package = DataPackage(
-            data_type=DataType.TRACKING, data_file="file/name/path",
-        )
-
-        assert data_package.data_type == DataType.TRACKING
-        assert data_package.metadata_file is None
-
     def test_game_dataset(self):
 
-        data_package = DataPackage(
-            data_type=DataType.TRACKING, data_file="file/name/path",
+        base_dir = os.path.dirname(__file__)
+
+        game_dataset = GameDataset(
+            tracking_metadata_file=f"{base_dir}/files/metadata.xml",
+            tracking_data_file=f"{base_dir}/files/tracking.txt",
+            events_metadata_file=f"{base_dir}/files/metadata.xml",
+            events_data_file=f"{base_dir}/files/events.json",
         )
 
-        game_dataset = GameDataset(tracking=data_package)
-
-        assert game_dataset.events is None
         assert game_dataset.tracking.data_type == DataType.TRACKING
+        assert game_dataset.events.data_type == DataType.EVENT
 
     def test_pattern_set(self):
 
-        data_package = DataPackage(
-            data_type=DataType.TRACKING, data_file="file/name/path",
-        )
+        base_dir = os.path.dirname(__file__)
 
-        game_dataset = GameDataset(tracking=data_package)
+        game_dataset = GameDataset(
+            tracking_metadata_file=f"{base_dir}/files/metadata.xml",
+            tracking_data_file=f"{base_dir}/files/tracking.txt",
+            events_metadata_file=f"{base_dir}/files/metadata.xml",
+            events_data_file=f"{base_dir}/files/events.json",
+        )
 
         class pattern_class(Pattern):
             def __init__(
@@ -119,5 +118,5 @@ class TestModels:
         patterns_set = PatternsSet(game_dataset=game_dataset)
         patterns_set.patterns = [test_pattern, test_pattern]
 
-        assert patterns_set.game_dataset.events is None
+        assert patterns_set.game_dataset.events.data_type == DataType.EVENT
         assert len(patterns_set.patterns) == 2

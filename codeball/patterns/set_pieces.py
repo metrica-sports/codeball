@@ -4,8 +4,8 @@ from codeball.models import PatternEvent, Pattern, GameDataset
 
 class SetPieces(Pattern):
     """
-        This pattern computes Set Pieces (kick offs, throw ins, corner kicks,
-        penalties, free kicks)
+    This pattern computes Set Pieces (kick offs, throw ins, corner kicks,
+    penalties, free kicks)
 
     """
 
@@ -23,31 +23,15 @@ class SetPieces(Pattern):
 
     def run(self) -> List[PatternEvent]:
 
-        set_piece_events = self.game_dataset.set_pieces()
+        set_pieces = self.game_dataset.events.type("GENERIC:SET PIECE")
 
-        return [self.build_pattern_event(event) for event in set_piece_events]
-
-    def build_pattern_event(self, event: dict, event_idx=int) -> PatternEvent:
-        pattern_event = self.from_event(event)
-        pattern_event.add_spotlights(event.raw_event["from"]["id"])
-        pattern_event.tags = event.raw_event["team"]["id"]
-
-        next_event_ind = event.raw_event["index"]
-        next_raw_event = self.game_dataset.events.dataset.records[
-            next_event_ind
-        ].raw_event
-        pattern_event.coordinates = [
-            next_raw_event["start"]["x"],
-            next_raw_event["start"]["y"],
+        return [
+            self.build_pattern_event(event_row)
+            for i, event_row in set_pieces.iterrows()
         ]
-        pattern_event.end_time = (next_raw_event["end"]["time"] + 2) * 1000
 
-        # TODO: find a better way to work with inverted coordiantes on raw events. One
-        # one option could be to inverted coordinates of raw events while enriching data.
-        if event.inverted:
-            pattern_event.coordinates = [
-                -pattern_event.coordinates[0] + 1,
-                -pattern_event.coordinates[1] + 1,
-            ]
-
+    def build_pattern_event(self, event_row) -> PatternEvent:
+        pattern_event = self.from_event(event_row)
+        pattern_event.add_spotlights(event_row["player_id"])
+        pattern_event.tags = event_row["team_id"]
         return pattern_event

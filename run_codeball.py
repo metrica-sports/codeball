@@ -14,14 +14,12 @@ if initiaize_dataset:
         r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/events.json"
     )
 
-    game_dataset = GameDataset.initialize_game_dataset(
+    game_dataset = GameDataset(
         tracking_metadata_file=metadata_file,
         tracking_data_file=tracking_file,
         events_metadata_file=metadata_file,
         events_data_file=events_file,
     )
-
-    game_dataset.load_data()
 
     with open(r"./codeball/tests/files/game_dataset.obj", "wb") as f:
         pickle.dump(game_dataset, f)
