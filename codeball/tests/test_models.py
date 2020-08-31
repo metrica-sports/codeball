@@ -2,12 +2,23 @@ import os
 
 import pandas as pd
 
+from kloppy import (
+    load_epts_tracking_data,
+    to_pandas,
+    load_metrica_json_event_data,
+)
+
 from codeball.models import (
     PatternEvent,
     Pattern,
     GameDataset,
     DataType,
     PatternsSet,
+    TrackingDataFrame,
+    EventsDataFrame,
+    PossessionsDataFrame,
+    BaseDataFrame,
+    Zone,
 )
 
 import codeball.models.visualizations as vizs
@@ -120,3 +131,66 @@ class TestModels:
 
         assert patterns_set.game_dataset.events.data_type == DataType.EVENT
         assert len(patterns_set.patterns) == 2
+
+    def test_base_data_frame(self):
+        data = {
+            "player1_x": [1, 2, 3, 4],
+            "player2_x": [5, 6, 7, 8],
+            "player3_x": [9, 10, 11, 12],
+        }
+        base_df = BaseDataFrame(data)
+        base_df.metadata = "metadata"
+        base_df.records = [1, 2, 3, 4]
+        base_df.data_type = "test"
+
+        assert isinstance(base_df, BaseDataFrame)
+        assert hasattr(base_df, "metadata")
+        assert hasattr(base_df, "records")
+
+        assert isinstance(base_df[["player1_x", "player2_x"]], BaseDataFrame)
+        assert hasattr(base_df[["player1_x", "player2_x"]], "metadata")
+        assert not hasattr(base_df[["player1_x", "player2_x"]], "records")
+
+    def test_tracking_data_frame(self):
+
+        base_dir = os.path.dirname(__file__)
+
+        tracking_dataset = load_epts_tracking_data(
+            metadata_filename=f"{base_dir}/files/metadata.xml",
+            raw_data_filename=f"{base_dir}/files/tracking.txt",
+        )
+        tracking = TrackingDataFrame(to_pandas(tracking_dataset))
+        tracking.data_type = DataType.TRACKING
+        tracking.metadata = tracking_dataset.metadata
+        tracking.records = tracking_dataset.records
+
+        assert tracking.get_team_by_id("FIFATMA").team_id == "FIFATMA"
+        assert tracking.get_period_by_id(1).id == 1
+        assert tracking.get_other_team_id("FIFATMA") == "FIFATMB"
+        assert tracking.team("FIFATMA").shape[1] == 34
+        assert tracking.dimension("x").shape[1] == 36
+        assert tracking.players().shape[1] == 70
+        assert tracking.players("field").shape[1] == 66
+        assert sum(tracking.phase(defending_team_id="FIFATMA")) == 0
+        assert sum(tracking.team("FIFATMA").stretched(90)) == 37943
+
+    def test_events_data_frame(self):
+
+        base_dir = os.path.dirname(__file__)
+
+        events_dataset = load_metrica_json_event_data(
+            metadata_filename=f"{base_dir}/files/metadata.xml",
+            raw_data_filename=f"{base_dir}/files/events.json",
+        )
+        events = EventsDataFrame(to_pandas(events_dataset))
+        events.data_type = DataType.EVENT
+        events.metadata = events_dataset.metadata
+        events.records = events_dataset.records
+
+        assert events.type("PASS").shape[0] == 1473
+        assert events.result("COMPLETE").shape[0] == 2516
+        assert events.into(Zone.OPPONENT_BOX).shape[0] == 41
+        assert events.starts_inside(Zone.OPPONENT_BOX).shape[0] == 222
+        assert events.starts_outside(Zone.OPPONENT_BOX).shape[0] == 3307
+        assert events.ends_inside(Zone.OPPONENT_BOX).shape[0] == 120
+        assert events.ends_outside(Zone.OPPONENT_BOX).shape[0] == 2396

@@ -25,7 +25,7 @@ class BaseDataFrame(DataFrame):
             if period.id == period_id
         )
 
-    def other_team_id(self, team_id):
+    def get_other_team_id(self, team_id):
         if self.metadata.teams[0].team_id == team_id:
             return self.metadata.teams[1].team_id
 
@@ -75,7 +75,7 @@ class TrackingDataFrame(BaseDataFrame):
     def phase(self, defending_team_id=None, attacking_team_id=None):
 
         if defending_team_id:
-            attacking_team_id = self.other_team_id(defending_team_id)
+            attacking_team_id = self.get_other_team_id(defending_team_id)
 
         if attacking_team_id:
             return self["ball_owning_team_id"] == attacking_team_id
