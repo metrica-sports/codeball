@@ -4,14 +4,24 @@ from codeball import GameDataset, PatternsSet
 initiaize_dataset = True
 if initiaize_dataset:
     # Elite sample game
+    # metadata_file = (
+    #     r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/metadata.xml"
+    # )
+    # tracking_file = (
+    #     r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/tracking.txt"
+    # )
+    # events_file = (
+    #     r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/events.json"
+    # )
+
     metadata_file = (
-        r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/metadata.xml"
+        r"c:/1_METRICA/1_ANALYSIS/codeball/codeball/tests/files/metadata.xml"
     )
     tracking_file = (
-        r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/tracking.txt"
+        r"c:/1_METRICA/1_ANALYSIS/codeball/codeball/tests/files/tracking.txt"
     )
     events_file = (
-        r"c:/1_METRICA/1_ANALYSIS/sample-data/data/Sample_Game_3/events.json"
+        r"c:/1_METRICA/1_ANALYSIS/codeball/codeball/tests/files/events.json"
     )
 
     game_dataset = GameDataset(

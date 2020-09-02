@@ -44,7 +44,8 @@ class TrackingDataFrame(BaseDataFrame):
 
         column_names = []
         for player_id in players_ids:
-            column_names.extend([f"{player_id}_x", f"{player_id}_y"])
+            if f"{player_id}_x" in self.columns:
+                column_names.extend([f"{player_id}_x", f"{player_id}_y"])
 
         return self[column_names]
 

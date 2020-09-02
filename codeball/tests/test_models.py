@@ -175,12 +175,12 @@ class TestModels:
         assert tracking.get_team_by_id("FIFATMA").team_id == "FIFATMA"
         assert tracking.get_period_by_id(1).id == 1
         assert tracking.get_other_team_id("FIFATMA") == "FIFATMB"
-        assert tracking.team("FIFATMA").shape[1] == 34
-        assert tracking.dimension("x").shape[1] == 36
-        assert tracking.players().shape[1] == 70
-        assert tracking.players("field").shape[1] == 66
+        assert tracking.team("FIFATMA").shape[1] == 22
+        assert tracking.dimension("x").shape[1] == 23
+        assert tracking.players().shape[1] == 44
+        assert tracking.players("field").shape[1] == 40
         assert sum(tracking.phase(defending_team_id="FIFATMA")) == 0
-        assert sum(tracking.team("FIFATMA").stretched(90)) == 37943
+        assert sum(tracking.team("FIFATMA").stretched(90)) == 863
 
     def test_events_data_frame(self):
 
@@ -195,10 +195,10 @@ class TestModels:
         events.metadata = events_dataset.metadata
         events.records = events_dataset.records
 
-        assert events.type("PASS").shape[0] == 1473
-        assert events.result("COMPLETE").shape[0] == 2516
-        assert events.into(Zone.OPPONENT_BOX).shape[0] == 41
-        assert events.starts_inside(Zone.OPPONENT_BOX).shape[0] == 222
-        assert events.starts_outside(Zone.OPPONENT_BOX).shape[0] == 3307
-        assert events.ends_inside(Zone.OPPONENT_BOX).shape[0] == 120
-        assert events.ends_outside(Zone.OPPONENT_BOX).shape[0] == 2396
+        assert events.type("PASS").shape[0] == 26
+        assert events.result("COMPLETE").shape[0] == 45
+        assert events.into(Zone.OPPONENT_BOX).shape[0] == 1
+        assert events.starts_inside(Zone.OPPONENT_BOX).shape[0] == 2
+        assert events.starts_outside(Zone.OPPONENT_BOX).shape[0] == 53
+        assert events.ends_inside(Zone.OPPONENT_BOX).shape[0] == 2
+        assert events.ends_outside(Zone.OPPONENT_BOX).shape[0] == 43

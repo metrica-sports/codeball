@@ -1,0 +1,2054 @@
+{
+	"data": [
+		{
+			"index": 1,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "SET PIECE",
+				"id": 5
+			},
+			"subtypes": {
+				"name": "KICK OFF",
+				"id": 35
+			},
+			"start": {
+				"frame": 361,
+				"time": 14.44,
+				"x": null,
+				"y": null
+			},
+			"end": {
+				"frame": 361,
+				"time": 14.44,
+				"x": null,
+				"y": null
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 10",
+				"id": "P3577"
+			},
+			"to": null
+		},
+		{
+			"index": 2,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 361,
+				"time": 14.44,
+				"x": 0.50125,
+				"y": 0.48725
+			},
+			"end": {
+				"frame": 377,
+				"time": 15.08,
+				"x": 0.49864,
+				"y": 0.48705
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 10",
+				"id": "P3577"
+			},
+			"to": {
+				"name": "Player 7",
+				"id": "P3574"
+			}
+		},
+		{
+			"index": 3,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 377,
+				"time": 15.08,
+				"x": 0.49864,
+				"y": 0.48705
+			},
+			"end": {
+				"frame": 384,
+				"time": 15.36,
+				"x": 0.497,
+				"y": 0.485
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 7",
+				"id": "P3574"
+			},
+			"to": null
+		},
+		{
+			"index": 4,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 384,
+				"time": 15.36,
+				"x": 0.497,
+				"y": 0.485
+			},
+			"end": {
+				"frame": 426,
+				"time": 17.04,
+				"x": 0.63373,
+				"y": 0.63449
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 7",
+				"id": "P3574"
+			},
+			"to": {
+				"name": "Player 8",
+				"id": "P3575"
+			}
+		},
+		{
+			"index": 5,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 426,
+				"time": 17.04,
+				"x": 0.63373,
+				"y": 0.63449
+			},
+			"end": {
+				"frame": 465,
+				"time": 18.6,
+				"x": 0.66986,
+				"y": 0.59707
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 8",
+				"id": "P3575"
+			},
+			"to": null
+		},
+		{
+			"index": 6,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 465,
+				"time": 18.6,
+				"x": 0.66986,
+				"y": 0.59707
+			},
+			"end": {
+				"frame": 507,
+				"time": 20.28,
+				"x": 0.80602,
+				"y": 0.39821
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 8",
+				"id": "P3575"
+			},
+			"to": {
+				"name": "Player 2",
+				"id": "P3569"
+			}
+		},
+		{
+			"index": 7,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 507,
+				"time": 20.28,
+				"x": 0.80602,
+				"y": 0.39821
+			},
+			"end": {
+				"frame": 530,
+				"time": 21.2,
+				"x": 0.80929,
+				"y": 0.42922
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 2",
+				"id": "P3569"
+			},
+			"to": null
+		},
+		{
+			"index": 8,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 530,
+				"time": 21.2,
+				"x": 0.80929,
+				"y": 0.42922
+			},
+			"end": {
+				"frame": 580,
+				"time": 23.2,
+				"x": 0.79906,
+				"y": 0.81522
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 2",
+				"id": "P3569"
+			},
+			"to": {
+				"name": "Player 3",
+				"id": "P3570"
+			}
+		},
+		{
+			"index": 9,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 580,
+				"time": 23.2,
+				"x": 0.79906,
+				"y": 0.81522
+			},
+			"end": {
+				"frame": 598,
+				"time": 23.92,
+				"x": 0.79756,
+				"y": 0.81998
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 3",
+				"id": "P3570"
+			},
+			"to": null
+		},
+		{
+			"index": 10,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 598,
+				"time": 23.92,
+				"x": 0.79756,
+				"y": 0.81998
+			},
+			"end": {
+				"frame": 628,
+				"time": 25.12,
+				"x": 0.68101,
+				"y": 0.98059
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 3",
+				"id": "P3570"
+			},
+			"to": {
+				"name": "Player 4",
+				"id": "P3571"
+			}
+		},
+		{
+			"index": 11,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 628,
+				"time": 25.12,
+				"x": 0.68101,
+				"y": 0.98059
+			},
+			"end": {
+				"frame": 652,
+				"time": 26.08,
+				"x": 0.67819,
+				"y": 0.97711
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 4",
+				"id": "P3571"
+			},
+			"to": null
+		},
+		{
+			"index": 12,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 652,
+				"time": 26.08,
+				"x": 0.67819,
+				"y": 0.97711
+			},
+			"end": {
+				"frame": 692,
+				"time": 27.68,
+				"x": 0.81302,
+				"y": 0.86586
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 4",
+				"id": "P3571"
+			},
+			"to": {
+				"name": "Player 3",
+				"id": "P3570"
+			}
+		},
+		{
+			"index": 13,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 692,
+				"time": 27.68,
+				"x": 0.81302,
+				"y": 0.86586
+			},
+			"end": {
+				"frame": 722,
+				"time": 28.88,
+				"x": 0.81388,
+				"y": 0.86224
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 3",
+				"id": "P3570"
+			},
+			"to": null
+		},
+		{
+			"index": 14,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 722,
+				"time": 28.88,
+				"x": 0.81388,
+				"y": 0.86224
+			},
+			"end": {
+				"frame": 755,
+				"time": 30.2,
+				"x": 0.96031,
+				"y": 0.62313
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 3",
+				"id": "P3570"
+			},
+			"to": {
+				"name": "Player 11",
+				"id": "P3578"
+			}
+		},
+		{
+			"index": 15,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 755,
+				"time": 30.2,
+				"x": 0.96031,
+				"y": 0.62313
+			},
+			"end": {
+				"frame": 830,
+				"time": 33.2,
+				"x": 0.94749,
+				"y": 0.49927
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 11",
+				"id": "P3578"
+			},
+			"to": null
+		},
+		{
+			"index": 16,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 830,
+				"time": 33.2,
+				"x": 0.94749,
+				"y": 0.49927
+			},
+			"end": {
+				"frame": 862,
+				"time": 34.48,
+				"x": 0.92755,
+				"y": 0.19358
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 11",
+				"id": "P3578"
+			},
+			"to": {
+				"name": "Player 2",
+				"id": "P3569"
+			}
+		},
+		{
+			"index": 17,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 862,
+				"time": 34.48,
+				"x": 0.92755,
+				"y": 0.19358
+			},
+			"end": {
+				"frame": 897,
+				"time": 35.88,
+				"x": 0.9066,
+				"y": 0.14186
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 2",
+				"id": "P3569"
+			},
+			"to": null
+		},
+		{
+			"index": 18,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "BALL OUT",
+				"id": 6
+			},
+			"subtypes": {
+				"name": "END HALF",
+				"id": 19
+			},
+			"start": {
+				"frame": 897,
+				"time": 35.88,
+				"x": 0.9066,
+				"y": 0.14186
+			},
+			"end": {
+				"frame": 957,
+				"time": 38.28,
+				"x": 0.51,
+				"y": -0.01
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 2",
+				"id": "P3569"
+			},
+			"to": null
+		},
+		{
+			"index": 19,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "SET PIECE",
+				"id": 5
+			},
+			"subtypes": {
+				"name": "KICK OFF",
+				"id": 35
+			},
+			"start": {
+				"frame": 1125,
+				"time": 45,
+				"x": null,
+				"y": null
+			},
+			"end": {
+				"frame": 1125,
+				"time": 45,
+				"x": null,
+				"y": null
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 21",
+				"id": "P3588"
+			},
+			"to": null
+		},
+		{
+			"index": 20,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1125,
+				"time": 45,
+				"x": 0.5,
+				"y": 0.5
+			},
+			"end": {
+				"frame": 1149,
+				"time": 45.96,
+				"x": 0.65727,
+				"y": 0.09506
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 21",
+				"id": "P3588"
+			},
+			"to": {
+				"name": "Player 25",
+				"id": "P3592"
+			}
+		},
+		{
+			"index": 21,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1149,
+				"time": 45.96,
+				"x": 0.65727,
+				"y": 0.09506
+			},
+			"end": {
+				"frame": 1180,
+				"time": 47.2,
+				"x": 0.58876,
+				"y": 0.02204
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 25",
+				"id": "P3592"
+			},
+			"to": {
+				"name": "Player 21",
+				"id": "P3588"
+			}
+		},
+		{
+			"index": 22,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1149,
+				"time": 45.96,
+				"x": 0.65727,
+				"y": 0.09506
+			},
+			"end": {
+				"frame": 1150,
+				"time": 46,
+				"x": 0.65727,
+				"y": 0.09506
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 25",
+				"id": "P3592"
+			},
+			"to": null
+		},
+		{
+			"index": 23,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1180,
+				"time": 47.2,
+				"x": 0.58876,
+				"y": 0.02204
+			},
+			"end": {
+				"frame": 1198,
+				"time": 47.92,
+				"x": 0.58828,
+				"y": 0.03237
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 21",
+				"id": "P3588"
+			},
+			"to": null
+		},
+		{
+			"index": 24,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "BALL LOST",
+				"id": 7
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1198,
+				"time": 47.92,
+				"x": 0.58828,
+				"y": 0.03237
+			},
+			"end": {
+				"frame": 1234,
+				"time": 49.36,
+				"x": 0.71,
+				"y": 0.02
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 21",
+				"id": "P3588"
+			},
+			"to": null
+		},
+		{
+			"index": 25,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "RECOVERY",
+				"id": 3
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1232,
+				"time": 49.28,
+				"x": 0.73052,
+				"y": 0.05659
+			},
+			"end": {
+				"frame": 1232,
+				"time": 49.28,
+				"x": null,
+				"y": null
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 1",
+				"id": "P3568"
+			},
+			"to": null
+		},
+		{
+			"index": 26,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "BALL LOST",
+				"id": 7
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1232,
+				"time": 49.28,
+				"x": 0.73052,
+				"y": 0.05659
+			},
+			"end": {
+				"frame": 1288,
+				"time": 51.52,
+				"x": 0.53,
+				"y": 0.3
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 1",
+				"id": "P3568"
+			},
+			"to": null
+		},
+		{
+			"index": 27,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1232,
+				"time": 49.28,
+				"x": 0.73052,
+				"y": 0.05659
+			},
+			"end": {
+				"frame": 1233,
+				"time": 49.32,
+				"x": 0.73052,
+				"y": 0.05659
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 1",
+				"id": "P3568"
+			},
+			"to": null
+		},
+		{
+			"index": 28,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "RECOVERY",
+				"id": 3
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1285,
+				"time": 51.4,
+				"x": 0.51723,
+				"y": 0.24393
+			},
+			"end": {
+				"frame": 1285,
+				"time": 51.4,
+				"x": null,
+				"y": null
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 23",
+				"id": "P3590"
+			},
+			"to": null
+		},
+		{
+			"index": 29,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "BALL LOST",
+				"id": 7
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1285,
+				"time": 51.4,
+				"x": 0.51723,
+				"y": 0.24393
+			},
+			"end": {
+				"frame": 1313,
+				"time": 52.52,
+				"x": 0.64,
+				"y": 0.22
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 23",
+				"id": "P3590"
+			},
+			"to": null
+		},
+		{
+			"index": 30,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1285,
+				"time": 51.4,
+				"x": 0.51723,
+				"y": 0.24393
+			},
+			"end": {
+				"frame": 1286,
+				"time": 51.44,
+				"x": 0.51723,
+				"y": 0.24393
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 23",
+				"id": "P3590"
+			},
+			"to": null
+		},
+		{
+			"index": 31,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "RECOVERY",
+				"id": 3
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1314,
+				"time": 52.56,
+				"x": 0.63227,
+				"y": 0.21048
+			},
+			"end": {
+				"frame": 1314,
+				"time": 52.56,
+				"x": null,
+				"y": null
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 6",
+				"id": "P3573"
+			},
+			"to": null
+		},
+		{
+			"index": 32,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1314,
+				"time": 52.56,
+				"x": 0.63227,
+				"y": 0.21048
+			},
+			"end": {
+				"frame": 1368,
+				"time": 54.72,
+				"x": 0.55851,
+				"y": 0.38123
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 6",
+				"id": "P3573"
+			},
+			"to": {
+				"name": "Player 7",
+				"id": "P3574"
+			}
+		},
+		{
+			"index": 33,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1314,
+				"time": 52.56,
+				"x": 0.63227,
+				"y": 0.21048
+			},
+			"end": {
+				"frame": 1315,
+				"time": 52.6,
+				"x": 0.63227,
+				"y": 0.21048
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 6",
+				"id": "P3573"
+			},
+			"to": null
+		},
+		{
+			"index": 34,
+			"team": {
+				"name": "Team B",
+				"id": "FIFATMB"
+			},
+			"type": {
+				"name": "CHALLENGE",
+				"id": 9
+			},
+			"subtypes": [
+				{
+					"name": "GROUND",
+					"id": 42
+				},
+				{
+					"name": "LOST",
+					"id": 49
+				}
+			],
+			"start": {
+				"frame": 1366,
+				"time": 54.64,
+				"x": 0.54952,
+				"y": 0.37123
+			},
+			"end": {
+				"frame": 1366,
+				"time": 54.64,
+				"x": null,
+				"y": null
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 23",
+				"id": "P3590"
+			},
+			"to": null
+		},
+		{
+			"index": 35,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CHALLENGE",
+				"id": 9
+			},
+			"subtypes": [
+				{
+					"name": "GROUND",
+					"id": 42
+				},
+				{
+					"name": "WON",
+					"id": 48
+				}
+			],
+			"start": {
+				"frame": 1368,
+				"time": 54.72,
+				"x": 0.55851,
+				"y": 0.38123
+			},
+			"end": {
+				"frame": 1368,
+				"time": 54.72,
+				"x": null,
+				"y": null
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 7",
+				"id": "P3574"
+			},
+			"to": null
+		},
+		{
+			"index": 36,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1368,
+				"time": 54.72,
+				"x": 0.55851,
+				"y": 0.38123
+			},
+			"end": {
+				"frame": 1410,
+				"time": 56.4,
+				"x": 0.58673,
+				"y": 0.42462
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 7",
+				"id": "P3574"
+			},
+			"to": null
+		},
+		{
+			"index": 37,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1410,
+				"time": 56.4,
+				"x": 0.58673,
+				"y": 0.42462
+			},
+			"end": {
+				"frame": 1437,
+				"time": 57.48,
+				"x": 0.61178,
+				"y": 0.28761
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 7",
+				"id": "P3574"
+			},
+			"to": {
+				"name": "Player 6",
+				"id": "P3573"
+			}
+		},
+		{
+			"index": 38,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1437,
+				"time": 57.48,
+				"x": 0.61178,
+				"y": 0.28761
+			},
+			"end": {
+				"frame": 1473,
+				"time": 58.92,
+				"x": 0.60722,
+				"y": 0.30677
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 6",
+				"id": "P3573"
+			},
+			"to": null
+		},
+		{
+			"index": 39,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1473,
+				"time": 58.92,
+				"x": 0.60722,
+				"y": 0.30677
+			},
+			"end": {
+				"frame": 1523,
+				"time": 60.92,
+				"x": 0.60393,
+				"y": 0.84411
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 6",
+				"id": "P3573"
+			},
+			"to": {
+				"name": "Player 4",
+				"id": "P3571"
+			}
+		},
+		{
+			"index": 40,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1523,
+				"time": 60.92,
+				"x": 0.60393,
+				"y": 0.84411
+			},
+			"end": {
+				"frame": 1639,
+				"time": 65.56,
+				"x": 0.60751,
+				"y": 0.88738
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 4",
+				"id": "P3571"
+			},
+			"to": null
+		},
+		{
+			"index": 41,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1639,
+				"time": 65.56,
+				"x": 0.60751,
+				"y": 0.88738
+			},
+			"end": {
+				"frame": 1687,
+				"time": 67.48,
+				"x": 0.77456,
+				"y": 0.74867
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 4",
+				"id": "P3571"
+			},
+			"to": {
+				"name": "Player 3",
+				"id": "P3570"
+			}
+		},
+		{
+			"index": 42,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1687,
+				"time": 67.48,
+				"x": 0.77456,
+				"y": 0.74867
+			},
+			"end": {
+				"frame": 1710,
+				"time": 68.4,
+				"x": 0.77939,
+				"y": 0.74052
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 3",
+				"id": "P3570"
+			},
+			"to": null
+		},
+		{
+			"index": 43,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1710,
+				"time": 68.4,
+				"x": 0.77939,
+				"y": 0.74052
+			},
+			"end": {
+				"frame": 1748,
+				"time": 69.92,
+				"x": 0.80277,
+				"y": 0.41404
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 3",
+				"id": "P3570"
+			},
+			"to": {
+				"name": "Player 2",
+				"id": "P3569"
+			}
+		},
+		{
+			"index": 44,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1748,
+				"time": 69.92,
+				"x": 0.80277,
+				"y": 0.41404
+			},
+			"end": {
+				"frame": 1791,
+				"time": 71.64,
+				"x": 0.78088,
+				"y": 0.34444
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 2",
+				"id": "P3569"
+			},
+			"to": null
+		},
+		{
+			"index": 45,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1791,
+				"time": 71.64,
+				"x": 0.78088,
+				"y": 0.34444
+			},
+			"end": {
+				"frame": 1829,
+				"time": 73.16,
+				"x": 0.67045,
+				"y": 0.0539
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 2",
+				"id": "P3569"
+			},
+			"to": {
+				"name": "Player 1",
+				"id": "P3568"
+			}
+		},
+		{
+			"index": 46,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1829,
+				"time": 73.16,
+				"x": 0.67045,
+				"y": 0.0539
+			},
+			"end": {
+				"frame": 1852,
+				"time": 74.08,
+				"x": 0.6676,
+				"y": 0.06382
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 1",
+				"id": "P3568"
+			},
+			"to": null
+		},
+		{
+			"index": 47,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1852,
+				"time": 74.08,
+				"x": 0.6676,
+				"y": 0.06382
+			},
+			"end": {
+				"frame": 1872,
+				"time": 74.88,
+				"x": 0.64323,
+				"y": 0.22396
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 1",
+				"id": "P3568"
+			},
+			"to": {
+				"name": "Player 6",
+				"id": "P3573"
+			}
+		},
+		{
+			"index": 48,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1872,
+				"time": 74.88,
+				"x": 0.64323,
+				"y": 0.22396
+			},
+			"end": {
+				"frame": 1904,
+				"time": 76.16,
+				"x": 0.69468,
+				"y": 0.0488
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 6",
+				"id": "P3573"
+			},
+			"to": {
+				"name": "Player 1",
+				"id": "P3568"
+			}
+		},
+		{
+			"index": 49,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1872,
+				"time": 74.88,
+				"x": 0.64323,
+				"y": 0.22396
+			},
+			"end": {
+				"frame": 1873,
+				"time": 74.92,
+				"x": 0.64323,
+				"y": 0.22396
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 6",
+				"id": "P3573"
+			},
+			"to": null
+		},
+		{
+			"index": 50,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1904,
+				"time": 76.16,
+				"x": 0.69468,
+				"y": 0.0488
+			},
+			"end": {
+				"frame": 1924,
+				"time": 76.96,
+				"x": 0.68617,
+				"y": 0.04201
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 1",
+				"id": "P3568"
+			},
+			"to": null
+		},
+		{
+			"index": 51,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1924,
+				"time": 76.96,
+				"x": 0.68617,
+				"y": 0.04201
+			},
+			"end": {
+				"frame": 1956,
+				"time": 78.24,
+				"x": 0.5279,
+				"y": 0.00891
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 1",
+				"id": "P3568"
+			},
+			"to": {
+				"name": "Player 5",
+				"id": "P3572"
+			}
+		},
+		{
+			"index": 52,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1956,
+				"time": 78.24,
+				"x": 0.5279,
+				"y": 0.00891
+			},
+			"end": {
+				"frame": 1977,
+				"time": 79.08,
+				"x": 0.50468,
+				"y": 0.06428
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 5",
+				"id": "P3572"
+			},
+			"to": {
+				"name": "Player 10",
+				"id": "P3577"
+			}
+		},
+		{
+			"index": 53,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1956,
+				"time": 78.24,
+				"x": 0.5279,
+				"y": 0.00891
+			},
+			"end": {
+				"frame": 1957,
+				"time": 78.28,
+				"x": 0.5279,
+				"y": 0.00891
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 5",
+				"id": "P3572"
+			},
+			"to": null
+		},
+		{
+			"index": 54,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "PASS",
+				"id": 1
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1977,
+				"time": 79.08,
+				"x": 0.50468,
+				"y": 0.06428
+			},
+			"end": {
+				"frame": 1998,
+				"time": 79.92,
+				"x": 0.53862,
+				"y": 0.07451
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 10",
+				"id": "P3577"
+			},
+			"to": {
+				"name": "Player 5",
+				"id": "P3572"
+			}
+		},
+		{
+			"index": 55,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1977,
+				"time": 79.08,
+				"x": 0.50468,
+				"y": 0.06428
+			},
+			"end": {
+				"frame": 1978,
+				"time": 79.12,
+				"x": 0.50468,
+				"y": 0.06428
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 10",
+				"id": "P3577"
+			},
+			"to": null
+		},
+		{
+			"index": 56,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "CARRY",
+				"id": 10
+			},
+			"subtypes": null,
+			"start": {
+				"frame": 1998,
+				"time": 79.92,
+				"x": 0.53862,
+				"y": 0.07451
+			},
+			"end": {
+				"frame": 2045,
+				"time": 81.8,
+				"x": 0.52523,
+				"y": 0.18418
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 5",
+				"id": "P3572"
+			},
+			"to": null
+		},
+		{
+			"index": 57,
+			"team": {
+				"name": "Team A",
+				"id": "FIFATMA"
+			},
+			"type": {
+				"name": "BALL LOST",
+				"id": 7
+			},
+			"subtypes": {
+				"name": "END HALF",
+				"id": 19
+			},
+			"start": {
+				"frame": 2045,
+				"time": 81.8,
+				"x": 0.52523,
+				"y": 0.18418
+			},
+			"end": {
+				"frame": 2075,
+				"time": 83,
+				"x": 0.35,
+				"y": 0.21
+			},
+			"period": 1,
+			"from": {
+				"name": "Player 5",
+				"id": "P3572"
+			},
+			"to": null
+		}
+	],
+	"metadata": [
+		{
+			"category": "TYPE",
+			"name": "PASS",
+			"id": "1"
+		},
+		{
+			"category": "TYPE",
+			"name": "SHOT",
+			"id": "2"
+		},
+		{
+			"category": "TYPE",
+			"name": "RECOVERY",
+			"id": "3"
+		},
+		{
+			"category": "TYPE",
+			"name": "FAULT RECEIVED",
+			"id": "4"
+		},
+		{
+			"category": "TYPE",
+			"name": "SET PIECE",
+			"id": "5"
+		},
+		{
+			"category": "TYPE",
+			"name": "BALL OUT",
+			"id": "6"
+		},
+		{
+			"category": "TYPE",
+			"name": "BALL LOST",
+			"id": "7"
+		},
+		{
+			"category": "TYPE",
+			"name": "CARD",
+			"id": "8"
+		},
+		{
+			"category": "TYPE",
+			"name": "CHALLENGE",
+			"id": "9"
+		},
+		{
+			"category": "TYPE",
+			"name": "CARRY",
+			"id": "10"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "HEAD",
+			"id": "11"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "CLEARANCE",
+			"id": "12"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "CROSS",
+			"id": "13"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "THROUGH BALL",
+			"id": "14"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "DEEP BALL",
+			"id": "15"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "OFFSIDE",
+			"id": "16"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "VOLUNTARY",
+			"id": "17"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "FORCED",
+			"id": "18"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "END HALF",
+			"id": "19"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "GOAL KICK",
+			"id": "20"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "HAND BALL",
+			"id": "21"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "REFEREE HIT",
+			"id": "22"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "INTERCEPTION",
+			"id": "23"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "THEFT",
+			"id": "24"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "BLOCKED",
+			"id": "25"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "SAVED",
+			"id": "26"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "WOODWORK",
+			"id": "27"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "ON TARGET",
+			"id": "28"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "OFF TARGET",
+			"id": "29"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "GOAL",
+			"id": "30"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "OUT",
+			"id": "31"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "FREE KICK",
+			"id": "32"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "CORNER KICK",
+			"id": "33"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "THROW IN",
+			"id": "34"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "KICK OFF",
+			"id": "35"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "PENALTY",
+			"id": "36"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "DIRECT",
+			"id": "37"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "INDIRECT",
+			"id": "38"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "RETAKEN",
+			"id": "39"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "YELLOW",
+			"id": "40"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "RED",
+			"id": "41"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "GROUND",
+			"id": "42"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "AERIAL",
+			"id": "43"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "TACKLE",
+			"id": "44"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "DRIBBLE",
+			"id": "45"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "FAULT",
+			"id": "46"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "ADVANTAGE",
+			"id": "47"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "WON",
+			"id": "48"
+		},
+		{
+			"category": "SUBTYPE",
+			"name": "LOST",
+			"id": "49"
+		}
+	]
+}

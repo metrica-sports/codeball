@@ -6,4 +6,3 @@ env
 *.patt
 .coverage
 docs
-codeball/tests/files/
