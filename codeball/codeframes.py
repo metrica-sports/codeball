@@ -82,7 +82,11 @@ class TrackingDataFrame(BaseDataFrame):
 
     def stretched(self, threshold):
         team_span = self.max(axis=1) - self.min(axis=1)
-        return team_span > (threshold / self.metadata.pitch_dimensions.length)
+        pitch_length = (
+            self.metadata.pitch_dimensions.x_dim.max
+            / self.metadata.pitch_dimensions.x_per_meter
+        )
+        return team_span > (threshold / pitch_length)
 
 
 class EventsDataFrame(BaseDataFrame):
