@@ -8,20 +8,20 @@ from kloppy import (
     load_metrica_json_event_data,
 )
 
-from codeball.models import (
-    PatternEvent,
-    Pattern,
+from codeball import (
     GameDataset,
     DataType,
-    PatternsSet,
     TrackingDataFrame,
     EventsDataFrame,
     PossessionsDataFrame,
     BaseDataFrame,
     Zone,
+    PatternEvent,
+    Pattern,
+    PatternsSet,
 )
 
-import codeball.models.visualizations as vizs
+import codeball.visualizations as vizs
 
 
 class TestModels:
@@ -64,6 +64,9 @@ class TestModels:
 
             def run(self):
                 return True
+
+            def build_pattern_event(self):
+                pass
 
         test_pattern = pattern_class(
             name="Test Pattern",
@@ -118,6 +121,9 @@ class TestModels:
 
             def run(self):
                 return True
+
+            def build_pattern_event(self):
+                pass
 
         test_pattern = pattern_class(
             name="Test Pattern",

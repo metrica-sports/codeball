@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from typing import Optional, List, Dict
 from enum import Enum
 import pandas as pd
-from kloppy.domain.models import (
+from kloppy.domain import (
     Dataset,
     Team,
     EventType,
@@ -20,8 +20,8 @@ from kloppy import (
 )
 
 import codeball.utils as utils
-from codeball.models.tactical import Zone, Possession
-from codeball.models.codeframes import (
+from codeball.tactical import Zone, Possession
+from codeball.codeframes import (
     EventsDataFrame,
     TrackingDataFrame,
     PossessionsDataFrame,

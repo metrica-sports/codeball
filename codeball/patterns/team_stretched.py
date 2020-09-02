@@ -1,6 +1,6 @@
 from typing import List
-from codeball.models import PatternEvent, Pattern, GameDataset
-import codeball.utils as utils
+from codeball import GameDataset
+from codeball.patterns import PatternEvent, Pattern
 
 
 class TeamStretched(Pattern):

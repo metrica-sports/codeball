@@ -1,0 +1,30 @@
+[
+    {
+        "include": true,
+        "name": "Team Stretched",
+        "code": "MET_001",
+        "pattern_class": "TeamStretched",
+        "parameters": {"team_code": "FIFATMA", "threshold": 35},
+        "in_time": 2,
+        "out_time": 2
+    },
+    {
+        "include": true,
+        "name": "Set Pieces",
+        "code": "MET_002",
+        "pattern_class": "SetPieces",
+        "parameters": null,
+        "in_time": 2,
+        "out_time": 2
+    },
+    {
+        "include": true,
+        "name": "Passes into the box",
+        "code": "MET_003",
+        "pattern_class": "PassesIntoTheBox",
+        "parameters": null,
+        "in_time": 2,
+        "out_time": 2
+    }
+]
+

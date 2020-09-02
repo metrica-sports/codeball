@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 env
-development_data.json
+*.patt
 .coverage
 docs
 codeball/tests/files/

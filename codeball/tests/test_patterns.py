@@ -1,6 +1,6 @@
 import pickle
-from codeball.models import GameDataset, Pattern
-import codeball.patterns as patt
+from codeball import GameDataset, Pattern
+from codeball import TeamStretched, PassesIntoTheBox, SetPieces
 
 
 class TestPatterns:
@@ -10,7 +10,7 @@ class TestPatterns:
 
     def test_team_stretched(self):
         parameters = {"team_code": "FIFATMA", "threshold": 40}
-        team_stretched = patt.TeamStretched(
+        team_stretched = TeamStretched(
             game_dataset=self.game_dataset,
             name="Test Team Stretched",
             code="TEST_001",
@@ -21,7 +21,7 @@ class TestPatterns:
         assert len(events) > 0
 
     def test_set_pieces(self):
-        set_pieces = patt.SetPieces(
+        set_pieces = SetPieces(
             game_dataset=self.game_dataset, name="Set Pieces", code="TEST_002"
         )
         events = set_pieces.run()
@@ -29,7 +29,7 @@ class TestPatterns:
         assert len(events) > 0
 
     def test_passes_into_the_box(self):
-        passes_into_the_box = patt.PassesIntoTheBox(
+        passes_into_the_box = PassesIntoTheBox(
             game_dataset=self.game_dataset,
             name="Passes into the box",
             code="TEST_003",

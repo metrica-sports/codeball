@@ -1,5 +1,5 @@
 import pickle
-from codeball.models import GameDataset, PatternsSet
+from codeball import GameDataset, PatternsSet
 
 initiaize_dataset = True
 if initiaize_dataset:
@@ -36,4 +36,4 @@ patterns_set.initialize_patterns()
 
 patterns_set.run_patterns()
 
-patterns_set.save_patterns_for_play("development_data.json")
+patterns_set.save_patterns_for_play("output.patt")

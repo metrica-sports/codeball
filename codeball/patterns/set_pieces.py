@@ -1,5 +1,6 @@
 from typing import List
-from codeball.models import PatternEvent, Pattern, GameDataset
+from codeball import GameDataset
+from codeball.patterns import PatternEvent, Pattern
 
 
 class SetPieces(Pattern):

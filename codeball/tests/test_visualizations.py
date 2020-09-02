@@ -1,4 +1,4 @@
-import codeball.models.visualizations as vizs
+import codeball.visualizations as vizs
 import pytest
 
 

@@ -1,5 +1,5 @@
 from pandas import DataFrame, Series
-from codeball.models.tactical import Zone
+from codeball.tactical import Zone
 
 
 class BaseDataFrame(DataFrame):

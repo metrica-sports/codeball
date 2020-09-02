@@ -1,7 +1,7 @@
 from typing import List
 from kloppy.domain import EventType, PassResult
-from codeball.models import PatternEvent, Pattern, GameDataset
-from codeball.models import Zone
+from codeball import GameDataset, Zone
+from codeball.patterns import PatternEvent, Pattern
 
 
 class PassesIntoTheBox(Pattern):

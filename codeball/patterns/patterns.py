@@ -1,14 +1,14 @@
 from __future__ import annotations
 import json
+import os
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
 from typing import List, Dict
 import numpy as np
 from kloppy.domain.models import Event
-import codeball
-import codeball.models.visualizations as vizs
+import codeball.visualizations as vizs
 import codeball.utils as utils
-from codeball.models import GameDataset
+from codeball import GameDataset
 
 
 @dataclass
@@ -104,6 +104,13 @@ class Pattern(ABC):
         """ Runs the pattern to compute the PatternEvents"""
         raise NotImplementedError
 
+    @abstractmethod
+    def build_pattern_event(
+        self, game_dataset: GameDataset
+    ) -> List[PatternEvent]:
+        """ Builds each pattern event"""
+        raise NotImplementedError
+
     def from_event(self, event) -> PatternEvent:
 
         coordinates = []
@@ -149,8 +156,14 @@ class PatternsSet:
     patterns_config: Dict = field(default_factory=dict)
     patterns: List[Pattern] = field(default_factory=list)
 
-    def load_patterns_config(self):
-        self.patterns_config = codeball.get_patterns_config()
+    def load_patterns_config(self, config_file: str = None):
+
+        if not config_file:
+            base_dir = os.path.dirname(__file__)
+            config_file = f"{base_dir}/patterns_config.json"
+
+        with open(config_file) as json_file:
+            self.patterns_config = json.load(json_file)
 
     def initialize_patterns(self):
 
@@ -164,7 +177,9 @@ class PatternsSet:
 
     def _initialize_pattern(self, pattern_config: Dict) -> Pattern:
 
-        pattern_class = pattern_config["pattern_class"]
+        import codeball
+
+        pattern_class = getattr(codeball, pattern_config["pattern_class"])
         pattern = pattern_class(
             game_dataset=self.game_dataset,
             name=pattern_config["name"],
