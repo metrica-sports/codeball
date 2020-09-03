@@ -165,9 +165,9 @@ class PatternsSet:
         with open(config_file) as json_file:
             self.patterns_config = json.load(json_file)
 
-    def initialize_patterns(self):
+    def initialize_patterns(self, config_file: str = None):
 
-        self.load_patterns_config()
+        self.load_patterns_config(config_file)
 
         self.patterns = []
         for pattern_config in self.patterns_config:

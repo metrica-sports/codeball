@@ -3,6 +3,5 @@ __pycache__/
 *.py[cod]
 *$py.class
 env
-*.patt
 .coverage
 docs
