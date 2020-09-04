@@ -28,7 +28,7 @@ setup(
     ],
     python_requires=">=3.7, <4",
     install_requires=[
-        "kloppy>=1.1.0",
+        "kloppy>=1.1.1",
         "pandas>=1.0.5",
     ],
     extras_require={
