@@ -8,7 +8,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="codeball",
-    version="0.0.1",
+    version="0.0.2",
     author="Bruno Dagnino",
     author_email="bruno@metrica-sporst.com",
     url="https://github.com/metrica-sports/codeball",
