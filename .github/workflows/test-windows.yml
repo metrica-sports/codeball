@@ -30,9 +30,9 @@ jobs:
       run: |
         flake8 .
     - name: Code formatting
-        run: |
-          pip install black
-          black .
+      run: |
+        pip install black
+        black .
     - name: Test with pytest
       run: |
         pytest
