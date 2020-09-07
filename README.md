@@ -1,4 +1,4 @@
-# codeball: tactical analysis of football / soccer games
+# codeball: data driven tactical and video analysis of football/soccer games
 
 [![PyPI Latest Release](https://img.shields.io/pypi/v/codeball.svg)](https://pypi.org/project/codeball/)
 ![](https://img.shields.io/github/license/metrica-sports/codeball)
@@ -8,11 +8,14 @@
 
 ## Why codeball
 
-While there are several pieces of code / repositories around that provide different tools and bits of codes to do tactical analysis of individual games, there is no centralized place in which they live. Codeball is being developed with the goal of being the central repository for tactical analysis of individual games.
+While there are several pieces of code / repositories around that provide different tools and bits of codes to do tactical analysis of individual games, there is no centralized place in which they live. Morevoer, most of the analysis done is usually not linked or easy to link with the actual footage of the match. Codeball's objective is to change that by:
+
+1. Buildibg a central repository for different types of data driven tactical analysis.
+2. Making it easy to link those analysis/methods with the video of the game. 
 
 ## What can you do with it
 
-There are 3 main things you can do with codeball
+The main type of workd / developments you can do with codeball are:
 
 #### Work with tracking and event data
 
