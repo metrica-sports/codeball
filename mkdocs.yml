@@ -1,0 +1,37 @@
+site_name: Codeball v0.0.4
+site_url: https://codeball.metrica-sports.com
+repo_url: https://github.com/metrica-sports/codeball
+repo_name: 'Codeball'
+edit_uri: blob/master/docs/
+
+theme:
+  name: material
+  palette:
+    primary: teal
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      include_source: True
+
+nav:
+    - Home: index.md
+    - GameDataset: game-dataset.md
+    - CodeballFrames: codeball-frames.md
+    - Patterns: patterns.md
+    - Metrica Play API: 
+      - What you can do: metrica-play-api.md
+      - Patterns and tags: format-for-play.md
+      - Visualizations: visualizations.md
+      - How to import a file: how-to-import-to-play.md
+    - Examples:
+      - GameDataset: examples/game_dataset.ipynb
+      - Example pattern: examples/example-pattern.md
+      - Run patterns: examples/run_patterns.ipynb
+      
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true
+      linenums_style: table
+

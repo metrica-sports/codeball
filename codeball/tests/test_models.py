@@ -11,10 +11,10 @@ from kloppy import (
 from codeball import (
     GameDataset,
     DataType,
-    TrackingDataFrame,
-    EventsDataFrame,
-    PossessionsDataFrame,
-    BaseDataFrame,
+    TrackingFrame,
+    EventsFrame,
+    PossessionsFrame,
+    BaseFrame,
     Zone,
     PatternEvent,
     Pattern,
@@ -146,16 +146,16 @@ class TestModels:
             "player2_x": [5, 6, 7, 8],
             "player3_x": [9, 10, 11, 12],
         }
-        base_df = BaseDataFrame(data)
+        base_df = BaseFrame(data)
         base_df.metadata = "metadata"
         base_df.records = [1, 2, 3, 4]
         base_df.data_type = "test"
 
-        assert isinstance(base_df, BaseDataFrame)
+        assert isinstance(base_df, BaseFrame)
         assert hasattr(base_df, "metadata")
         assert hasattr(base_df, "records")
 
-        assert isinstance(base_df[["player1_x", "player2_x"]], BaseDataFrame)
+        assert isinstance(base_df[["player1_x", "player2_x"]], BaseFrame)
         assert hasattr(base_df[["player1_x", "player2_x"]], "metadata")
         assert not hasattr(base_df[["player1_x", "player2_x"]], "records")
 
@@ -167,7 +167,7 @@ class TestModels:
             metadata_filename=f"{base_dir}/files/metadata.xml",
             raw_data_filename=f"{base_dir}/files/tracking.txt",
         )
-        tracking = TrackingDataFrame(to_pandas(tracking_dataset))
+        tracking = TrackingFrame(to_pandas(tracking_dataset))
         tracking.data_type = DataType.TRACKING
         tracking.metadata = tracking_dataset.metadata
         tracking.records = tracking_dataset.records
@@ -190,7 +190,7 @@ class TestModels:
             metadata_filename=f"{base_dir}/files/metadata.xml",
             raw_data_filename=f"{base_dir}/files/events.json",
         )
-        events = EventsDataFrame(to_pandas(events_dataset))
+        events = EventsFrame(to_pandas(events_dataset))
         events.data_type = DataType.EVENT
         events.metadata = events_dataset.metadata
         events.records = events_dataset.records

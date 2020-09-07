@@ -3,9 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 env
-.coverage
-docs
 dist
 *.egg-info
 build
 pip-wheel-metadata
+site

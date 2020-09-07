@@ -1,12 +1,19 @@
 import pickle
+import os
 from codeball import GameDataset, Pattern
 from codeball import TeamStretched, PassesIntoTheBox, SetPieces
 
 
 class TestPatterns:
     def setup_class(self):
-        with open(r"./codeball/tests/files/game_dataset.obj", "rb") as f:
-            self.game_dataset = pickle.load(f)
+        base_dir = os.path.dirname(__file__)
+
+        self.game_dataset = GameDataset(
+            tracking_metadata_file=f"{base_dir}/files/metadata.xml",
+            tracking_data_file=f"{base_dir}/files/tracking.txt",
+            events_metadata_file=f"{base_dir}/files/metadata.xml",
+            events_data_file=f"{base_dir}/files/events.json",
+        )
 
     def test_team_stretched(self):
         parameters = {"team_code": "FIFATMA", "threshold": 40}
