@@ -1,5 +1,4 @@
 from typing import List
-from kloppy.domain import EventType, PassResult
 from codeball import GameDataset, Zone
 from codeball.patterns import PatternEvent, Pattern
 

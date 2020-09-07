@@ -3,7 +3,6 @@ import pathlib
 
 here = pathlib.Path(__file__).parent.resolve()
 
-# Get the long description from the README file
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
@@ -13,7 +12,7 @@ setup(
     author_email="bruno@metrica-sporst.com",
     url="https://github.com/metrica-sports/codeball",
     packages=find_packages(exclude=["tests"]),
-    description="Tactical analysis of football/soccer games",
+    description="Data driven tactical and video analysis of football/soccer games",
     long_description=long_description,
     long_description_content_type="text/markdown",
     classifiers=[
