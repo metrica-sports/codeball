@@ -3,6 +3,7 @@ from codeball.tactical import Zone
 
 
 class BaseDataFrame(DataFrame):
+    """This is a base dataframe"""
 
     _internal_names = DataFrame._internal_names + ["records"]
     _internal_names_set = set(_internal_names)

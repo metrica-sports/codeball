@@ -1,0 +1,15 @@
+site_name: My Docs
+
+theme:
+  name: material
+  palette:
+    primary: teal
+
+plugins:
+  - search
+  - mkdocstrings
+
+nav:
+    - Home: index.md
+    - Code Reference:
+        - Codeframes: codeframes-reference.md

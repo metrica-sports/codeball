@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 env
 .coverage
-docs
 dist
 *.egg-info
 build
