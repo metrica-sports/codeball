@@ -10,7 +10,7 @@ plugins:
   - mkdocstrings
 
 nav:
-    - Home: codeball.md
+    - Codeball: index.md
     - CodeFrames: codeframes.md
     - Patterns: patterns/patterns.md
     - Metrica Play: patterns-for-play.md
