@@ -4,12 +4,6 @@ from codeball.patterns import PatternEvent, Pattern
 
 
 class SetPieces(Pattern):
-    """
-    This pattern computes Set Pieces (kick offs, throw ins, corner kicks,
-    penalties, free kicks)
-
-    """
-
     def __init__(
         self,
         game_dataset: GameDataset,

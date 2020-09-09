@@ -4,18 +4,6 @@ from codeball.patterns import PatternEvent, Pattern
 
 
 class TeamStretched(Pattern):
-    """
-    This pattern computes moments in the game in which the length of the
-    team exceeds a cartain value for more than one second and returns those
-    moments with a TeamSize length visualization for the duration of the infringement.
-
-    Attributes:
-        team: str
-            code of the team (for now home or away)
-        threshold: float
-            What is the stretch threshold in meters
-    """
-
     def __init__(
         self,
         game_dataset: GameDataset,
@@ -34,10 +22,12 @@ class TeamStretched(Pattern):
 
     def run(self) -> List[PatternEvent]:
 
+        # Computes frames in which the team is defending
         defending_indexes = self.game_dataset.tracking.phase(
             defending_team_id=self.team_code
         )
 
+        # Computes frames in which the team is stretched horiontally
         stretched_indexes = (
             self.game_dataset.tracking.team(self.team_code)
             .players("field")

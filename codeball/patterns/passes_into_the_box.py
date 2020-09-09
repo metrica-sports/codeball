@@ -4,12 +4,6 @@ from codeball.patterns import PatternEvent, Pattern
 
 
 class PassesIntoTheBox(Pattern):
-    """
-    This pattern finds completed passes into the opponent box. For each one of those
-    passes, it creates a pattern event that displays an arrow at the moment of the
-    pass and a pause of 2s.
-    """
-
     def __init__(
         self,
         game_dataset: GameDataset,

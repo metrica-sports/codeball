@@ -1,4 +1,4 @@
-site_name: My Docs
+site_name: Codeball v0.0.4
 
 theme:
   name: material
@@ -10,6 +10,7 @@ plugins:
   - mkdocstrings
 
 nav:
-    - Home: index.md
-    - Code Reference:
-        - Codeframes: codeframes-reference.md
+    - Home: codeball.md
+    - CodeFrames: codeframes.md
+    - Patterns: patterns/patterns.md
+    - Metrica Play: patterns-for-play.md
