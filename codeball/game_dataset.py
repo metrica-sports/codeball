@@ -21,10 +21,10 @@ from kloppy import (
 
 import codeball.utils as utils
 from codeball.tactical import Zone, Possession
-from codeball.codeframes import (
-    EventsDataFrame,
-    TrackingDataFrame,
-    PossessionsDataFrame,
+from codeball.codeball_frames import (
+    EventsFrame,
+    TrackingFrame,
+    PossessionsFrame,
 )
 
 
@@ -60,7 +60,7 @@ class GameDataset:
                 metadata_filename=tracking_metadata_file,
                 raw_data_filename=tracking_data_file,
             )
-            self.tracking = TrackingDataFrame(to_pandas(tracking_dataset))
+            self.tracking = TrackingFrame(to_pandas(tracking_dataset))
             self.tracking.data_type = DataType.TRACKING
             self.tracking.metadata = tracking_dataset.metadata
             self.tracking.records = tracking_dataset.records
@@ -72,7 +72,7 @@ class GameDataset:
                 metadata_filename=events_metadata_file,
                 raw_data_filename=events_data_file,
             )
-            self.events = EventsDataFrame(to_pandas(events_dataset))
+            self.events = EventsFrame(to_pandas(events_dataset))
             self.events.data_type = DataType.EVENT
             self.events.metadata = events_dataset.metadata
             self.events.records = events_dataset.records
@@ -141,7 +141,7 @@ class GameDataset:
                     ]
                 )
 
-        self.possessions = PossessionsDataFrame(
+        self.possessions = PossessionsFrame(
             possessions, columns=["team_id", "start", "end"]
         )
 
@@ -222,6 +222,8 @@ class GameDataset:
 
             else:
                 self.events.at[index, "inverted"] = False
+
+        for index, event_row in self.events.iterrows():
 
             # Renrich set pieces with coordiants and end time of next event
             if event_row["event_type"] == "GENERIC:SET PIECE":

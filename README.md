@@ -32,6 +32,52 @@ The main types of work / development you can do with codeball are:
 
 - Codeball incorporates all the annotations models and API information needed to import events with annotations into Metrica Play. - You can add directly from the code any visualization available in Metrica Play  (spotlights, rings, future trail, areas, drawings, text, etc) to any event.
 
+## Example
+
+As an example, the below code defines a patttern that will look for all passes into the opponents box. Moreover to be imported into Metrica Play, it will add an arrow and a 2s pause in the video at the moment of the pass, and will add an arrow to the 2D field indicating start and end position of the pass. 
+
+```python
+class PassesIntoTheBox(Pattern):
+    def __init__(
+        self,
+        game_dataset: GameDataset,
+        name: str,
+        code: str,
+        in_time: int = 0,
+        out_time: int = 0,
+        parameters: dict = None,
+    ):
+        super().__init__(
+            name, code, in_time, out_time, parameters, game_dataset
+        )
+
+    def run(self) -> List[PatternEvent]:
+
+        passes_into_the_box = (
+            self.game_dataset.events.type("PASS")
+            .into(Zone.OPPONENT_BOX)
+            .result("COMPLETE")
+        )
+
+        return [
+            self.build_pattern_event(event_row)
+            for i, event_row in passes_into_the_box.iterrows()
+        ]
+
+    def build_pattern_event(self, event_row) -> PatternEvent:
+        pattern_event = self.from_event(event_row)
+        pattern_event.add_arrow(event_row)
+        pattern_event.add_pause(pause_time=2000)
+
+        return pattern_event
+```
+
+The above code produces this output when imported into Metrica Play:
+
+<p align="center">
+  <img src="./docs/media/passes_into_the_box.gif" width="80%" />
+</p>
+
 ## Supported Data Providers
 
 This package is very much WIP. At the moment it only works based on Metrica Sports Elite datasets. However, it uses Kloppy to read in the data so that in the near future will support data from any provider.
@@ -40,11 +86,7 @@ This package is very much WIP. At the moment it only works based on Metrica Spor
 
 There are no open source Elite datasets at the moment that work with this package. However if you are interested in testing it out and developing your own patterns and/or test them in Metrica Play reach out to bruno@metrica-sports.com or @brunodagnino on Twitter.
 
-## Install it / contribute
-
-While created and maintained by Metrica Sports, it's distributed under an MIT license and it welcomes contributions from members of the community, clubs and other companies.
-
-The source code is currently hosted on GitHub at: https://github.com/metrica-sports/codeball
+## Install it 
 
 Installers for the latest released version are available at the [Python package index](https://pypi.org/project/codeball).
 
@@ -52,6 +94,23 @@ Installers for the latest released version are available at the [Python package 
 pip install codeball
 ```
 
+## Contribute
+
+While created and maintained by Metrica Sports, it's distributed under an MIT license and it welcomes contributions from members of the community, clubs and other companies. You can find the repository on [Github](https://github.com/metrica-sports/codeball). Also, if you have ideas for patterns we should implement, or methods we should include (e.g. pitch control, EPV, similarity search, etc), let us know!
+
 ## Documentation
 
-codeball.metrica-sports.com
+Check the [documentation](https://codeball.metrica-sports.com) for a more detailed explanation of this package.
+
+## TODO
+
+This is a very incomplete list of the things we have in mind, and it will probably change as we get input from the community / users. However it givs you a rough idea of the direction in which we want to go with this project!
+
+* more Zones (half spaces, cutbacks, thirds, 14, etc)
+* more ways to filter event and tracking data (e.g pass length)
+* more patterns (currently 4 in the making)
+* pitch control from `game_dataset.pitch_control([frame/s])`, same with EPV.
+* corner straregy classifier.
+* support for other providers, likely StatsBomb next.
+* methods to easily sync tracking and event from different providers.
+* Any suggestions?

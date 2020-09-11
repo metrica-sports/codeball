@@ -1,4 +1,8 @@
 site_name: Codeball v0.0.4
+site_url: https://codeball.metrica-sports.com
+repo_url: https://github.com/metrica-sports/codeball
+repo_name: 'Codeball'
+edit_uri: blob/master/docs/
 
 theme:
   name: material
@@ -7,10 +11,22 @@ theme:
 
 plugins:
   - search
-  - mkdocstrings
+  - mkdocs-jupyter:
+      include_source: True
+      execute: True
 
 nav:
-    - Codeball: index.md
-    - CodeFrames: codeframes.md
-    - Patterns: patterns/patterns.md
-    - Metrica Play: patterns-for-play.md
+    - Home: index.md
+    - GameDataset: game-dataset.md
+    - CodeballFrames: codeball-frames.md
+    - Patterns: patterns.md
+    - Metrica Play API: 
+      - What you can do: metrica-play-api.md
+      - Patterns and tags: format-for-play.md
+      - Visualizations: visualiztions.md
+    - Examples:
+      - GameDataset: examples/game_dataset.ipynb
+      - Example pattern: examples/example-pattern.md
+      - Run patterns: examples/run_patterns.ipynb
+      
+      
