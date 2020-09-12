@@ -1,4 +1,4 @@
-# codeball: data driven tactical and video analysis of football/soccer games
+# codeball: data driven tactical and video analysis of soccer games
 
 [![PyPI Latest Release](https://img.shields.io/pypi/v/codeball.svg)](https://pypi.org/project/codeball/)
 ![](https://img.shields.io/github/license/metrica-sports/codeball)
@@ -6,7 +6,7 @@
 [![Powered by Metrica Sports](https://img.shields.io/badge/Powered%20by-Metrica%20Sports-green)](https://metrica-sports.com/)
 --------
 
-## Why codeball
+## Why codeball?
 
 While there are several pieces of code / repositories around that provide different tools and bits of codes to do tactical analysis of individual games, there is no centralized place in which they live. Morevoer, most of the analysis done is usually not linked or easy to link with the actual footage of the match. Codeball's objective is to change that by:
 
@@ -30,11 +30,12 @@ The main types of work / development you can do with codeball are:
 
 #### Add annotations to the events for Metrica Play
 
-- Codeball incorporates all the annotations models and API information needed to import events with annotations into Metrica Play. - You can add directly from the code any visualization available in Metrica Play  (spotlights, rings, future trail, areas, drawings, text, etc) to any event.
+- Codeball incorporates all the annotations models and API information needed to import events with annotations into Metrica Play. 
+- You can add directly from the code any visualization available in Metrica Play  (spotlights, rings, future trail, areas, drawings, text, etc) to any event.
 
 ## Example
 
-As an example, the below code defines a patttern that will look for all passes into the opponents box. Moreover to be imported into Metrica Play, it will add an arrow and a 2s pause in the video at the moment of the pass, and will add an arrow to the 2D field indicating start and end position of the pass. 
+You can use any of the above functionality independetly. However they are most powerfull when combined. As an example, the below code defines a patttern that will look for all passes into the opponents box. Moreover to be imported into Metrica Play, it will add an arrow and a 2s pause in the video at the moment of the pass, and will add an arrow to the 2D field indicating start and end position of the pass. 
 
 ```python
 class PassesIntoTheBox(Pattern):
@@ -84,7 +85,7 @@ This package is very much WIP. At the moment it only works based on Metrica Spor
 
 ## Trying it out
 
-There are no open source Elite datasets at the moment that work with this package. However if you are interested in testing it out and developing your own patterns and/or test them in Metrica Play reach out to bruno@metrica-sports.com or @brunodagnino on Twitter.
+There are no open source Elite datasets at the moment that work with this package. However if you are interested in testing it out and/or developing your own patterns and/or test them in Metrica Play reach out to bruno@metrica-sports.com or [@brunodagnino](https://twitter.com/brunodagnino) on Twitter.
 
 ## Install it 
 
@@ -96,7 +97,7 @@ pip install codeball
 
 ## Contribute
 
-While created and maintained by Metrica Sports, it's distributed under an MIT license and it welcomes contributions from members of the community, clubs and other companies. You can find the repository on [Github](https://github.com/metrica-sports/codeball). Also, if you have ideas for patterns we should implement, or methods we should include (e.g. pitch control, EPV, similarity search, etc), let us know!
+While created and maintained by Metrica Sports, it's distributed under an MIT license and it welcomes contributions from members of the community, clubs and other companies. You can find the repository on [Github](https://github.com/metrica-sports/codeball). Also, if you have ideas for patterns we should implement, or methods we should include (e.g. pitch control, EPV, similarity search, etc), let us know! You can create an issue on the repo, or reach out to bruno@metrica-sports.com or [@brunodagnino](https://twitter.com/brunodagnino) on Twitter.
 
 ## Documentation
 
@@ -107,6 +108,7 @@ Check the [documentation](https://codeball.metrica-sports.com) for a more detail
 This is a very incomplete list of the things we have in mind, and it will probably change as we get input from the community / users. However it givs you a rough idea of the direction in which we want to go with this project!
 
 * more Zones (half spaces, cutbacks, thirds, 14, etc)
+* crete types for players, events, etc to filter the data.
 * more ways to filter event and tracking data (e.g pass length)
 * more patterns (currently 4 in the making)
 * pitch control from `game_dataset.pitch_control([frame/s])`, same with EPV.
