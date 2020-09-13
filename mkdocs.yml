@@ -13,7 +13,6 @@ plugins:
   - search
   - mkdocs-jupyter:
       include_source: True
-      execute: True
 
 nav:
     - Home: index.md
@@ -23,7 +22,7 @@ nav:
     - Metrica Play API: 
       - What you can do: metrica-play-api.md
       - Patterns and tags: format-for-play.md
-      - Visualizations: visualiztions.md
+      - Visualizations: visualizations.md
     - Examples:
       - GameDataset: examples/game_dataset.ipynb
       - Example pattern: examples/example-pattern.md

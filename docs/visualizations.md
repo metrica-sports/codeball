@@ -9,7 +9,7 @@ The following attributes have to be defined for each tool. Annotations' order ma
   start_time : 1040, // Milliseconds
   end_time   : 2130, // Milliseconds
   tool_id    : 'players', // The ID of the tool
-  ... // Each tool could have other mandatory attributes (players, team, points, etc.)
+  ... // Each tool could have other mandatory attributes
   options    : {} // Optional object attribute for the tool
 }
 ```
