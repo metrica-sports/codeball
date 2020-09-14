@@ -28,4 +28,9 @@ nav:
       - Example pattern: examples/example-pattern.md
       - Run patterns: examples/run_patterns.ipynb
       
-      
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true
+      linenums_style: table
+

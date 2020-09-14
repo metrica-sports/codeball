@@ -84,7 +84,7 @@ This package is very much WIP. At the moment it only works based on Metrica Spor
 
 ## Trying it out
 
-There are no open source Elite datasets at the moment that work with this package. However if you are interested in testing it out and developing your own patterns and/or test them in Metrica Play reach out to bruno@metrica-sports.com or @brunodagnino on Twitter.
+There are no open source Elite datasets (yet!) that work with this package. However if you are interested in testing it out and developing your own patterns and/or test them in Metrica Play reach out to bruno@metrica-sports.com or @brunodagnino on Twitter.
 
 ## Install it 
 
