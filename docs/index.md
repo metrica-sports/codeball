@@ -8,10 +8,10 @@
 
 ## Why codeball?
 
-While there are several pieces of code / repositories around that provide different tools and bits of codes to do tactical analysis of individual games, there is no centralized place in which they live. Morevoer, most of the analysis done is usually not linked or easy to link with the actual footage of the match. Codeball's objective is to change that by:
+While there are several pieces of code / repositories around that provide different tools and bits of codes to do tactical analysis of individual games, there is no centralized place in which they live. Moreover, most of the analysis done is usually not linked or easy to link with the actual footage of the match. Codeball's objective is to change that by:
 
 1. Building a central repository for different types of data driven tactical analysis methods / tools.
-2. Making it easy to link those analysis with a video of the game in different formats.
+2. Making it easy to link those analyses with a video of the game in different formats.
 
 ## What can you do with it
 
@@ -20,8 +20,8 @@ The main types of work / development you can do with codeball are:
 #### Work with tracking and event data
 
 - Codeball creates subclasses of *Pandas DataFrames* for events and tracking data; and provides you with handy methods to work with the data.
-- Work with or create your own tactical models like *Zones* so that you can for example do `game_dataset.events.into(Zone.OPPONENT_BOX)` and it will return a DataFrame only with the events into the opponents box. You can also chain methods, like `game_dataset.events.type("PASS").into(Zone.OPPONENT_BOX)` and will return only passes into the box.
-- Easily access tactical tools or methods like computing passes networks, pitch control,EPV models, etc (Not yet implemented, WIP)
+- Work with or create your own tactical models like *Zones* so that you can for example do `game_dataset.events.into(Zone.OPPONENT_BOX)` and it will return a DataFrame only with the events into the opponents box. You can also chain methods, like `game_dataset.events.type("PASS").into(Zone.OPPONENT_BOX)` and will return only passes into the box. Or for example do `game_dataset.tracking.team('FIFATMA').players('field').dimension('x')` to get the x coordinate of the field players (no goalkeeper data) for team with id FIFATMA.
+- [Not yet implemented] Easily access tactical tools or methods like computing passes networks, pitch control,EPV models, etc 
 
 #### Create Patterns to analyze the game
 
@@ -35,7 +35,7 @@ The main types of work / development you can do with codeball are:
 
 ## Example
 
-You can use any of the above functionality independetly. However they are most powerfull when combined. As an example, the below code defines a patttern that will look for all passes into the opponents box. Moreover to be imported into Metrica Play, it will add an arrow and a 2s pause in the video at the moment of the pass, and will add an arrow to the 2D field indicating start and end position of the pass. 
+You can use any of the above functionality independently. However they are most powerful when combined. As an example, the below code defines a pattern that will look for all passes into the opponent's box. Moreover to be imported into Metrica Play, it will add an arrow and a 2s pause in the video at the moment of the pass, and will add an arrow to the 2D field indicating start and end position of the pass. 
 
 ```python
 class PassesIntoTheBox(Pattern):
@@ -103,16 +103,18 @@ While created and maintained by Metrica Sports, it's distributed under an MIT li
 
 Check the [documentation](https://codeball.metrica-sports.com) for a more detailed explanation of this package.
 
-## TODO
+## Tentative TODO
 
-This is a very incomplete list of the things we have in mind, and it will probably change as we get input from the community / users. However it givs you a rough idea of the direction in which we want to go with this project!
+This is a very incomplete list of the things we have in mind, and it will probably change as we get input from the community / users. However it gives you a rough idea of the direction in which we want to go with this project!
 
 * more Zones (half spaces, cutbacks, thirds, 14, etc)
 * crete types for players, events, etc to filter the data.
 * more ways to filter event and tracking data (e.g pass length)
 * more patterns (currently 4 in the making)
 * pitch control from `game_dataset.pitch_control([frame/s])`, same with EPV.
-* corner straregy classifier.
+* easily query xG, g+, xT, etc for events
+* corner strategy classifier.
 * support for other providers, likely StatsBomb next.
+* export events in xml format
 * methods to easily sync tracking and event from different providers.
-* Any suggestions?
+* any suggestions?

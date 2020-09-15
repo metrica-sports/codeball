@@ -23,6 +23,7 @@ nav:
       - What you can do: metrica-play-api.md
       - Patterns and tags: format-for-play.md
       - Visualizations: visualizations.md
+      - How to import a file: how-to-import-to-play.md
     - Examples:
       - GameDataset: examples/game_dataset.ipynb
       - Example pattern: examples/example-pattern.md
