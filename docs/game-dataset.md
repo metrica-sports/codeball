@@ -4,7 +4,7 @@ A GameDataset is a class that serves 2 purposes:
 
 1. Hold CodeballFrames for tracking, event, and other data types
 2. Provide methods to enrich those CodeballFrames
-3. Provide auxiliar methods to process and handle data that require information from the game_dataset (e.g. frame rate)
+3. Provide auxiliary methods to process and handle data that require information from the game_dataset (e.g. frame rate)
 
 ## Attributes
 
@@ -27,5 +27,5 @@ There is a main method ***_enrich_data*** that runs all the below:
 
 ## Auxiliar methods
 * ***find_interval***: given a Series of bool values computes the intervals of True values. 
-* ***frame_to_miliseconds***: given a frame number it returns the value in milisconds of that moment in the video. 
+* ***frame_to_milliseconds***: given a frame number it returns the value in milliseconds of that moment in the video. 
 

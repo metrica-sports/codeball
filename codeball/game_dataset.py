@@ -271,5 +271,5 @@ class GameDataset:
 
         return intervals
 
-    def frame_to_milisecond(self, frame: int) -> float:
+    def frame_to_misliseconds(self, frame: int) -> float:
         return frame * 1000 / self.tracking.metadata.frame_rate

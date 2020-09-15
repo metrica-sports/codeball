@@ -1,7 +1,7 @@
 
 
 # Patterns and events format for Metrica Play
-This section describes the API to import into import events with annotaitons associated to them into Metrica Play. We refer to this type of events as `patterns`. Patterns are imported into metrica play via a `json` file with a `.patt` extension. Below an explanation of how this file sould be formatted. This documentation is compatible **Metrica Play 2.1.2** onwards.
+This section describes the API to import into import events with annotations associated to them into Metrica Play. We refer to this type of events as `patterns`. Patterns are imported into metrica play via a `json` file with a `.patt` extension. Below an explanation of how this file should be formatted. This documentation is compatible **Metrica Play 2.1.2** onwards.
 
 ## Format
 
@@ -39,7 +39,7 @@ You can use the **insert** field for updating your patterns, tags and tag_groups
 
 ## Prefix
 
-Every time you want to create something in our database, like a Pattern, Tag Group or Tag you'll need to add a code to it. You can manage your codes any way you like as long you create unique codes for each resource. We'll provide you wit a **prefix** you'll need to add to your codes. If a resource you want to create doesn't have the appropriate prefix it will be omitted. Let's say you want to create some patterns and your prefix is **RCNG.** You could do something like RCNG_001 and RCNG_002 or RCNG_COUNTER and RCNG_POSESSION. It's up to you how you manage codes, but the prefix is mandatory.
+Every time you want to create something in our database, like a Pattern, Tag Group or Tag you'll need to add a code to it. You can manage your codes any way you like as long you create unique codes for each resource. We'll provide you wit a **prefix** you'll need to add to your codes. If a resource you want to create doesn't have the appropriate prefix it will be omitted. Let's say you want to create some patterns and your prefix is **RCNG.** You could do something like RCNG_001 and RCNG_002 or RCNG_COUNTER and RCNG_POSSESSION. It's up to you how you manage codes, but the prefix is mandatory.
 
 ## Patterns
 
@@ -101,7 +101,7 @@ You'll see Tags organised by groups in the filter section when a Pattern is sele
 
 ![image.png](https://storage.googleapis.com/slite-api-files-production/files/967dd7e4-6d86-4a07-9acc-3df7ba14438c/image.png)
 
-Once you create a Tag Group, and associate a Tag with it, the tag associated to a group will always be organised based no that group.
+Once you create a Tag Group, and associate a Tag with it, the tag associated to a group will always be organized based no that group.
 
 An important point. Players and Team codes, for example **ESPBCN** or **P030** can be used as tags directly. So no need to create tags for teams and players. Just use them as any other tags you have created. 
 
@@ -145,13 +145,13 @@ An example event with annotations looks like this:
 }
 ```
 
-This is an example of a sprint type event wihch has a `speed` visualization. 
+This is an example of a sprint type event which has a `speed` visualization. 
 
-This is an event that belongs to the `pattern` code  `RCNG_PATTERN_001`, that starts at time `5000` and ends at time `25000`, with the event indicator being located at `10000` in the timeline of the video. All times are in miliseconds. 
+This is an event that belongs to the `pattern` code  `RCNG_PATTERN_001`, that starts at time `5000` and ends at time `25000`, with the event indicator being located at `10000` in the timeline of the video. All times are in milliseconds. 
 
 In this case, in Metrica Play the event will be located at time `10000` in the timeline that , but when you select it, the video will play from time `5000` to `25000`. 
 
-Moreover, this event has coordiantes. There are two options for coordiantes. If you proivde just a pair of xy coordiantes, it will show a dot on the 2D field in Metrica Play. If you provide two pairs, it will show an arrow. In this case it will show an arrow in the 2D field (NOT in the video) going from `[0.39, 0.51]` to `[0.44, 0.42]`.
+Moreover, this event has coordinates. There are two options for coordinates. If you provide just a pair of xy coordinates, it will show a dot on the 2D field in Metrica Play. If you provide two pairs, it will show an arrow. In this case it will show an arrow in the 2D field (NOT in the video) going from `[0.39, 0.51]` to `[0.44, 0.42]`.
 
 This event also has a annotation. In this case, the speed will show up for this player from time `7000` to `23000` for player `P030`. To code for that, the `tool_id` is set to `players` type visualization that has `speed` as `1` (true).
 
@@ -164,9 +164,9 @@ Below a summary of the information about fields related events and fields relate
 ```
 {
   "pattern": 15, // Pattern code
-  "start_time": 5000, // Number in miliseconds
-  "event_time": 10000, // Number in miliseconds 
-  "end_time": 25000, // Number in miliseconds
+  "start_time": 5000, // Number in milliseconds
+  "event_time": 10000, // Number in milliseconds 
+  "end_time": 25000, // Number in milliseconds
   "coordinates": [ // In normalized coordinates. `null` if empty.
     [0.39,0.51],
     [0.44,0.42]
