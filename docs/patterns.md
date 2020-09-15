@@ -1,6 +1,6 @@
 ## Configuration
 
-All the patterns below, are available included in Codeball and ready to be used. They have a dafuault configuration included with the package, but you can create your own config file if you want to change for example, the name of the patterns, the in and out time, or the parameters the use to compute events. The configuration for a pattern looks like the below. For more details check the example pattern in the Examples section. 
+All the patterns below, are available included in Codeball and ready to be used. They have a default configuration included with the package, but you can create your own config file if you want to change for example, the name of the patterns, the in and out time, or the parameters the use to compute events. The configuration for a pattern looks like the below. For more details check the example pattern in the Examples section. 
 
 ```json
 {
@@ -20,7 +20,7 @@ All the patterns below, are available included in Codeball and ready to be used.
 
 ### TeamStretched
 
-This pattern looks for moments in which the team is streched horizontally while defending for more than 5 seconds. It returns those moments with a TeamSize length visualization for the duration of the infringement. This pattern doesn't add anything on the 2D field. 
+This pattern looks for moments in which the team is stretched horizontally while defending for more than 5 seconds. It returns those moments with a TeamSize length visualization for the duration of the infringement. This pattern doesn't add anything on the 2D field. 
 
 Parameters:  
 

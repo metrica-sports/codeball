@@ -1,5 +1,5 @@
 # Visualizations types and settings
-This section describes all the possible visualizations that can be added to an event, as well as the aPI to be imported in Metrica Play. For each one of these possibilities, there is a dataclass defined in `visualizaitons.py` so that they can be easily added from the code.  
+This section describes all the possible visualizations that can be added to an event, as well as the aPI to be imported in Metrica Play. For each one of these possibilities, there is a dataclass defined in `visualizations.py` so that they can be easily added from the code.  
 
 ## Fields common to all visualizations
 
@@ -342,7 +342,7 @@ pause_time: 5000 // Milliseconds
 ### Chroma-Key
 The `tool_id` is `chromaKey`. It'll be computed on each clip created. Options should be set according to the scene, so if it remains similar during a game, maybe you want to adapt these values from a sample clip in Metrica Play and use them in all chroma-key events. Otherwise, you should not pass any option, use default values and fit them in each clip if needed. 
 
-Since the order in which visualizaitons added declared in the event is preserved when they are imported in play, the Chroma-key tool should be added in the specific desired position. For example, if you want to add shape in the field and an arrow, but chroma key only to have an effect on the shape on the field, the order in the event should be: shape - chroma key - arrow.
+Since the order in which visualizations added declared in the event is preserved when they are imported in play, the Chroma-key tool should be added in the specific desired position. For example, if you want to add shape in the field and an arrow, but chroma key only to have an effect on the shape on the field, the order in the event should be: shape - chroma key - arrow.
 
 **Options**
 ```

@@ -1,4 +1,4 @@
-As an example, the below code defines a patttern that will look for all passes into the opponents box. Moreover to be imported into Metrica Play, it will add an arrow and a 2s pause in the video at the moment of the pass, and will add an arrow to the 2D field indicating start and end position of the pass. 
+As an example, the below code defines a pattern that will look for all passes into the opponents box. Moreover to be imported into Metrica Play, it will add an arrow and a 2s pause in the video at the moment of the pass, and will add an arrow to the 2D field indicating start and end position of the pass. 
 
 ```python
 class PassesIntoTheBox(Pattern):

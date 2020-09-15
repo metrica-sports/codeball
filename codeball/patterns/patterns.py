@@ -142,10 +142,10 @@ class Pattern(ABC):
     def from_interval(self, interval: list) -> PatternEvent:
         return PatternEvent(
             pattern_code=self.code,
-            start_time=self.game_dataset.frame_to_milisecond(interval[0])
+            start_time=self.game_dataset.frame_to_misliseconds(interval[0])
             - self.in_time * 1000,
-            event_time=self.game_dataset.frame_to_milisecond(interval[0]),
-            end_time=self.game_dataset.frame_to_milisecond(interval[1])
+            event_time=self.game_dataset.frame_to_misliseconds(interval[0]),
+            end_time=self.game_dataset.frame_to_misliseconds(interval[1])
             + self.out_time * 1000,
         )
 
@@ -156,16 +156,12 @@ class PatternsSet:
     patterns_config: Dict = field(default_factory=dict)
     patterns: List[Pattern] = field(default_factory=list)
 
-    def load_patterns_config(self, config_file: str = None):
-
-        if not config_file:
-            base_dir = os.path.dirname(__file__)
-            config_file = f"{base_dir}/patterns_config.json"
+    def load_patterns_config(self, config_file: str):
 
         with open(config_file) as json_file:
             self.patterns_config = json.load(json_file)
 
-    def initialize_patterns(self, config_file: str = None):
+    def initialize_patterns(self, config_file: str):
 
         self.load_patterns_config(config_file)
 
