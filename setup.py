@@ -7,12 +7,12 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="codeball",
-    version="0.0.3",
+    version="v0.1.0",
     author="Bruno Dagnino",
-    author_email="bruno@metrica-sporst.com",
+    author_email="bruno@metrica-sports.com",
     url="https://github.com/metrica-sports/codeball",
     packages=find_packages(exclude=["tests"]),
-    description="Data driven tactical and video analysis of football/soccer games",
+    description="Data driven tactical and video analysis of soccer games",
     long_description=long_description,
     long_description_content_type="text/markdown",
     classifiers=[
