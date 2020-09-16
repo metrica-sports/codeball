@@ -76,7 +76,7 @@ class PassesIntoTheBox(Pattern):
 The above code produces this output when imported into Metrica Play:
 
 <p align="center">
-  <img src="../media/passes_into_the_box.gif" width="80%" />
+  <img src="./docs/media/passes_into_the_box.gif" width="80%" />
 </p>
 
 ## Supported Data Providers
