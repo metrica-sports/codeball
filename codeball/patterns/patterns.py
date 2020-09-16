@@ -156,16 +156,12 @@ class PatternsSet:
     patterns_config: Dict = field(default_factory=dict)
     patterns: List[Pattern] = field(default_factory=list)
 
-    def load_patterns_config(self, config_file: str = None):
-
-        if not config_file:
-            base_dir = os.path.dirname(__file__)
-            config_file = f"{base_dir}/patterns_config.json"
+    def load_patterns_config(self, config_file: str):
 
         with open(config_file) as json_file:
             self.patterns_config = json.load(json_file)
 
-    def initialize_patterns(self, config_file: str = None):
+    def initialize_patterns(self, config_file: str):
 
         self.load_patterns_config(config_file)
 
