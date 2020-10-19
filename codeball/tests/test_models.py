@@ -15,7 +15,8 @@ from codeball import (
     EventsFrame,
     PossessionsFrame,
     BaseFrame,
-    Zone,
+    Zones,
+    Area,
     PatternEvent,
     Pattern,
     PatternsSet,
@@ -197,8 +198,21 @@ class TestModels:
 
         assert events.type("PASS").shape[0] == 26
         assert events.result("COMPLETE").shape[0] == 45
-        assert events.into(Zone.OPPONENT_BOX).shape[0] == 1
-        assert events.starts_inside(Zone.OPPONENT_BOX).shape[0] == 2
-        assert events.starts_outside(Zone.OPPONENT_BOX).shape[0] == 53
-        assert events.ends_inside(Zone.OPPONENT_BOX).shape[0] == 2
-        assert events.ends_outside(Zone.OPPONENT_BOX).shape[0] == 43
+        assert events.into(Zones.OPPONENT_BOX).shape[0] == 1
+        assert events.starts_inside(Zones.OPPONENT_BOX).shape[0] == 2
+        assert events.starts_outside(Zones.OPPONENT_BOX).shape[0] == 53
+        assert events.ends_inside(Zones.OPPONENT_BOX).shape[0] == 2
+        assert events.ends_outside(Zones.OPPONENT_BOX).shape[0] == 43
+
+        # Test diferent ways to input Zones and areas
+
+        custom_area = Area((0.25, 0.2), (0.75, 0.8))
+
+        assert (
+            events.ends_outside(Zones.OPPONENT_BOX, Zones.OWN_BOX).shape[0]
+            == 45
+        )
+        assert (
+            events.ends_inside(Zones.OPPONENT_BOX, custom_area).shape[0] == 14
+        )
+        assert events.ends_inside(custom_area, custom_area).shape[0] == 12

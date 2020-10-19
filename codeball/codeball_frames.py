@@ -1,5 +1,5 @@
 from pandas import DataFrame, Series
-from codeball.tactical import Zone
+from codeball.tactical import Zones, Area
 
 
 class BaseFrame(DataFrame):
@@ -108,72 +108,99 @@ class EventsFrame(BaseFrame):
     def result(self, result):
         return self.loc[self["result"] == result]
 
-    def into(self, zone: Zone):
-        return self.starts_outside(zone).ends_inside(zone)
+    @staticmethod
+    def __validate_areas(args):
+        areas = []
+        for arg in args:
+            if isinstance(arg, Zones):
+                if type(arg.areas) == tuple:
+                    for area in arg.areas:
+                        areas.append(area)
+                else:
+                    areas.append(arg.areas)
+            elif isinstance(arg, Area):
+                areas.append(arg)
 
-    def starts_inside(self, zone: Zone):
-        for i, box in enumerate(zone.boxes):
-            x_indexes = (self["coordinates_x"] > box.top_left[0]) & (
-                self["coordinates_x"] < box.bottom_right[0]
+        return areas
+
+    def starts_inside(self, *args):
+
+        areas = self.__validate_areas(args)
+
+        for i, area in enumerate(areas):
+            x_indexes = (self["coordinates_x"] > area.points[0][0]) & (
+                self["coordinates_x"] < area.points[1][0]
             )
-            y_indexes = (self["coordinates_y"] > box.top_left[1]) & (
-                self["coordinates_y"] < box.bottom_right[1]
+            y_indexes = (self["coordinates_y"] > area.points[0][1]) & (
+                self["coordinates_y"] < area.points[1][1]
             )
-            box_indexes = x_indexes & y_indexes
+            area_indexes = x_indexes & y_indexes
             if i == 0:
-                event_idexes = box_indexes
+                event_idexes = area_indexes
             else:
-                event_idexes = event_idexes | box_indexes
+                event_idexes = event_idexes | area_indexes
 
         return self.loc[event_idexes]
 
-    def starts_outside(self, zone: Zone):
-        for i, box in enumerate(zone.boxes):
-            x_indexes = (self["coordinates_x"] < box.top_left[0]) | (
-                self["coordinates_x"] > box.bottom_right[0]
+    def starts_outside(self, *args):
+
+        areas = self.__validate_areas(args)
+
+        for i, area in enumerate(areas):
+            x_indexes = (self["coordinates_x"] < area.points[0][0]) | (
+                self["coordinates_x"] > area.points[1][0]
             )
-            y_indexes = (self["coordinates_y"] < box.top_left[1]) | (
-                self["coordinates_y"] > box.bottom_right[1]
+            y_indexes = (self["coordinates_y"] < area.points[0][1]) | (
+                self["coordinates_y"] > area.points[1][1]
             )
-            box_indexes = x_indexes | y_indexes
+            area_indexes = x_indexes | y_indexes
             if i == 0:
-                event_idexes = box_indexes
+                event_idexes = area_indexes
             else:
-                event_idexes = event_idexes | box_indexes
+                event_idexes = event_idexes | area_indexes
 
         return self.loc[event_idexes]
 
-    def ends_inside(self, zone: Zone):
-        for i, box in enumerate(zone.boxes):
-            x_indexes = (self["end_coordinates_x"] > box.top_left[0]) & (
-                self["end_coordinates_x"] < box.bottom_right[0]
+    def ends_inside(self, *args):
+
+        areas = self.__validate_areas(args)
+
+        for i, area in enumerate(areas):
+            x_indexes = (self["end_coordinates_x"] > area.points[0][0]) & (
+                self["end_coordinates_x"] < area.points[1][0]
             )
-            y_indexes = (self["end_coordinates_y"] > box.top_left[1]) & (
-                self["end_coordinates_y"] < box.bottom_right[1]
+            y_indexes = (self["end_coordinates_y"] > area.points[0][1]) & (
+                self["end_coordinates_y"] < area.points[1][1]
             )
-            box_indexes = x_indexes & y_indexes
+            area_indexes = x_indexes & y_indexes
             if i == 0:
-                event_idexes = box_indexes
+                event_idexes = area_indexes
             else:
-                event_idexes = event_idexes | box_indexes
+                event_idexes = event_idexes | area_indexes
 
         return self.loc[event_idexes]
 
-    def ends_outside(self, zone: Zone):
-        for i, box in enumerate(zone.boxes):
-            x_indexes = (self["end_coordinates_x"] < box.top_left[0]) | (
-                self["end_coordinates_x"] > box.bottom_right[0]
+    def ends_outside(self, *args):
+
+        areas = self.__validate_areas(args)
+
+        for i, area in enumerate(areas):
+            x_indexes = (self["end_coordinates_x"] < area.points[0][0]) | (
+                self["end_coordinates_x"] > area.points[1][0]
             )
-            y_indexes = (self["end_coordinates_y"] < box.top_left[1]) | (
-                self["end_coordinates_y"] > box.bottom_right[1]
+            y_indexes = (self["end_coordinates_y"] < area.points[0][1]) | (
+                self["end_coordinates_y"] > area.points[1][1]
             )
-            box_indexes = x_indexes | y_indexes
+            area_indexes = x_indexes | y_indexes
             if i == 0:
-                event_idexes = box_indexes
+                event_idexes = area_indexes
             else:
-                event_idexes = event_idexes | box_indexes
+                event_idexes = event_idexes | area_indexes
 
         return self.loc[event_idexes]
+
+    def into(self, *args):
+        return self.starts_outside(*args).ends_inside(*args)
 
 
 class PossessionsFrame(BaseFrame):

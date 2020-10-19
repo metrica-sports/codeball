@@ -20,7 +20,7 @@ The main types of work / development you can do with codeball are:
 #### Work with tracking and event data
 
 - Codeball creates subclasses of *Pandas DataFrames* for events and tracking data; and provides you with handy methods to work with the data.
-- Work with or create your own tactical models like *Zones* so that you can for example do `game_dataset.events.into(Zone.OPPONENT_BOX)` and it will return a DataFrame only with the events into the opponents box. You can also chain methods, like `game_dataset.events.type("PASS").into(Zone.OPPONENT_BOX)` and will return only passes into the box. Or for example do `game_dataset.tracking.team('FIFATMA').players('field').dimension('x')` to get the x coordinate of the field players (no goalkeeper data) for team with id FIFATMA.
+- Work with or create your own tactical models like *Zones* so that you can for example do `game_dataset.events.into(Zones.OPPONENT_BOX)` and it will return a DataFrame only with the events into the opponents box. You can also chain methods, like `game_dataset.events.type("PASS").into(Zones.OPPONENT_BOX)` and will return only passes into the box. Or for example do `game_dataset.tracking.team('FIFATMA').players('field').dimension('x')` to get the x coordinate of the field players (no goalkeeper data) for team with id FIFATMA.
 - [Not yet implemented] Easily access tactical tools or methods like computing passes networks, pitch control,EPV models, etc 
 
 #### Create Patterns to analyze the game
@@ -56,7 +56,7 @@ class PassesIntoTheBox(Pattern):
 
         passes_into_the_box = (
             self.game_dataset.events.type("PASS")
-            .into(Zone.OPPONENT_BOX)
+            .into(Zones.OPPONENT_BOX)
             .result("COMPLETE")
         )
 
@@ -76,7 +76,7 @@ class PassesIntoTheBox(Pattern):
 The above code produces this output when imported into Metrica Play:
 
 <p align="center">
-  <img src="./docs/media/passes_into_the_box.gif" width="80%" />
+  <img src="https://media.giphy.com/media/MDxwU6ddqhGiP5M0iM/giphy.gif" width="80%" />
 </p>
 
 ## Supported Data Providers
@@ -107,7 +107,7 @@ Check the [documentation](https://codeball.metrica-sports.com) for a more detail
 
 This is a very incomplete list of the things we have in mind, and it will probably change as we get input from the community / users. However it gives you a rough idea of the direction in which we want to go with this project!
 
-* more Zones (half spaces, cutbacks, thirds, 14, etc)
+* more Zones (half spaces, thirds, 14, etc) - [done]
 * crete types for players, events, etc to filter the data.
 * more ways to filter event and tracking data (e.g pass length)
 * more patterns (currently 4 in the making)

@@ -20,7 +20,7 @@ from kloppy import (
 )
 
 import codeball.utils as utils
-from codeball.tactical import Zone, Possession
+from codeball.tactical import Zones, Possession
 from codeball.codeball_frames import (
     EventsFrame,
     TrackingFrame,
