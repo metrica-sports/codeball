@@ -19,7 +19,7 @@ class PassesIntoTheBox(Pattern):
 
         passes_into_the_box = (
             self.game_dataset.events.type("PASS")
-            .into(Zone.OPPONENT_BOX)
+            .into(Zones.OPPONENT_BOX)
             .result("COMPLETE")
         )
 

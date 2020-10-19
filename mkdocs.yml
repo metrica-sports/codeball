@@ -19,6 +19,7 @@ nav:
     - GameDataset: game-dataset.md
     - CodeballFrames: codeball-frames.md
     - Patterns: patterns.md
+    - Tactical: tactical.md
     - Metrica Play API: 
       - What you can do: metrica-play-api.md
       - Patterns and tags: format-for-play.md

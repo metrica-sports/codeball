@@ -63,13 +63,13 @@ will return a EventsFrame only containing the rows that correspond to `PASS` typ
 * ***result()***: This allows to filter by the`result` column. `EventsFrame.result('COMPLETE')`
 will return a EventsFrame only containing the events with result `COMPLETE`
 * ***into()***, ***starts_inside()***, ***starts_outside()***, ***ends_inside()***,
-***ends_outside()***: are all similar. They take a `Zone`, which is a list of boxes, and 
-filter events depending on whether they start, end, etc in that `Zone`. Zones will be able
+***ends_outside()***: are all similar. They take one or more `Zones` or `Area`(see the [tactical](../tactical) section) and 
+filter events depending on whether they start, end, etc in that `Zones`. Zones will be able
 to be defined by the user, or use any of the ones defined in the package (link to Tactical)
 module to be added later to the documentation.
 
 These methods can also be chained, so if you wanted to filter by completed passes into the
 opponents box you can do: 
 ```python
-EventsFrame.type("PASS").into(Zone.OPPONENT_BOX).result("COMPLETE")
+EventsFrame.type("PASS").into(Zones.OPPONENT_BOX).result("COMPLETE")
 ```
