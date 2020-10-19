@@ -1,6 +1,7 @@
 # codeball: data driven tactical and video analysis of soccer games
 
 [![PyPI Latest Release](https://img.shields.io/pypi/v/codeball.svg)](https://pypi.org/project/codeball/)
+[![Downloads](https://pepy.tech/badge/codeball)](https://pepy.tech/project/codeball)
 ![](https://img.shields.io/github/license/metrica-sports/codeball)
 ![](https://img.shields.io/pypi/pyversions/codeball)
 [![Powered by Metrica Sports](https://img.shields.io/badge/Powered%20by-Metrica%20Sports-green)](https://metrica-sports.com/)
