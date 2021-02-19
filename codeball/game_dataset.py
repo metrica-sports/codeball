@@ -55,7 +55,7 @@ class GameDataset:
             "events_data_file": events_data_file,
         }
 
-        if tracking_data_file:
+        if tracking_data_file is not None:
             tracking_dataset = load_epts_tracking_data(
                 metadata_filename=tracking_metadata_file,
                 raw_data_filename=tracking_data_file,
@@ -67,7 +67,7 @@ class GameDataset:
         else:
             self.tracking = None
 
-        if events_data_file:
+        if events_data_file is not None:
             events_dataset = load_metrica_json_event_data(
                 metadata_filename=events_metadata_file,
                 raw_data_filename=events_data_file,
@@ -76,19 +76,21 @@ class GameDataset:
             self.events.data_type = DataType.EVENT
             self.events.metadata = events_dataset.metadata
             self.events.records = events_dataset.records
+        else:
+            self.events = None
 
         self._enrich_data()
 
     @property
     def game_dataset_type(self) -> GameDatasetType:
-        if self.tracking is not None and self.tracking is not None:
+        if self.has_tracking_data and self.has_event_data:
             # TODO: handle different providers when available in the EPTS dataset
             return GameDatasetType.FULL_SAME_PROVIDER
 
-        if self.tracking is not None:
+        if self.has_tracking_data:
             return GameDatasetType.ONLY_TRACKING
 
-        if self.events is not None:
+        if self.has_event_data:
             return GameDatasetType.ONLY_EVENTS
 
     @property
@@ -107,13 +109,31 @@ class GameDataset:
                 f"Can't retrieve a common metadata for the game_dataset "
                 f"because it's of type: {self.game_dataset_type}"
             )
-        self._enrich_data()
+
+    @property
+    def has_tracking_data(self):
+        if self.tracking is None:
+            return False
+        else:
+            return True
+
+    @property
+    def has_event_data(self):
+        if self.events is None:
+            return False
+        else:
+            return True
 
     def _enrich_data(self):
-        self._build_possessions()
-        self._set_periods_attacking_direction()
-        self._enrich_events()
-        self._enrich_tracking()
+        if self.has_tracking_data:
+            self._set_periods_attacking_direction()
+
+        if self.has_event_data:
+            self._build_possessions()
+            self._enrich_events()
+
+        if self.has_tracking_data and self.has_event_data:
+            self._enrich_tracking()
 
     def _build_possessions(self):
         start_event_types = ["RECOVERY", "SET PIECE"]
@@ -176,16 +196,20 @@ class GameDataset:
                 self.tracking.metadata.periods[
                     i
                 ].attacking_direction = AttackingDirection.HOME_AWAY
-                self.events.metadata.periods[
-                    i
-                ].attacking_direction = AttackingDirection.HOME_AWAY
+
+                if self.has_event_data:
+                    self.events.metadata.periods[
+                        i
+                    ].attacking_direction = AttackingDirection.HOME_AWAY
             else:
                 self.tracking.metadata.periods[
                     i
                 ].attacking_direction = AttackingDirection.AWAY_HOME
-                self.events.metadata.periods[
-                    i
-                ].attacking_direction = AttackingDirection.AWAY_HOME
+
+                if self.has_event_data:
+                    self.events.metadata.periods[
+                        i
+                    ].attacking_direction = AttackingDirection.AWAY_HOME
 
     def _enrich_events(self):
         for index, event_row in self.events.iterrows():
