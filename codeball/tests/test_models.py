@@ -95,6 +95,18 @@ class TestModels:
         assert game_dataset.tracking.data_type == DataType.TRACKING
         assert game_dataset.events.data_type == DataType.EVENT
 
+    def test_tracking_game_dataset(self):
+
+        base_dir = os.path.dirname(__file__)
+
+        game_dataset = GameDataset(
+            tracking_metadata_file=f"{base_dir}/files/metadata.xml",
+            tracking_data_file=f"{base_dir}/files/tracking.txt",
+        )
+
+        assert game_dataset.tracking.data_type == DataType.TRACKING
+        assert game_dataset.has_event_data is False
+
     def test_pattern_set(self):
 
         base_dir = os.path.dirname(__file__)
