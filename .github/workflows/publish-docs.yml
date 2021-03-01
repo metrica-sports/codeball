@@ -19,5 +19,5 @@ jobs:
         pip install mkdocs-material mkdocs-jupyter nbconvert==5.6.1
     - name: Publish
       run: |
-        git pull 
+        git pull origin master
         mkdocs gh-deploy
