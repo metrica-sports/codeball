@@ -212,7 +212,6 @@ class TestModels:
         assert events.result("COMPLETE").shape[0] == 45
         assert events.into(Zones.OPPONENT_BOX).shape[0] == 1
         assert events.starts_inside(Zones.OPPONENT_BOX).shape[0] == 2
-        assert events.starts_outside(Zones.OPPONENT_BOX).shape[0] == 53
         assert events.ends_inside(Zones.OPPONENT_BOX).shape[0] == 2
         assert events.ends_outside(Zones.OPPONENT_BOX).shape[0] == 43
 
