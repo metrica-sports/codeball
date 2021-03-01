@@ -1,0 +1,84 @@
+{
+    "events": [
+        {
+            "pattern_code": "MET_002",
+            "start_time": 12000,
+            "event_time": 14000,
+            "end_time": 17000,
+            "coordinates": [
+                [
+                    0.49875,
+                    0.51275
+                ],
+                [
+                    0.50136,
+                    0.51295
+                ]
+            ],
+            "visualizations": {
+                "start_time": 12000,
+                "end_time": 17000,
+                "players": "P3577",
+                "tool_id": "players",
+                "options": {
+                    "id": false,
+                    "speed": false,
+                    "spotlight": true,
+                    "ring": false,
+                    "spotlightColor": "#FFFFFF",
+                    "ringColor": "#000000",
+                    "size": 1.0
+                }
+            },
+            "tags": "FIFATMA"
+        },
+        {
+            "pattern_code": "MET_002",
+            "start_time": 43000,
+            "event_time": 45000,
+            "end_time": 48000,
+            "coordinates": [
+                [
+                    0.5,
+                    0.5
+                ],
+                [
+                    0.65727,
+                    0.09506
+                ]
+            ],
+            "visualizations": {
+                "start_time": 43000,
+                "end_time": 48000,
+                "players": "P3588",
+                "tool_id": "players",
+                "options": {
+                    "id": false,
+                    "speed": false,
+                    "spotlight": true,
+                    "ring": false,
+                    "spotlightColor": "#FFFFFF",
+                    "ringColor": "#000000",
+                    "size": 1.0
+                }
+            },
+            "tags": "FIFATMB"
+        }
+    ],
+    "insert": {
+        "patterns": [
+            {
+                "name": "Team Stretched",
+                "code": "MET_001"
+            },
+            {
+                "name": "Set Pieces",
+                "code": "MET_002"
+            },
+            {
+                "name": "Passes into the box",
+                "code": "MET_003"
+            }
+        ]
+    }
+}
