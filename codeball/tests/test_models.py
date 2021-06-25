@@ -6,6 +6,7 @@ from kloppy import (
     load_epts_tracking_data,
     to_pandas,
     load_metrica_json_event_data,
+    load_xml_code_data,
 )
 
 from codeball import (
@@ -13,6 +14,7 @@ from codeball import (
     DataType,
     TrackingFrame,
     EventsFrame,
+    CodesFrame,
     PossessionsFrame,
     BaseFrame,
     Zones,
@@ -105,6 +107,17 @@ class TestModels:
         )
 
         assert game_dataset.tracking.data_type == DataType.TRACKING
+        assert game_dataset.has_event_data is False
+
+    def test_codes_only_game_dataset(self):
+
+        base_dir = os.path.dirname(__file__)
+
+        game_dataset = GameDataset(
+            codes_file=f"{base_dir}/files/code_xml.xml",
+        )
+
+        assert game_dataset.codes.data_type == DataType.CODE
         assert game_dataset.has_event_data is False
 
     def test_pattern_set(self):
@@ -227,3 +240,18 @@ class TestModels:
             events.ends_inside(Zones.OPPONENT_BOX, custom_area).shape[0] == 14
         )
         assert events.ends_inside(custom_area, custom_area).shape[0] == 12
+
+    def test_codes_data_frame(self):
+
+        base_dir = os.path.dirname(__file__)
+
+        codes_dataset = load_xml_code_data(
+            xml_filename=f"{base_dir}/files/code_xml.xml",
+        )
+
+        codes = CodesFrame(to_pandas(codes_dataset))
+        codes.data_type = DataType.CODE
+        codes.metadata = codes_dataset.metadata
+        codes.records = codes_dataset.records
+
+        assert len(codes.records) == 3

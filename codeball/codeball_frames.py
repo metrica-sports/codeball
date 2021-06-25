@@ -207,3 +207,15 @@ class PossessionsFrame(BaseFrame):
     @property
     def _constructor(self):
         return PossessionsFrame
+
+
+class CodesFrame(BaseFrame):
+
+    _internal_names = DataFrame._internal_names + ["records"]
+    _internal_names_set = set(_internal_names)
+
+    _metadata = ["metadata", "data_type"]
+
+    @property
+    def _constructor(self):
+        return CodesFrame

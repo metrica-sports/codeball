@@ -17,6 +17,7 @@ from kloppy import (
     load_epts_tracking_data,
     load_metrica_json_event_data,
     to_pandas,
+    load_xml_code_data,
 )
 
 import codeball.utils as utils
@@ -25,12 +26,14 @@ from codeball.codeball_frames import (
     EventsFrame,
     TrackingFrame,
     PossessionsFrame,
+    CodesFrame,
 )
 
 
 class DataType(Enum):
     TRACKING = "tracking"
     EVENT = "event"
+    CODE = "code"
 
 
 class GameDatasetType(Enum):
@@ -47,6 +50,7 @@ class GameDataset:
         tracking_data_file=None,
         events_metadata_file=None,
         events_data_file=None,
+        codes_file=None,
     ):
         self.files = {
             "tracking_metadata_file": tracking_metadata_file,
@@ -55,7 +59,7 @@ class GameDataset:
             "events_data_file": events_data_file,
         }
 
-        if tracking_data_file is not None:
+        if tracking_data_file:
             tracking_dataset = load_epts_tracking_data(
                 metadata_filename=tracking_metadata_file,
                 raw_data_filename=tracking_data_file,
@@ -67,7 +71,7 @@ class GameDataset:
         else:
             self.tracking = None
 
-        if events_data_file is not None:
+        if events_data_file:
             events_dataset = load_metrica_json_event_data(
                 metadata_filename=events_metadata_file,
                 raw_data_filename=events_data_file,
@@ -78,6 +82,19 @@ class GameDataset:
             self.events.records = events_dataset.records
         else:
             self.events = None
+
+        if codes_file:
+            codes_dataset = load_xml_code_data(
+                xml_filename=codes_file,
+            )
+
+            self.codes = CodesFrame(to_pandas(codes_dataset))
+            self.codes.data_type = DataType.CODE
+            self.codes.metadata = codes_dataset.metadata
+            self.codes.records = codes_dataset.records
+
+        else:
+            self.codes = None
 
         self._enrich_data()
 
@@ -112,17 +129,17 @@ class GameDataset:
 
     @property
     def has_tracking_data(self):
-        if self.tracking is None:
-            return False
-        else:
+        if self.tracking:
             return True
+        else:
+            return False
 
     @property
     def has_event_data(self):
-        if self.events is None:
-            return False
-        else:
+        if self.events:
             return True
+        else:
+            return False
 
     def _enrich_data(self):
         if self.has_tracking_data:
