@@ -50,7 +50,7 @@ class GameDataset:
         tracking_data_file=None,
         events_metadata_file=None,
         events_data_file=None,
-        codes_file=None,
+        codes_files=None,
     ):
         self.files = {
             "tracking_metadata_file": tracking_metadata_file,
@@ -83,15 +83,23 @@ class GameDataset:
         else:
             self.events = None
 
-        if codes_file:
-            codes_dataset = load_xml_code_data(
-                xml_filename=codes_file,
-            )
+        if codes_files:
 
-            self.codes = CodesFrame(to_pandas(codes_dataset))
-            self.codes.data_type = DataType.CODE
-            self.codes.metadata = codes_dataset.metadata
-            self.codes.records = codes_dataset.records
+            if type(codes_files) is not list:
+                codes_files = [codes_files]
+
+            self.codes = []
+            for codes_file in codes_files:
+                codes_dataset = load_xml_code_data(
+                    xml_filename=codes_file,
+                )
+
+                codes = CodesFrame(to_pandas(codes_dataset))
+                codes.data_type = DataType.CODE
+                codes.metadata = codes_dataset.metadata
+                codes.records = codes_dataset.records
+
+                self.codes.append(codes)
 
         else:
             self.codes = None
@@ -129,14 +137,14 @@ class GameDataset:
 
     @property
     def has_tracking_data(self):
-        if self.tracking:
+        if self.tracking is not None:
             return True
         else:
             return False
 
     @property
     def has_event_data(self):
-        if self.events:
+        if self.events is not None:
             return True
         else:
             return False
