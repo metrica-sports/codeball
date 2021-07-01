@@ -114,10 +114,10 @@ class TestModels:
         base_dir = os.path.dirname(__file__)
 
         game_dataset = GameDataset(
-            codes_file=f"{base_dir}/files/code_xml.xml",
+            codes_files=f"{base_dir}/files/code_xml.xml",
         )
 
-        assert game_dataset.codes.data_type == DataType.CODE
+        assert game_dataset.codes[0].data_type == DataType.CODE
         assert game_dataset.has_event_data is False
 
     def test_pattern_set(self):

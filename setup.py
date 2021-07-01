@@ -7,7 +7,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="codeball",
-    version="v0.1.4",
+    version="v0.2.0",
     author="Bruno Dagnino",
     author_email="bruno@metrica-sports.com",
     url="https://github.com/metrica-sports/codeball",
@@ -27,7 +27,7 @@ setup(
     ],
     python_requires=">=3.7, <4",
     install_requires=[
-        "kloppy>=1.1.1",
+        "kloppy>=1.7.0",
         "pandas>=1.0.5",
     ],
     extras_require={
