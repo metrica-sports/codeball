@@ -73,3 +73,10 @@ opponents box you can do:
 ```python
 EventsFrame.type("PASS").into(Zones.OPPONENT_BOX).result("COMPLETE")
 ```
+
+## CodesFrame
+
+A CodeballFrame that holds codes from an xml file.
+
+The columns present on this CodeballFrame will depend on how your XML is format, but as a general rule you'll
+see one row per `code`, with columns for the `code_id`, `timestamp`, `end_timestamp`, `code` (name) and then one column for each tag. 
