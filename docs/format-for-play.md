@@ -1,7 +1,7 @@
 
 
-# Patterns and events format for Metrica Play
-This section describes the API to import into import events with annotations associated to them into Metrica Play. We refer to this type of events as `patterns`. Patterns are imported into metrica play via a `json` file with a `.patt` extension. Below an explanation of how this file should be formatted. This documentation is compatible **Metrica Play 2.1.2** onwards.
+# Patterns and events format for Play
+This documentation describes the API to import into import events with annotations associated to them into Play. We refer to this type of events as `patterns`. Patterns are imported into Play via a `json` file with a `.patt` extension. Below an explanation of how this file should be formatted. This documentation is compatible with versions **2.5.0 of Play by Metrica Sports** or higher. Old patterns files are still supported, see section [Versions](#versions).
 
 ## Format
 
@@ -39,7 +39,7 @@ You can use the **insert** field for updating your patterns, tags and tag_groups
 
 ## Prefix
 
-Every time you want to create something in our database, like a Pattern, Tag Group or Tag you'll need to add a code to it. You can manage your codes any way you like as long you create unique codes for each resource. We'll provide you wit a **prefix** you'll need to add to your codes. If a resource you want to create doesn't have the appropriate prefix it will be omitted. Let's say you want to create some patterns and your prefix is **RCNG.** You could do something like RCNG_001 and RCNG_002 or RCNG_COUNTER and RCNG_POSSESSION. It's up to you how you manage codes, but the prefix is mandatory.
+Every time you want to create something in our database, like a Pattern, Tag Group or Tag you'll need to add a code to it. You can manage your codes any way you like as long you create unique codes for each resource. We'll provide you wit a **prefix** you'll need to add to your codes. If a resource you want to create doesn't have the appropriate prefix it will be omitted. Let's say you want to create some patterns and your prefix is **RCNG.** You could do something like `RCNG_001` and `RCNG_002` or `RCNG_COUNTER` and `RCNG_POSESSION`. It's up to you how you manage codes, but the prefix is mandatory.
 
 ## Patterns
 
@@ -60,7 +60,7 @@ A Pattern needs to have a unique code and a name, that's it. If a code already e
  ],
 ```
 
-This is how patterns will be listed in Metrica Play for each game:
+This is how patterns will be listed in Play for each game:
 
 ![image.png](https://storage.googleapis.com/slite-api-files-production/files/e161fbb9-ed22-4329-98f7-5a8d0c0b2285/image.png)
 
@@ -97,7 +97,7 @@ For creating a Tag you'll need to add a unique code, a name and the code of the 
  ],
 ```
 
-You'll see Tags organised by groups in the filter section when a Pattern is selected
+You'll see Tags organized by groups in the filter section when a Pattern is selected
 
 ![image.png](https://storage.googleapis.com/slite-api-files-production/files/967dd7e4-6d86-4a07-9acc-3df7ba14438c/image.png)
 
@@ -112,7 +112,7 @@ This information about patterns, tags and tag groups, can be included every time
 
 # Events
 
-On event is one detection of a Pattern. Events happen at a given time in the video and have a duration and many other properties. An Events belongs to a Pattern and has Tags associated to it. This is how, when you select a Pattern you will see a list with all the Events belonging to that Pattern. And when you select an event you will see a list with all the tags added to that Event. This is how you construct events. There are three main categories of concepts. 1) One is the information about the event itself. 2) Another is the information about the annotations. 3) The last one is the tags and team information for filtering in Metrica Play. 
+On event is one detection of a Pattern. Events happen at a given time in the video and have a duration and many other properties. An Events belongs to a Pattern and has Tags associated to it. This is how, when you select a Pattern you will see a list with all the Events belonging to that Pattern. And when you select an event you will see a list with all the tags added to that Event. This is how you construct events. There are three main categories of concepts. 1) One is the information about the event itself. 2) Another is the information about the annotations. 3) The last one is the tags and team information for filtering in Play. 
 
 An example event with annotations looks like this:
 
@@ -133,7 +133,8 @@ An example event with annotations looks like this:
     "tool_id": "players",
     "options": {
       "speed": 1
-    }
+    },
+    "version": 2
   },
   "tags": [
     "ESPBCN",
@@ -149,11 +150,11 @@ This is an example of a sprint type event which has a `speed` visualization.
 
 This is an event that belongs to the `pattern` code  `RCNG_PATTERN_001`, that starts at time `5000` and ends at time `25000`, with the event indicator being located at `10000` in the timeline of the video. All times are in milliseconds. 
 
-In this case, in Metrica Play the event will be located at time `10000` in the timeline that , but when you select it, the video will play from time `5000` to `25000`. 
+In this case, in Play the event will be located at time `10000` in the timeline that , but when you select it, the video will play from time `5000` to `25000`. 
 
-Moreover, this event has coordinates. There are two options for coordinates. If you provide just a pair of xy coordinates, it will show a dot on the 2D field in Metrica Play. If you provide two pairs, it will show an arrow. In this case it will show an arrow in the 2D field (NOT in the video) going from `[0.39, 0.51]` to `[0.44, 0.42]`.
+Moreover, this event has coordinates. There are two options for coordinates. If you provide just a pair of xy coordinates, it will show a dot on the 2D field in Play. If you provide two pairs, it will show an arrow. In this case it will show an arrow in the 2D field (NOT in the video) going from `[0.39, 0.51]` to `[0.44, 0.42]`.
 
-This event also has a annotation. In this case, the speed will show up for this player from time `7000` to `23000` for player `P030`. To code for that, the `tool_id` is set to `players` type visualization that has `speed` as `1` (true).
+This event also has a annotation. In this case, the speed will show up for this player from time `7000` to `23000` for player `P030`. To code for that, the `tool_id` is set to `players` type visualization that has `speed` as `1` (true). This visualization is also of `version = 2`, which means it's formatted for the new visualizations in version 2.5.0 of Play and onwards. See section [Versions](#versions).
 
 Finally, this event has the tags `"ESPBCN","P030",RCGN_TAG_001,RCGN_TAG_007` and belongs to the team `ESPBCN`.
 
@@ -165,7 +166,7 @@ Below a summary of the information about fields related events and fields relate
 {
   "pattern": 15, // Pattern code
   "start_time": 5000, // Number in milliseconds
-  "event_time": 10000, // Number in milliseconds 
+  "event_time": 10000, // Number in milliseconds
   "end_time": 25000, // Number in milliseconds
   "coordinates": [ // In normalized coordinates. `null` if empty.
     [0.39,0.51],
@@ -177,5 +178,60 @@ Below a summary of the information about fields related events and fields relate
     "P030"
   ],
   "team": "ESPBCN" // `null` if empty.
+}
+```
+
+
+## Fields common to all visualizations
+
+The following attributes have to be defined for each tool. Annotations' order matters, they will be created and displayed in the same order they are declared, first annotation will be rendered at the bottom/background.
+```
+{
+  start_time : 1040, // Milliseconds
+  end_time   : 2130, // Milliseconds
+  tool_id    : 'players', // The ID of the tool
+  ... // Each tool could have other mandatory attributes (players, team, points, etc.)
+  options    : {}, // Optional object attribute for the tool
+  version    : 2 // Which version of API it's the viz compatible with
+}
+```
+
+## Versions
+In version **2.5.0** of Play by Metrica Sports we introduced [new and improved visualizations](https://metrica-sports.com/a-wonderful-day-for-play/). These new visualizations add several new parameters and options to the visualizations, thus the API for adding visualizations has changed. In particular around the available options for each type of visualization. 
+
+For example whereas on the original version (version 1), to define a ring you would do:
+```
+{
+  start_time : 1040,
+  end_time   : 2130,
+  tool_id    : 'players',
+  players    : ['P001', 'P002'],
+  options    : { ring: true, color: '#FFFFFF' },
+}
+```
+
+On the new version (version 2) rings have a border and a fill that can de defined separately. So to define a ring you need to do:
+```
+{
+  start_time : 1040,
+  end_time   : 2130,
+  tool_id    : 'players',
+  players    : ['P001', 'P002'],
+  options    : { ringFill: true, ringBorder: true, ringFillColor: '#FFFFFF', ringBorderColor: '#FFFF00' },
+  version    : 2
+}
+```
+
+
+Note that in the last one we noted that this visualization is of version 2 so that the API know how to read this visualization. However, while different in formats, the API on version 2.5.0 onwards is compatible with older versions. If a visualization doesn't have a version indicated in the options it will be assumed it's from version 2, and the options will be populated accordingly. For example, if you import the above example of a version 1 ring, it would be like importing: 
+```
+
+{
+  start_time : 1040,
+  end_time   : 2130,
+  tool_id    : 'players',
+  players    : ['P001', 'P002'],
+  options    : { ringFill: true, ringBorder: true, ringFillColor: '#FFFFFF', ringBorderColor: '#FFFFFF' },
+  version    : 2
 }
 ```

@@ -22,7 +22,7 @@ nav:
     - Tactical: tactical.md
     - Metrica Play API: 
       - What you can do: metrica-play-api.md
-      - Patterns and tags: format-for-play.md
+      - File Formatting: format-for-play.md
       - Visualizations: visualizations.md
       - How to import a file: how-to-import-to-play.md
     - Examples:
