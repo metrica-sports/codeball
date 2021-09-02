@@ -1,4 +1,7 @@
 # What can you do with Play's API?
+
+> Note that to import a pattern file to Play you do not need to use codeball. As long as the file you import is formatted as this documentation indicates you'll be able to import the file. How you create that file can be any language, any library. Codeball is one way to do it, but not the only one! Feel free to use whatever language or library/is you feel more comfortable with!
+
 Play API for patterns and visualizations allows you to import patterns and events into Play. The interesting part is that not only it allows you to import events that have a start/end time, tags, etc; but also to add visualizations directly from the code. For example the following json code:
 
 ```json
