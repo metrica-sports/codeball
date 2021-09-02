@@ -1,0 +1,852 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://codeball.metrica-sports.com/">
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+    
+    
+      
+        <title>Codeball v0.3.1</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.802231af.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#codeball-data-driven-tactical-and-video-analysis-of-soccer-games" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Codeball v0.3.1" class="md-header__button md-logo" aria-label="Codeball v0.3.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Codeball v0.3.1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/metrica-sports/codeball/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Codeball
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Codeball v0.3.1" class="md-nav__button md-logo" aria-label="Codeball v0.3.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Codeball v0.3.1
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/metrica-sports/codeball/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Codeball
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Home
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-codeball" class="md-nav__link">
+    Why codeball?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-can-you-do-with-it" class="md-nav__link">
+    What can you do with it
+  </a>
+  
+    <nav class="md-nav" aria-label="What can you do with it">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work-with-tracking-and-event-data" class="md-nav__link">
+    Work with tracking and event data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-patterns-to-analyze-the-game" class="md-nav__link">
+    Create Patterns to analyze the game
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-annotations-to-the-events-for-metrica-play" class="md-nav__link">
+    Add annotations to the events for Metrica Play
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-data-providers" class="md-nav__link">
+    Supported Data Providers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trying-it-out" class="md-nav__link">
+    Trying it out
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-it" class="md-nav__link">
+    Install it
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute" class="md-nav__link">
+    Contribute
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tentative-todo" class="md-nav__link">
+    Tentative TODO
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="game-dataset/" class="md-nav__link">
+        GameDataset
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="codeball-frames/" class="md-nav__link">
+        CodeballFrames
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns/" class="md-nav__link">
+        Patterns
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tactical/" class="md-nav__link">
+        Tactical
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Metrica Play API
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Metrica Play API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Metrica Play API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="metrica-play-api/" class="md-nav__link">
+        What you can do
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="format-for-play/" class="md-nav__link">
+        File Formatting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="visualizations/" class="md-nav__link">
+        Visualizations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="how-to-import-to-play/" class="md-nav__link">
+        How to import a file
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/game_dataset/" class="md-nav__link">
+        GameDataset
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/example-pattern/" class="md-nav__link">
+        Example pattern
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/run_patterns/" class="md-nav__link">
+        Run patterns
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-codeball" class="md-nav__link">
+    Why codeball?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-can-you-do-with-it" class="md-nav__link">
+    What can you do with it
+  </a>
+  
+    <nav class="md-nav" aria-label="What can you do with it">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work-with-tracking-and-event-data" class="md-nav__link">
+    Work with tracking and event data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-patterns-to-analyze-the-game" class="md-nav__link">
+    Create Patterns to analyze the game
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-annotations-to-the-events-for-metrica-play" class="md-nav__link">
+    Add annotations to the events for Metrica Play
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-data-providers" class="md-nav__link">
+    Supported Data Providers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trying-it-out" class="md-nav__link">
+    Trying it out
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-it" class="md-nav__link">
+    Install it
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute" class="md-nav__link">
+    Contribute
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tentative-todo" class="md-nav__link">
+    Tentative TODO
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/metrica-sports/codeball/blob/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="codeball-data-driven-tactical-and-video-analysis-of-soccer-games">codeball: data driven tactical and video analysis of soccer games</h1>
+<p><a href="https://pypi.org/project/codeball/"><img alt="PyPI Latest Release" src="https://img.shields.io/pypi/v/codeball.svg" /></a>
+<a href="https://pepy.tech/project/codeball"><img alt="Downloads" src="https://pepy.tech/badge/codeball" /></a>
+<img alt="" src="https://img.shields.io/github/license/metrica-sports/codeball" />
+<img alt="" src="https://img.shields.io/pypi/pyversions/codeball" />
+<a href="https://metrica-sports.com/"><img alt="Powered by Metrica Sports" src="https://img.shields.io/badge/Powered%20by-Metrica%20Sports-green" /></a></p>
+<hr />
+<h2 id="why-codeball">Why codeball?</h2>
+<p>While there are several pieces of code / repositories around that provide different tools and bits of codes to do tactical analysis of individual games, there is no centralized place in which they live. Moreover, most of the analysis done is usually not linked or easy to link with the actual footage of the match. Codeball's objective is to change that by:</p>
+<ol>
+<li>Building a central repository for different types of data driven tactical analysis methods / tools.</li>
+<li>Making it easy to link those analyses with a video of the game in different formats.</li>
+</ol>
+<h2 id="what-can-you-do-with-it">What can you do with it</h2>
+<p>The main types of work / development you can do with codeball are:</p>
+<h4 id="work-with-tracking-and-event-data">Work with tracking and event data</h4>
+<ul>
+<li>Codeball creates subclasses of <em>Pandas DataFrames</em> for events and tracking data; and provides you with handy methods to work with the data.</li>
+<li>Work with or create your own tactical models like <em>Zones</em> so that you can for example do <code>game_dataset.events.into(Zones.OPPONENT_BOX)</code> and it will return a DataFrame only with the events into the opponents box. You can also chain methods, like <code>game_dataset.events.type("PASS").into(Zones.OPPONENT_BOX)</code> and will return only passes into the box. Or for example do <code>game_dataset.tracking.team('FIFATMA').players('field').dimension('x')</code> to get the x coordinate of the field players (no goalkeeper data) for team with id FIFATMA.</li>
+<li>[Not yet implemented] Easily access tactical tools or methods like computing passes networks, pitch control,EPV models, etc </li>
+</ul>
+<h4 id="create-patterns-to-analyze-the-game">Create Patterns to analyze the game</h4>
+<ul>
+<li>Analyze games based on Patterns. A Pattern is a unit of analysis that looks for moments in the game in which a certain thing happens. That certain thing is defined inside the Pattern, but codeball provides tools to easily create them, configure them and export them in different formats for different platforms.</li>
+<li>You can create your own patterns, or also use the ones provided with the package and configure them to your liking.</li>
+</ul>
+<h4 id="add-annotations-to-the-events-for-metrica-play">Add annotations to the events for Metrica Play</h4>
+<ul>
+<li>Codeball incorporates all the annotations models and API information needed to import events with annotations into Metrica Play. </li>
+<li>You can add directly from the code any visualization available in Metrica Play  (spotlights, rings, future trail, areas, drawings, text, etc) to any event.</li>
+</ul>
+<h2 id="example">Example</h2>
+<p>You can use any of the above functionality independently. However they are most powerful when combined. As an example, the below code defines a pattern that will look for all passes into the opponent's box. Moreover to be imported into Metrica Play, it will add an arrow and a 2s pause in the video at the moment of the pass, and will add an arrow to the 2D field indicating start and end position of the pass. </p>
+<pre><code class="language-python">class PassesIntoTheBox(Pattern):
+    def __init__(
+        self,
+        game_dataset: GameDataset,
+        name: str,
+        code: str,
+        in_time: int = 0,
+        out_time: int = 0,
+        parameters: dict = None,
+    ):
+        super().__init__(
+            name, code, in_time, out_time, parameters, game_dataset
+        )
+
+    def run(self) -&gt; List[PatternEvent]:
+
+        passes_into_the_box = (
+            self.game_dataset.events.type(&quot;PASS&quot;)
+            .into(Zones.OPPONENT_BOX)
+            .result(&quot;COMPLETE&quot;)
+        )
+
+        return [
+            self.build_pattern_event(event_row)
+            for i, event_row in passes_into_the_box.iterrows()
+        ]
+
+    def build_pattern_event(self, event_row) -&gt; PatternEvent:
+        pattern_event = self.from_event(event_row)
+        pattern_event.add_arrow(event_row)
+        pattern_event.add_pause(pause_time=2000)
+
+        return pattern_event
+</code></pre>
+<p>The above code produces this output when imported into Metrica Play:</p>
+<p align="center">
+  <img src="https://media.giphy.com/media/MDxwU6ddqhGiP5M0iM/giphy.gif" width="80%" />
+</p>
+
+<h2 id="supported-data-providers">Supported Data Providers</h2>
+<p>This package is very much WIP. At the moment it only works based on Metrica Sports Elite datasets. However, it uses Kloppy to read in the data so that in the near future will support data from any provider.</p>
+<h2 id="trying-it-out">Trying it out</h2>
+<p>There are no open source Elite datasets at the moment that work with this package. However if you are interested in testing it out and/or developing your own patterns and/or test them in Metrica Play reach out to bruno@metrica-sports.com or <a href="https://twitter.com/brunodagnino">@brunodagnino</a> on Twitter.</p>
+<h2 id="install-it">Install it</h2>
+<p>Installers for the latest released version are available at the <a href="https://pypi.org/project/codeball">Python package index</a>.</p>
+<pre><code class="language-sh">pip install codeball
+</code></pre>
+<h2 id="contribute">Contribute</h2>
+<p>While created and maintained by Metrica Sports, it's distributed under an MIT license and it welcomes contributions from members of the community, clubs and other companies. You can find the repository on <a href="https://github.com/metrica-sports/codeball">Github</a>. Also, if you have ideas for patterns we should implement, or methods we should include (e.g. pitch control, EPV, similarity search, etc), let us know! You can create an issue on the repo, or reach out to bruno@metrica-sports.com or <a href="https://twitter.com/brunodagnino">@brunodagnino</a> on Twitter.</p>
+<h2 id="documentation">Documentation</h2>
+<p>Check the <a href="https://codeball.metrica-sports.com">documentation</a> for a more detailed explanation of this package.</p>
+<h2 id="tentative-todo">Tentative TODO</h2>
+<p>This is a very incomplete list of the things we have in mind, and it will probably change as we get input from the community / users. However it gives you a rough idea of the direction in which we want to go with this project!</p>
+<ul>
+<li>more Zones (half spaces, thirds, 14, etc) - [done]</li>
+<li>crete types for players, events, etc to filter the data.</li>
+<li>more ways to filter event and tracking data (e.g pass length)</li>
+<li>more patterns (currently 4 in the making)</li>
+<li>pitch control from <code>game_dataset.pitch_control([frame/s])</code>, same with EPV.</li>
+<li>easily query xG, g+, xT, etc for events</li>
+<li>corner strategy classifier.</li>
+<li>support for other providers, likely StatsBomb next.</li>
+<li>export events in xml format</li>
+<li>methods to easily sync tracking and event from different providers.</li>
+<li>any suggestions?</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+      
+        
+        <a href="game-dataset/" class="md-footer__link md-footer__link--next" aria-label="Next: GameDataset" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              GameDataset
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.756773cc.min.js"></script>
+      
+    
+  </body>
+</html>

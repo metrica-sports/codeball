@@ -1,0 +1,838 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://codeball.metrica-sports.com/format-for-play/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+    
+    
+      
+        <title>File Formatting - Codeball v0.3.1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.802231af.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#patterns-and-events-format-for-play" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Codeball v0.3.1" class="md-header__button md-logo" aria-label="Codeball v0.3.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Codeball v0.3.1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              File Formatting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/metrica-sports/codeball/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Codeball
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Codeball v0.3.1" class="md-nav__button md-logo" aria-label="Codeball v0.3.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Codeball v0.3.1
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/metrica-sports/codeball/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Codeball
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-dataset/" class="md-nav__link">
+        GameDataset
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codeball-frames/" class="md-nav__link">
+        CodeballFrames
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patterns/" class="md-nav__link">
+        Patterns
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tactical/" class="md-nav__link">
+        Tactical
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      <label class="md-nav__link" for="__nav_6">
+        Metrica Play API
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Metrica Play API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Metrica Play API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrica-play-api/" class="md-nav__link">
+        What you can do
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          File Formatting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        File Formatting
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#format" class="md-nav__link">
+    Format
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefix" class="md-nav__link">
+    Prefix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patterns" class="md-nav__link">
+    Patterns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tags-and-tag-groups" class="md-nav__link">
+    Tags and Tag Groups
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-and-updating" class="md-nav__link">
+    Creating and updating
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizations/" class="md-nav__link">
+        Visualizations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-to-import-to-play/" class="md-nav__link">
+        How to import a file
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/game_dataset/" class="md-nav__link">
+        GameDataset
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/example-pattern/" class="md-nav__link">
+        Example pattern
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/run_patterns/" class="md-nav__link">
+        Run patterns
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#format" class="md-nav__link">
+    Format
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefix" class="md-nav__link">
+    Prefix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patterns" class="md-nav__link">
+    Patterns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tags-and-tag-groups" class="md-nav__link">
+    Tags and Tag Groups
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-and-updating" class="md-nav__link">
+    Creating and updating
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/metrica-sports/codeball/blob/master/docs/format-for-play.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="patterns-and-events-format-for-play">Patterns and events format for Play</h1>
+<p>This documentation describes the API to import into import events with annotations associated to them into Play. We refer to this type of events as <code>patterns</code>. Patterns are imported into Play via a <code>json</code> file with a <code>.patt</code> extension. Below an explanation of how this file should be formatted. This documentation is compatible with versions <strong>2.5.0 of Play by Metrica Sports</strong> or higher. Old patterns files are still supported, see section <a href="#versions">Versions</a>.</p>
+<h2 id="format">Format</h2>
+<p>The patterns files is in JSON format. It has to main entry points: <code>events</code> and <code>insert</code></p>
+<p>The <strong>events</strong> entry is an array containing all the events you detect for each game. Those events are going to be stored and associated to the game you are uploading them to.</p>
+<p>The <strong>insert</strong> entry is an object that will contain a declaration of <code>patterns</code> , <code>tags</code> and <code>tag_groups</code> you want to create. <strong>It's important to notice that this will be created and store in the database and will be shared among all you games.</strong></p>
+<p>You don't need to create all the patterns, tags and groups each time. If you want to add them to all of your files, that's not a problem. As long the unique code you added to any of them is already in the database there will be no duplicates.</p>
+<p>You can use the <strong>insert</strong> field for updating your patterns, tags and tag_groups. More on that in the Patterns, Tags and Tag Groups sections.</p>
+<pre><code>{
+  &quot;events&quot;: [
+    // Here you'll list al events you want to create
+  ],
+  &quot;insert&quot;: {
+    &quot;patterns&quot;: [
+      // By listing patterns here you'll be able to create
+      // and update patterns
+    ],
+    &quot;tag_groups&quot;: [
+      // By listing tag groups here you'll be able to create
+      // and update tag groups
+    ],
+    &quot;tags&quot;: [
+      // By listing tags here you'll be able to create
+      // and update tags
+    ]
+  }
+}
+</code></pre>
+<h2 id="prefix">Prefix</h2>
+<p>Every time you want to create something in our database, like a Pattern, Tag Group or Tag you'll need to add a code to it. You can manage your codes any way you like as long you create unique codes for each resource. We'll provide you wit a <strong>prefix</strong> you'll need to add to your codes. If a resource you want to create doesn't have the appropriate prefix it will be omitted. Let's say you want to create some patterns and your prefix is <strong>RCNG.</strong> You could do something like <code>RCNG_001</code> and <code>RCNG_002</code> or <code>RCNG_COUNTER</code> and <code>RCNG_POSESSION</code>. It's up to you how you manage codes, but the prefix is mandatory.</p>
+<h2 id="patterns">Patterns</h2>
+<p>We call Pattern to a type of detection. Let's say you create an algorithm for detecting Counter-attacks. You'll create a Pattern called Counter-Attacks and each Counter-attack you detect will be an event associated to this Pattern.</p>
+<p>A Pattern needs to have a unique code and a name, that's it. If a code already exists on the database it would not create the pattern again it will update the name to what's written in the current file. It's important to remember that Patterns are shared by all your games, so updating the name will have an effect on previous and future games.</p>
+<pre><code>&quot;patterns&quot;: [
+    {
+        &quot;name&quot;: &quot;Counter Attack&quot;,
+        &quot;code&quot;: &quot;RCNG_001&quot;
+    },
+    {
+        &quot;name&quot;: &quot;Defensive Positioning&quot;,
+        &quot;code&quot;: &quot;RCNG_002&quot;
+    }
+ ],
+</code></pre>
+<p>This is how patterns will be listed in Play for each game:</p>
+<p><img alt="image.png" src="https://storage.googleapis.com/slite-api-files-production/files/e161fbb9-ed22-4329-98f7-5a8d0c0b2285/image.png" /></p>
+<h2 id="tags-and-tag-groups">Tags and Tag Groups</h2>
+<p>For any given Pattern you create, most likely you'll want to create some Tags and Tag Groups as well. Let's say you have your Counter Attacks pattern and you want to be able to filter by "Fast" and "Slow", or "Successful" and "Failed". For that you can create Tags. And those Tags can be grouped. For example, "Fast" and "Slow" could be two tags on the group "Counter Speed".</p>
+<p>For creating a Tag Group you only need to add a unique code and a name.</p>
+<p>For creating a Tag you'll need to add a unique code, a name and the code of the group the tags belongs to.</p>
+<pre><code>&quot;tag_groups&quot;: [
+    {
+        &quot;name&quot;: &quot;Counter Speed&quot;,
+        &quot;code&quot;: &quot;RCNG_GROUP_001&quot;
+    },
+    {
+        &quot;name&quot;: &quot;Counter Quality&quot;,
+        &quot;code&quot;: &quot;RCNG_GROUP_002&quot;
+    }
+ ],
+ &quot;tags&quot;: [
+    {
+        &quot;name&quot;: &quot;Fast&quot;,
+        &quot;code&quot;: &quot;RCNG_TAG_001&quot;,
+        &quot;group&quot;: &quot;RCNG_GROUP_001&quot;
+    },
+    {
+        &quot;name&quot;: &quot;Slow&quot;,
+        &quot;code&quot;: &quot;RCNG_TAG_002&quot;,
+        &quot;group&quot;: &quot;RCNG_GROUP_001&quot;
+    }
+ ],
+</code></pre>
+<p>You'll see Tags organized by groups in the filter section when a Pattern is selected</p>
+<p><img alt="image.png" src="https://storage.googleapis.com/slite-api-files-production/files/967dd7e4-6d86-4a07-9acc-3df7ba14438c/image.png" /></p>
+<p>Once you create a Tag Group, and associate a Tag with it, the tag associated to a group will always be organized based no that group.</p>
+<p>An important point. Players and Team codes, for example <strong>ESPBCN</strong> or <strong>P030</strong> can be used as tags directly. So no need to create tags for teams and players. Just use them as any other tags you have created. </p>
+<h2 id="creating-and-updating">Creating and updating</h2>
+<p>This information about patterns, tags and tag groups, can be included every time the json is uploaded. However they are only needed when you want to create one of them, or when you want to update on of them (e.g. change name).  </p>
+<h1 id="events">Events</h1>
+<p>On event is one detection of a Pattern. Events happen at a given time in the video and have a duration and many other properties. An Events belongs to a Pattern and has Tags associated to it. This is how, when you select a Pattern you will see a list with all the Events belonging to that Pattern. And when you select an event you will see a list with all the tags added to that Event. This is how you construct events. There are three main categories of concepts. 1) One is the information about the event itself. 2) Another is the information about the annotations. 3) The last one is the tags and team information for filtering in Play. </p>
+<p>An example event with annotations looks like this:</p>
+<pre><code>{
+  &quot;pattern&quot;: RCNG_PATTERN_001,
+  &quot;start_time&quot;: 5000,
+  &quot;event_time&quot;: 10000,
+  &quot;end_time&quot;: 25000,
+  &quot;coordinates&quot;: [
+    [0.39,0.51],
+    [0.44,0.42]
+  ],
+  &quot;visualizations&quot;: {
+    &quot;start_time&quot;: 7000,
+    &quot;end_time&quot;: 23000,
+    &quot;players&quot;: &quot;P030&quot;,
+    &quot;tool_id&quot;: &quot;players&quot;,
+    &quot;options&quot;: {
+      &quot;speed&quot;: 1
+    },
+    &quot;version&quot;: 2
+  },
+  &quot;tags&quot;: [
+    &quot;ESPBCN&quot;,
+    &quot;P030&quot;,
+    &quot;RCGN_TAG_001&quot;,
+    &quot;RCGN_TAG_007&quot;
+  ],
+  &quot;team&quot;: &quot;ESPBCN&quot;
+}
+</code></pre>
+<p>This is an example of a sprint type event which has a <code>speed</code> visualization. </p>
+<p>This is an event that belongs to the <code>pattern</code> code  <code>RCNG_PATTERN_001</code>, that starts at time <code>5000</code> and ends at time <code>25000</code>, with the event indicator being located at <code>10000</code> in the timeline of the video. All times are in milliseconds. </p>
+<p>In this case, in Play the event will be located at time <code>10000</code> in the timeline that , but when you select it, the video will play from time <code>5000</code> to <code>25000</code>. </p>
+<p>Moreover, this event has coordinates. There are two options for coordinates. If you provide just a pair of xy coordinates, it will show a dot on the 2D field in Play. If you provide two pairs, it will show an arrow. In this case it will show an arrow in the 2D field (NOT in the video) going from <code>[0.39, 0.51]</code> to <code>[0.44, 0.42]</code>.</p>
+<p>This event also has a annotation. In this case, the speed will show up for this player from time <code>7000</code> to <code>23000</code> for player <code>P030</code>. To code for that, the <code>tool_id</code> is set to <code>players</code> type visualization that has <code>speed</code> as <code>1</code> (true). This visualization is also of <code>version = 2</code>, which means it's formatted for the new visualizations in version 2.5.0 of Play and onwards. See section <a href="#versions">Versions</a>.</p>
+<p>Finally, this event has the tags <code>"ESPBCN","P030",RCGN_TAG_001,RCGN_TAG_007</code> and belongs to the team <code>ESPBCN</code>.</p>
+<p>Below a summary of the information about fields related events and fields related to annotations. </p>
+<h2 id="fields-common-to-all-events">Fields common to all events</h2>
+<pre><code>{
+  &quot;pattern&quot;: 15, // Pattern code
+  &quot;start_time&quot;: 5000, // Number in milliseconds
+  &quot;event_time&quot;: 10000, // Number in milliseconds
+  &quot;end_time&quot;: 25000, // Number in milliseconds
+  &quot;coordinates&quot;: [ // In normalized coordinates. `null` if empty.
+    [0.39,0.51],
+    [0.44,0.42]
+  ]
+  &quot;visualizations&quot;:[...], // See below. `null` if empty.
+  &quot;tags&quot;: [ // Codes of the tags. `[]` if empty. 
+    &quot;ESPBCN&quot;,
+    &quot;P030&quot;
+  ],
+  &quot;team&quot;: &quot;ESPBCN&quot; // `null` if empty.
+}
+</code></pre>
+<h2 id="fields-common-to-all-visualizations">Fields common to all visualizations</h2>
+<p>The following attributes have to be defined for each tool. Annotations' order matters, they will be created and displayed in the same order they are declared, first annotation will be rendered at the bottom/background.</p>
+<pre><code>{
+  start_time : 1040, // Milliseconds
+  end_time   : 2130, // Milliseconds
+  tool_id    : 'players', // The ID of the tool
+  ... // Each tool could have other mandatory attributes (players, team, points, etc.)
+  options    : {}, // Optional object attribute for the tool
+  version    : 2 // Which version of API it's the viz compatible with
+}
+</code></pre>
+<h2 id="versions">Versions</h2>
+<p>In version <strong>2.5.0</strong> of Play by Metrica Sports we introduced <a href="https://metrica-sports.com/a-wonderful-day-for-play/">new and improved visualizations</a>. These new visualizations add several new parameters and options to the visualizations, thus the API for adding visualizations has changed. In particular around the available options for each type of visualization. </p>
+<p>For example whereas on the original version (version 1), to define a ring you would do:</p>
+<pre><code>{
+  start_time : 1040,
+  end_time   : 2130,
+  tool_id    : 'players',
+  players    : ['P001', 'P002'],
+  options    : { ring: true, color: '#FFFFFF' },
+}
+</code></pre>
+<p>On the new version (version 2) rings have a border and a fill that can de defined separately. So to define a ring you need to do:</p>
+<pre><code>{
+  start_time : 1040,
+  end_time   : 2130,
+  tool_id    : 'players',
+  players    : ['P001', 'P002'],
+  options    : { ringFill: true, ringBorder: true, ringFillColor: '#FFFFFF', ringBorderColor: '#FFFF00' },
+  version    : 2
+}
+</code></pre>
+<p>Note that in the last one we noted that this visualization is of version 2 so that the API know how to read this visualization. However, while different in formats, the API on version 2.5.0 onwards is compatible with older versions. If a visualization doesn't have a version indicated in the options it will be assumed it's from version 2, and the options will be populated accordingly. For example, if you import the above example of a version 1 ring, it would be like importing: </p>
+<pre><code>
+{
+  start_time : 1040,
+  end_time   : 2130,
+  tool_id    : 'players',
+  players    : ['P001', 'P002'],
+  options    : { ringFill: true, ringBorder: true, ringFillColor: '#FFFFFF', ringBorderColor: '#FFFFFF' },
+  version    : 2
+}
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../metrica-play-api/" class="md-footer__link md-footer__link--prev" aria-label="Previous: What you can do" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              What you can do
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../visualizations/" class="md-footer__link md-footer__link--next" aria-label="Next: Visualizations" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Visualizations
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.756773cc.min.js"></script>
+      
+    
+  </body>
+</html>
