@@ -27,7 +27,7 @@ class TestVisualizations:
         assert viz.start_time == 500
         assert viz.end_time == 1000
         assert len(viz.players) == 2
-        assert viz.options["width"] == 1
+        assert viz.options["width"] == 0.24
 
     def test_future_trails(self):
         with pytest.raises(TypeError):
@@ -40,7 +40,7 @@ class TestVisualizations:
         assert viz.start_time == 500
         assert viz.end_time == 1000
         assert len(viz.players) == 2
-        assert viz.options["width"] == 1
+        assert viz.options["width"] == 0.24
 
     def test_magnifiers(self):
         with pytest.raises(TypeError):
@@ -76,7 +76,7 @@ class TestVisualizations:
 
         assert viz.start_time == 500
         assert viz.end_time == 1000
-        assert viz.options["color"] == "#E66F7E"
+        assert viz.options["color"] == "#683391"
 
     def test_tactical_lines(self):
         with pytest.raises(TypeError):
@@ -86,7 +86,7 @@ class TestVisualizations:
 
         assert viz.start_time == 500
         assert viz.end_time == 1000
-        assert viz.options["color"] == "#E66F7E"
+        assert viz.options["borderColor"] == "#ffffff"
 
     def test_pause(self):
 
