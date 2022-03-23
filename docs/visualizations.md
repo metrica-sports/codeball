@@ -464,15 +464,12 @@ text: 'Insert Text'
 
 **Position**
 ```
-position: { x: 0.0, y: 0.0 } // Normalized: screen-space or field-space if 'is3d' is enabled.
+position: { x: 0.45, y: 0.45 } // Normalized: screen-space or field-space if 'is3d' is enabled.
 ```
 
 **Options**
 ```
 options: {
-  text: 'Insert Text',
-  x: 0.45,
-  y: 0.45,
   width: 0.1,
   height: 0.1,
   size: 1.0, // [0.5, 4.0]
@@ -495,13 +492,19 @@ The `tool_id` is `image`. Image will be downloaded locally and placed in the wor
 url: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png'
 ```
 
+**Position**
+```
+position: { x: 0.25, y: 0.25 } // Normalized: screen-space or field-space if 'is3d' is enabled.
+```
+
+**Scale**
+```
+scale: { x: 0.5, y: 0.5 } // Normalized: screen-space or field-space if 'is3d' is enabled.
+```
+
 **Options**
 ```
 options: {
-  x: 0.25,
-  y: 0.25,
-  scaleX: 1.0,
-  scaleY: 1.0,
   rotation: 0.0, // [-Math.PI, Math.PI]
   opacity: 1.0, // [0.0, 1.0]
   is3d: false
