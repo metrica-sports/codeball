@@ -7,6 +7,6 @@ exclude = '''
   | \.pytest_cache
   | \.mypy_cache
   | \.vscode
-  | \env
+  | \.env
 )/
 '''
