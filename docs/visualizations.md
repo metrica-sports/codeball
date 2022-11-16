@@ -6,12 +6,12 @@ This section describes all the possible visualizations that can be added to an e
 The following attributes have to be defined for each tool. Annotations' order matters, they will be created and displayed in the same order they are declared, first annotation will be rendered at the bottom/background.
 ```
 {
-  start_time : 1040, // Milliseconds
-  end_time   : 2130, // Milliseconds
-  tool_id    : 'players', // The ID of the tool
+  start_time: 1040, // Milliseconds
+  end_time: 2130, // Milliseconds
+  tool_id: 'players', // The ID of the tool
   ... // Each tool could have other mandatory attributes
-  options    : {}, // Optional object attribute for the tool
-  version    : 2 // Which version of API it's the viz compatible with
+  options: {}, // Optional object attribute for the tool
+  version: 2 // Which version of API it's the viz compatible with
 }
 ```
 
@@ -29,22 +29,22 @@ players: ['P001', 'P002']
 **Options**
 ```
 options: {
-      id               : false,
-      speed            : false,
-      size             : 1.0, // [0.2, 2.5]
-      color            : '#000000',
-      boxPositionDown  : false,
-      spotlight        : false,
-      spotlightSize    : 0.5, // Multiplier [0.2, 4.0]
-      spotlightColor   : '#FFFFFF',
-      spotlightOpacity : 0.43, // [0.0, 1.0]
-      spotlightHeight  : 2.0, // [0.1, 10.0]
-      ringSize         : 0.73,
-      ringBorder       : false,
-      ringBorderColor  : '#FFFFFF',
-      ringFill         : false,
-      ringFillColor    : '#DC3322',
-      is3d             : false
+  id: false,
+  speed: false,
+  size: 1.0, // [0.2, 2.5]
+  color: '#000000',
+  boxPositionDown: false,
+  spotlight: false,
+  spotlightSize: 0.5, // Multiplier [0.2, 4.0]
+  spotlightColor: '#FFFFFF',
+  spotlightOpacity: 0.43, // [0.0, 1.0]
+  spotlightHeight: 2.0, // [0.1, 10.0]
+  ringSize: 0.73,
+  ringBorder: false,
+  ringBorderColor: '#FFFFFF',
+  ringFill: false,
+  ringFillColor: '#DC3322',
+  is3d: false
 }
 
 ```
@@ -119,8 +119,8 @@ players: ['P001', 'P002']
 ```
 options: {
   color: '#ffffff',
-  zoom : 1.0, // [0.2, 1.5],
-  size : 1.0 // [0.5, 1.5]
+  zoom: 1.0, // [0.2, 1.5]
+  size: 1.0 // [0.5, 1.5]
 }
 ```
 ***
@@ -246,8 +246,8 @@ The `tool_id` is `line3d`.
 ```
 // Normalized
 points: {
-  start : { x: 0.0, y: 0.0 },
-  end   : { x: 0.0, y: 0.0 }
+  start: { x: 0.0, y: 0.0 },
+  end: { x: 0.0, y: 0.0 }
 }
 ```
 
@@ -380,8 +380,8 @@ The `tool_id` is `arrow`.
 ```
 // Normalized: screen-space or field-space if 'is3d' is enabled.
 points: {
-  start : { x: 0.0, y: 0.0 },
-  end   : { x: 0.0, y: 0.0 }
+  start: { x: 0.0, y: 0.0 },
+  end: { x: 0.0, y: 0.0 }
 }
 ```
 
@@ -419,8 +419,8 @@ The `tool_id` is `dragger`.
 ```
 // Normalized: screen-space only. Flag 'is3d' is only applied to arrow.
 points: {
-  start : { x: 0.0, y: 0.0 },
-  end   : { x: 0.0, y: 0.0 }
+  start: { x: 0.0, y: 0.0 },
+  end: { x: 0.0, y: 0.0 }
 }
 ```
 
@@ -523,12 +523,69 @@ pause_time: 5000 // Milliseconds
 ### Chroma-Key
 The `tool_id` is `chromaKey`. It'll be computed on each clip created. Options should be set according to the scene, so if it remains similar during a game, maybe you want to adapt these values from a sample clip in Play and use them in all chroma-key events. Otherwise, you should not pass any option, use default values and fit them in each clip if needed. 
 
-Since the order in which visualizations added declared in the event is preserved when they are imported in play, the Chroma-key tool should be added in the specific desired position. For example, if you want to add shape in the field and an arrow, but chroma key only to have an effect on the shape on the field, the order in the event should be: shape - chroma key - arrow.
+Since the order in which visualizations added declared in the event is preserved when they are imported in Play, the chroma-key tool should be added in the specific desired position. For example, if you want to add shape in the field and an arrow, but chroma key only to have an effect on the shape on the field, the order in the event should be: shape - chroma key - arrow.
 
 **Options**
 ```
 options: {
-  threshold : 0.01, // [0.0, 1.0]
-  smoothing : 0.1   // [0.0, 1.0]
+  threshold: 0.01, // [0.0, 1.0]
+  smoothing: 0.1 // [0.0, 1.0]
+}
+```
+
+### Timer
+The `tool_id` is `timer`.
+
+**Options**
+```
+options: {
+  x: 0.825, // Normalized: screen-space or field-space if 'is3d' is enabled.
+  y: 0.02, // Normalized: screen-space or field-space if 'is3d' is enabled.
+  width: 0.16,
+  height: 0.15,
+  offsetTime: 0, // Unix timestamp.
+  decimals: 0, // 0 (no decimals), 1 (tenths of second), 2 (hundredths of second) and 3 (thousandths of second)
+  size: 2.7, // [0.5, 4.0]
+  rotation: 0.0, [-Math.PI, Math.PI]
+  color: '#ffffff',
+  opacity: 1.0, // [0.0, 1.0]
+  background: true,
+  backgroundColor: '#000000',
+  backgroundOpacity: 0.75, // [0.0, 1.0]
+  clockwise: true,
+  is3d: false
+}
+```
+
+### Offside
+The `tool_id` is `offside`.
+
+**Options**
+```
+options: {
+  teamId:  'T001',
+  defender: true,
+  defenderColor: '#ffffff',
+  defenderOpacity: 1.0, // [0.0, 1.0]
+  defenderContinuous: true,
+  defenderDotted: false,
+  defenderWidth: 0.12, // [0.05, 1.0]
+  defenderThickness: 0.05, // [0.0, 7.5]
+  defenderDashSize: 0.6, // [0.2, 2.5]
+  defenderFieldColor: '#000000',
+  defenderFieldOpacity: 0.55, // [0.0, 1.0]
+  defenderFieldFade: 5.0, // [1.0, 8.0]
+  attacker: true,
+  automaticColor: false,
+  attackerColor: '#ffff00',
+  attackerOpacity: 1.0, // [0.0, 1.0]
+  attackerContinuous: true,
+  attackerDotted: false,
+  attackerWidth: 0.12, // [0.05, 1.0]
+  attackerThickness: 0.05, // [0.0, 7.5]
+  attackerDashSize: 0.6, // [0.2, 2.5]
+  attackerFieldColor: '#ffff00',
+  attackerFieldOpacity: 0.0, // [0.0, 1.0]
+  attackerFieldFade: 2.0 // [1.0, 8.0]
 }
 ```
